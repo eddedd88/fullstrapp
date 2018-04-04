@@ -6,7 +6,13 @@ import Typography from 'material-ui/Typography'
 class App extends Component<void> {
   render () {
     return (
-      <div className="mw8">App</div>
+      <AppBar>
+        <Toolbar>
+          <Typography variant='title' color='inherit'>
+            App Bar
+          </Typography>
+        </Toolbar>
+      </AppBar>
     )
   }
 }
