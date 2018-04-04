@@ -6,7 +6,7 @@ import Typography from 'material-ui/Typography'
 class App extends Component<void> {
   render () {
     return (
-      <div>App</div>
+      <div className="mw8">App</div>
     )
   }
 }
