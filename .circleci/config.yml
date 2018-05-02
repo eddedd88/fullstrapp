@@ -31,7 +31,6 @@ jobs:
           key: *dependencies_cache_key
 
       # - run: yarn test
-      # - run: yarn lint
       # - run: yarn flow
       - run: yarn build
 

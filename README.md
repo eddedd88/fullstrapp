@@ -59,9 +59,7 @@ Reaching any of the limits should qualify you to raise enough funding to cover i
 ---
 
 ### PWA specific components
-- CachedOfflineToast
 - UpdateAppToast
-- Share (TBD)
 - AddToHome (TBD)
 
 ### Reusable components that extend material-ui
