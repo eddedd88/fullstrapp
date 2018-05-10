@@ -30,8 +30,8 @@ jobs:
             - node_modules
           key: *dependencies_cache_key
 
-      # - run: yarn test
       # - run: yarn flow
+      - run: yarn test
       - run: yarn build
 
       - persist_to_workspace:
@@ -52,7 +52,15 @@ jobs:
       - attach_workspace:
           at: .
 
-      - run: yarn deploy
+      - run:
+          name: Install netlifyctl
+          commands:
+            - go get -d github.com/netlify/netlifyctl
+            - cd $GOPATH/src/github.com/netlify/netlifyctl
+            - make deps build
+            - go install
+
+      - run: netlifyctl deploy -A $NETLIFY_TOKEN
 
 workflows:
   version: 2
