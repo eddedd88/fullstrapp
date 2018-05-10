@@ -53,13 +53,11 @@ jobs:
       - attach_workspace:
           at: .
 
-      - run:
-          name: Install netlifyctl
-          commands:
-            - go get -d github.com/netlify/netlifyctl
-            - cd $GOPATH/src/github.com/netlify/netlifyctl
-            - make deps build
-            - go install
+      - run: |
+          go get -d github.com/netlify/netlifyctl
+          cd $GOPATH/src/github.com/netlify/netlifyctl
+          make deps build
+          go install
 
       - run: netlifyctl deploy -A $NETLIFY_TOKEN
 
