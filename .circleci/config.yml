@@ -41,6 +41,7 @@ jobs:
 
   deploy:
     docker:
+      - image: circleci/golang:1.8
       - image: circleci/node:8.9.4
 
     working_directory: ~/repo
@@ -52,11 +53,13 @@ jobs:
       - attach_workspace:
           at: .
 
-      - run: |
-          go get -d github.com/netlify/netlifyctl
-          cd $GOPATH/src/github.com/netlify/netlifyctl
-          make deps build
-          go install
+      - run:
+          name: Install netlifyctl
+          commands:
+            - go get -d github.com/netlify/netlifyctl
+            - cd $GOPATH/src/github.com/netlify/netlifyctl
+            - make deps build
+            - go install
 
       - run: netlifyctl deploy -A $NETLIFY_TOKEN
 
