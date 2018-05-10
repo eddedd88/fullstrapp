@@ -9,7 +9,7 @@ class App extends Component<void> {
       <AppBar>
         <Toolbar>
           <Typography variant='title' color='inherit'>
-            App Bar
+            Root App Bar
           </Typography>
         </Toolbar>
       </AppBar>
