@@ -5,6 +5,4 @@
   Command = "yarn test && yarn build"
   Publish = "build/"
   Functions = ""
-  Environment = {
-    CI = true
-  }
+  Environment = { CI = true }
