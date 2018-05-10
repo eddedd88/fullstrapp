@@ -1,5 +1,5 @@
 [Settings]
-  ID = "bee82b1b-c2bb-4663-b3e3-c97e26b59594"
+  ID = "Netlify Site ID"
 
 [Build]
   Command = "yarn test && yarn build"
