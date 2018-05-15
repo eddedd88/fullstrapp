@@ -2,12 +2,12 @@
 
 ### Extends *create-react-app*, and adds the following:
 - Material UI + Icons
-- Tachyons
 - Flow (currently ignores node_modules)
-- Prettier + Standard
+- prettier-standard
 - Husky + lint-staged
 - CircleCI*
 - Firebase hosting*
+- Netlify hosting + CD*
 - codecov*
 - Dependabot*
 - graphcool*
@@ -27,7 +27,6 @@ The main goal of the project is to be able launch a product in very little time,
 - using lots of tools to advance the MVP as further as possible with the least amount of work:
   - react
   - material-ui and material-ui-icons
-  - tachyons (hope to remove in the future)
 - automating as many things as possible: formatting, tests, and deploys
   - create-react-app
   - flow (needs more work)

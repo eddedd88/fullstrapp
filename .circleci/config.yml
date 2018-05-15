@@ -59,8 +59,6 @@ workflows:
   build-and-deploy:
     jobs:
       - build
-      #
-      # Uncomment deploy job to deploy from circleci
       # - deploy:
       #     requires:
       #       - build

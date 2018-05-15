@@ -10,10 +10,6 @@ import theme from './styles/theme'
 // fonts - material ui was built with roboto in mind
 // import 'typeface-roboto'
 
-// tachyons - for atomic css
-// consider using Material UI built-in typography
-import 'tachyons/css/tachyons.min.css'
-
 // some global css
 import './index.css'
 
