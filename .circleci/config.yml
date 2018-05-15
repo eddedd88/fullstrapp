@@ -12,7 +12,7 @@ references:
         - dependencies-cache-
 
 jobs:
-  build:
+  test-and-build:
     docker:
       - image: circleci/node:8.9.4-browsers
 
@@ -58,9 +58,7 @@ workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - build
-      #
-      # Uncomment deploy job to deploy from circleci
+      - test-and-build
       # - deploy:
       #     requires:
       #       - build
