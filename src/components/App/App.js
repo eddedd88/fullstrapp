@@ -1,18 +1,22 @@
-import React, { Component } from 'react'
-import AppBar from 'material-ui/AppBar'
-import Toolbar from 'material-ui/Toolbar'
-import Typography from 'material-ui/Typography'
+import React, { Component, Fragment } from 'react'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import AddToHomeScreen from '../AddToHomeScreen'
 
-class App extends Component<void> {
+class App extends Component<{||}> {
   render () {
     return (
-      <AppBar>
-        <Toolbar>
-          <Typography variant='title' color='inherit'>
-            Root App Bar
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <Fragment>
+        <AppBar>
+          <Toolbar>
+            <Typography variant='title' color='inherit'>
+              Material PWA
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <AddToHomeScreen />
+      </Fragment>
     )
   }
 }
