@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import AddToHomeScreen from '../AddToHomeScreen'
 
 class App extends Component<{||}> {
   render () {
@@ -15,7 +14,6 @@ class App extends Component<{||}> {
             </Typography>
           </Toolbar>
         </AppBar>
-        <AddToHomeScreen />
       </Fragment>
     )
   }
