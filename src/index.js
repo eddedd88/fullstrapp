@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import App from './components/App'
 import registerServiceWorker from './registerServiceWorker'
 import { MuiThemeProvider } from '@material-ui/core/styles'
+import addToHomeScreen from './addToHomeScreen'
+import { BrowserRouter } from 'react-router-dom'
 
 // material ui theme
 import theme from './styles/theme'
@@ -15,9 +17,12 @@ import './index.css'
 
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </MuiThemeProvider>,
   document.getElementById('root')
 )
 
+addToHomeScreen()
 registerServiceWorker()
