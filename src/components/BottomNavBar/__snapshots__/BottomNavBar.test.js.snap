@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BottomNavBar renders correctly 1`] = `
+<WithStyles(BottomNavigation)
+  classes={
+    Object {
+      "test": "test",
+    }
+  }
+  showLabels={true}
+  value="/reasons"
+>
+  <WithStyles(BottomNavigationAction)
+    component={[Function]}
+    icon={<pure(Restore) />}
+    label="Recents"
+    to="/recents"
+    value="/recents"
+  />
+  <WithStyles(BottomNavigationAction)
+    component={[Function]}
+    icon={<pure(Favorite) />}
+    label="Favourites"
+    to="/favourites"
+    value="/favourites"
+  />
+  <WithStyles(BottomNavigationAction)
+    component={[Function]}
+    icon={<pure(LocationOn) />}
+    label="Nearby"
+    to="/nearby"
+    value="/nearby"
+  />
+</WithStyles(BottomNavigation)>
+`;
+
+exports[`BottomNavBar renders with router correctly 1`] = `
+<Route
+  render={[Function]}
+/>
+`;

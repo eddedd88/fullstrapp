@@ -17,6 +17,7 @@
     "husky": "^0.15.0-rc.13",
     "lint-staged": "^7.1.2",
     "prettier-standard": "^8.0.1",
+    "react-test-renderer": "^16.4.0",
     "source-map-explorer": "^1.5.0"
   },
   "scripts": {
