@@ -12,10 +12,10 @@ exports[`BottomNavBar renders correctly 1`] = `
 >
   <WithStyles(BottomNavigationAction)
     component={[Function]}
-    icon={<pure(Restore) />}
-    label="Recents"
-    to="/recents"
-    value="/recents"
+    icon={<pure(LocationCity) />}
+    label="Feed"
+    to="/feed"
+    value="/feed"
   />
   <WithStyles(BottomNavigationAction)
     component={[Function]}

@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
 import BottomNavigation from '@material-ui/core/BottomNavigation'
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
-import RestoreIcon from '@material-ui/icons/Restore'
+import LocationCityIcon from '@material-ui/icons/LocationCity'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import LocationOnIcon from '@material-ui/icons/LocationOn'
 import { Link, withRouter } from 'react-router-dom'
 import type { Location } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 
-const styles = {
+const styles = theme => ({
   root: {
     position: 'fixed',
     bottom: 0,
-    width: '100%'
+    width: '100%',
+    boxShadow: theme.shadows[8]
   }
-}
+})
 
 type Props = {
   classes: {},
@@ -32,11 +33,11 @@ export class BottomNavBar extends Component<Props> {
     return (
       <BottomNavigation value={tabValue} classes={classes} showLabels>
         <BottomNavigationAction
-          label='Recents'
-          icon={<RestoreIcon />}
+          label='Feed'
+          icon={<LocationCityIcon />}
           component={Link}
-          to='/recents'
-          value='/recents'
+          to='/feed'
+          value='/feed'
         />
         <BottomNavigationAction
           label='Favourites'
