@@ -4,6 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import BottomNavBar from '../BottomNavBar'
 import { Switch, Route, Redirect } from 'react-router'
+import Feed from '../Feed'
 
 class App extends Component<{||}> {
   render () {
@@ -17,13 +18,14 @@ class App extends Component<{||}> {
           </Toolbar>
         </AppBar>
 
-        <Switch>
-          <Route path='/recents' render={() => 'recents page'} />
-          <Route path='/favourites' render={() => 'favourites page'} />
-          <Route path='/nearby' render={() => 'nearby page'} />
-          <Redirect to='/recents' />
-        </Switch>
-
+        <div style={{ marginBottom: 65 }}>
+          <Switch>
+            <Route path='/feed' component={Feed} />
+            <Route path='/favourites' render={() => 'favourites page'} />
+            <Route path='/nearby' render={() => 'nearby page'} />
+            <Redirect to='/feed' />
+          </Switch>
+        </div>
         <BottomNavBar />
       </Fragment>
     )
