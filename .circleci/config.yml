@@ -14,7 +14,7 @@ references:
 jobs:
   build:
     docker:
-      - image: circleci/node:8.9.4-browsers
+      - image: circleci/node:8.9.4
 
     working_directory: ~/repo
 
@@ -30,8 +30,7 @@ jobs:
             - node_modules
           key: *dependencies_cache_key
 
-      # - run: yarn flow
-      - run: yarn test
+      - run: yarn ci
       - run: yarn build
 
       - persist_to_workspace:

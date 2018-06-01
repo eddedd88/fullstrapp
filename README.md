@@ -2,29 +2,28 @@
 
 ### Extends *create-react-app*, and adds the following:
 - Material UI + Icons
-- Flow (currently ignores node_modules)
+- Flow
 - prettier-standard
 - Husky + lint-staged
 - CircleCI*
 - Firebase hosting*
 - Netlify hosting + CD*
 - codecov*
-- Dependabot*
 - graphcool*
 - auth0*
 - Issue templates
 - React templates (Atom)
-- Branch guidelines
+- Workflow guideline
 - Commit guidelines
 
 \* Requires extra steps to setup
 
-## Launch an app within a day at no cost
+## Launch a production PWA for every platform within a day
 The main goal of the project is to be able launch a product in very little time, without compromising on scalability and quality.
 
 ### We achieve this is by doing the following:
 - creating a mobile first Progressive Web App (PWA) to target many environments
-- using lots of tools to advance the MVP as further as possible with the least amount of work:
+- using tools to advance the MVP as further as possible with the least amount of work:
   - react
   - material-ui and material-ui-icons
 - automating as many things as possible: formatting, tests, and deploys
@@ -37,14 +36,12 @@ The main goal of the project is to be able launch a product in very little time,
   - codecov: code coverage
   - graphcool: Cloud Graphql Database
   - auth0: authentication
-  - Firebase: hosting (open to suggestions)
-  - Dependabot: automatic dependency updates
+  - Firebase: hosting, DB, authentication
+  - Netlify: hosting
 - establishing guidelines and templates:
-  - issue templates
-  - React templates
   - Commit guidelines
-  - Branch guidelines
-
+  - Issue templates
+  - React templates
 
 ### Key Performance Measures:
 - to **launch an MVP** as fast as possible: **within a day**
@@ -57,33 +54,53 @@ Reaching any of the limits should qualify you to raise enough funding to cover i
 
 ---
 
-### PWA specific components
+## Table of Contents
+
+#### PWA specific components
 - UpdateAppToast
 - AddToHome (TBD)
 
-### Reusable components that extend material-ui
+#### Reusable components that extend material-ui
 - ExpandableSearch
 - PersistentSearch
 
-### Full Fledge components
+#### Full Fledge components
 - LoginPage
 
-### Pre-built prototypes
+#### Pre-built prototypes
 - FeedPage
 - FeedItem
 - ProfilePage
-- Wizard
+- Onboarding
 - GridPage
 
-### DevOps scripts and Steps to add services
+#### DevOps scripts and Steps to add services
 - CircleCI
 - codecov
 - Firebase
-- Dependabot
 - graphcool
 - auth0
 
-### Guidelines and templates:
+#### Guidelines and templates:
 - React component atom template
+- Workflow guideline
 - Commit guidelines
-- Branch guidelines
+
+## How to deploy to Netlify
+### Create a new site
+- **Signup** at https://www.netlify.com/
+- Create a new site linked to your repo
+
+## How to deploy to Firebase
+
+### Setup Project
+- **Signup** at https://firebase.com for a Firebase account
+- **Start a new project**
+- Copy the **Project ID** from the *project settings* and in the file **.firebaserc** replace *PROJECT_ID* with your new *project id*
+
+### Deploy with CircleCI
+- Create a Firebase token: `yarn firebase login:ci`
+- Add the token to CircleCI as an environment variable named `FIREBASE_TOKEN`
+- Uncomment deploy job in `.circleci/config.yml`, lines 62-67
+
+Every time a pull request is merged into master, CircleCI will deploy to firebase if all the tests succeed
