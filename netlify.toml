@@ -1,8 +1,5 @@
-[Settings]
-  ID = "Netlify Site ID"
-
 [Build]
-  Command = "yarn test && yarn build"
+  Command = "yarn ci && yarn build"
   Publish = "build/"
   Functions = ""
   Environment = { CI = "true" }
