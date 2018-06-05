@@ -6,10 +6,8 @@ import { withStyles } from '@material-ui/core/styles'
 import MaxWidthDiv from '../MaxWidthDiv'
 import FormDialog from '../FormDialog'
 import TextField from '@material-ui/core/TextField'
-import InputAdornment from '@material-ui/core/InputAdornment'
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera'
 import FileInput from '../FileInput'
-import DialogActions from '@material-ui/core/DialogActions'
 import type { FeedItemType } from '../../models/FeedItemType'
 
 const FabButton = withStyles(theme => ({

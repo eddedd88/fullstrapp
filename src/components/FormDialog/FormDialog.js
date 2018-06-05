@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import type { Node } from 'react'
 import Dialog from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
@@ -51,6 +51,7 @@ class FormDialog extends Component<Props> {
               submitLabel={submitLabel}
             />
           )}
+
           <DialogTitle>{title}</DialogTitle>
           <DialogContent>{children}</DialogContent>
 
