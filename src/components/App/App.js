@@ -4,7 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import BottomNavBar from '../BottomNavBar'
 import { Switch, Route, Redirect } from 'react-router'
-import Feed from '../Feed'
+import FeedPageContainer from '../../containers/FeedPageContainer'
 
 class App extends Component<{||}> {
   render () {
@@ -20,7 +20,7 @@ class App extends Component<{||}> {
 
         <div style={{ marginBottom: 65 }}>
           <Switch>
-            <Route path='/feed' component={Feed} />
+            <Route path='/feed' component={FeedPageContainer} />
             <Route path='/favourites' render={() => 'favourites page'} />
             <Route path='/nearby' render={() => 'nearby page'} />
             <Redirect to='/feed' />
