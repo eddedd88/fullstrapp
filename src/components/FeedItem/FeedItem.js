@@ -6,10 +6,11 @@ import CardActions from '@material-ui/core/CardActions'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles'
+import type { FeedItemType } from '../../types/FeedItemType'
 
 const CustomCard = withStyles(theme => ({
   root: {
-    margin: theme.spacing.unit
+    marginTop: theme.spacing.unit
   }
 }))(Card)
 
@@ -19,20 +20,13 @@ const CustomCardMedia = withStyles({
   }
 })(CardMedia)
 
-type Props = {
-  title: string,
-  content: string,
-  media?: string,
-  mediaTitle?: string
-}
-
-class FeedItem extends Component<Props> {
+class FeedItem extends Component<FeedItemType> {
   render () {
-    const { title, content, media, mediaTitle } = this.props
+    const { title, content, media } = this.props
 
     return (
       <CustomCard>
-        {media && <CustomCardMedia image={media} title={mediaTitle} />}
+        {media && <CustomCardMedia image={media} title={title} />}
 
         <CardContent>
           {title && (
