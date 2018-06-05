@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^1.1.0",
+    "@material-ui/core": "^1.2.0",
     "@material-ui/icons": "^1.1.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
@@ -27,6 +27,7 @@
     "coverage": "react-scripts test --env=jsdom --coverage",
     "analyze": "source-map-explorer build/static/js/main.*",
     "ci": "yarn test",
+    "local-ci": "CI=true yarn ci && yarn build",
     "deploy": "firebase deploy --token \"$FIREBASE_TOKEN\"",
     "eject": "react-scripts eject",
     "flow": "flow check",

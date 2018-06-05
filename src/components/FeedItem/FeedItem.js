@@ -20,7 +20,14 @@ const CustomCardMedia = withStyles({
   }
 })(CardMedia)
 
-class FeedItem extends Component<FeedItemType> {
+type Props = $Diff<
+  FeedItemType,
+  {
+    id: number
+  }
+>
+
+class FeedItem extends Component<Props> {
   render () {
     const { title, content, media } = this.props
 
