@@ -8,7 +8,7 @@ import FormDialog from '../FormDialog'
 import TextField from '@material-ui/core/TextField'
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera'
 import FileInput from '../FileInput'
-import type { FeedItemType } from '../../models/FeedItemType'
+import type { FeedItemType } from '../../types/FeedItemType'
 
 const FabButton = withStyles(theme => ({
   root: {
@@ -20,7 +20,11 @@ const FabButton = withStyles(theme => ({
 
 type Props = {
   feedItems: FeedItemType[],
-  onAddFeedItem: Function
+  onAddFeedItem: Function,
+  classes: {
+    cameraButton: string,
+    buttonLeftIcon: string
+  }
 }
 
 type State = {

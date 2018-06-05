@@ -4,8 +4,9 @@ import Image1 from '../../media/cassie-boca-293379-unsplash.jpg'
 import Image2 from '../../media/dan-freeman-404566-unsplash.jpg'
 import Image3 from '../../media/fabio-mangione-236846-unsplash.jpg'
 import Image4 from '../../media/tommy-lisbin-276996-unsplash.jpg'
+import type { FeedItemType } from '../../types/FeedItemType'
 
-const initialFeedItems = [
+const initialFeedItems: FeedItemType[] = [
   {
     id: 1,
     title: 'Mountains',
@@ -50,7 +51,7 @@ const initialFeedItems = [
 ]
 
 type State = {
-  feedItems: Array<any>
+  feedItems: FeedItemType[]
 }
 
 class FeedPageContainer extends Component<{||}, State> {
@@ -58,7 +59,7 @@ class FeedPageContainer extends Component<{||}, State> {
     feedItems: initialFeedItems
   }
 
-  handleAddFeedItem = newFeedItem => {
+  handleAddFeedItem = (newFeedItem: FeedItemType) => {
     this.setState({
       feedItems: [
         ...this.state.feedItems,
