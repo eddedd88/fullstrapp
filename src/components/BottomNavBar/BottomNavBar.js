@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import BottomNavigation from '@material-ui/core/BottomNavigation'
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
 import LocationCityIcon from '@material-ui/icons/LocationCity'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import LocationOnIcon from '@material-ui/icons/LocationOn'
 import { Link, withRouter } from 'react-router-dom'
 import type { Location } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
+import GridIcon from '@material-ui/icons/GridOn'
+import PersonIcon from '@material-ui/icons/Person'
+import paths from '../../routes/paths'
 
 const styles = theme => ({
   root: {
@@ -36,22 +37,22 @@ export class BottomNavBar extends Component<Props> {
           label='Feed'
           icon={<LocationCityIcon />}
           component={Link}
-          to='/feed'
-          value='/feed'
+          to={paths.feed}
+          value={paths.feed}
         />
         <BottomNavigationAction
-          label='Favourites'
-          icon={<FavoriteIcon />}
+          label='Grid'
+          icon={<GridIcon />}
           component={Link}
-          to='/favourites'
-          value='/favourites'
+          to={paths.grid}
+          value={paths.grid}
         />
         <BottomNavigationAction
-          label='Nearby'
-          icon={<LocationOnIcon />}
+          label='Profile'
+          icon={<PersonIcon />}
           component={Link}
-          to='/nearby'
-          value='/nearby'
+          to={paths.profile}
+          value={paths.profile}
         />
       </BottomNavigation>
     )

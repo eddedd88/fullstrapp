@@ -19,17 +19,17 @@ exports[`BottomNavBar renders correctly 1`] = `
   />
   <WithStyles(BottomNavigationAction)
     component={[Function]}
-    icon={<pure(Favorite) />}
-    label="Favourites"
-    to="/favourites"
-    value="/favourites"
+    icon={<pure(GridOn) />}
+    label="Grid"
+    to="/grid"
+    value="/grid"
   />
   <WithStyles(BottomNavigationAction)
     component={[Function]}
-    icon={<pure(LocationOn) />}
-    label="Nearby"
-    to="/nearby"
-    value="/nearby"
+    icon={<pure(Person) />}
+    label="Profile"
+    to="/profile"
+    value="/profile"
   />
 </WithStyles(BottomNavigation)>
 `;
