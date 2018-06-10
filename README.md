@@ -28,7 +28,7 @@ The main goal of the project is to be able launch a product in very little time,
   - material-ui and material-ui-icons
 - automating as many things as possible: formatting, tests, and deploys
   - create-react-app
-  - flow (needs more work)
+  - flow
   - prettier + standard
   - husky + lint-staged
 - using services at a free tier level, where cost would only materialize if the product gets traction

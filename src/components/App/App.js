@@ -5,6 +5,8 @@ import Typography from '@material-ui/core/Typography'
 import BottomNavBar from '../BottomNavBar'
 import { Switch, Route, Redirect } from 'react-router'
 import FeedPageContainer from '../../containers/FeedPageContainer'
+import GridPage from '../GridPage'
+import paths from '../../routes/paths'
 
 class App extends Component<{||}> {
   render () {
@@ -20,10 +22,10 @@ class App extends Component<{||}> {
 
         <div style={{ marginBottom: 65 }}>
           <Switch>
-            <Route path='/feed' component={FeedPageContainer} />
-            <Route path='/favourites' render={() => 'favourites page'} />
-            <Route path='/nearby' render={() => 'nearby page'} />
-            <Redirect to='/feed' />
+            <Route path={paths.feed} component={FeedPageContainer} />
+            <Route path={paths.grid} component={GridPage} />
+            <Route path={paths.profile} render={() => 'profile page'} />
+            <Redirect to={paths.feed} />
           </Switch>
         </div>
         <BottomNavBar />
