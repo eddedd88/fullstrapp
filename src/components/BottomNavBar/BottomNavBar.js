@@ -23,7 +23,7 @@ type Props = {
   location: Location
 }
 
-export class BottomNavBar extends Component<Props> {
+export class BottomNavBar extends Component<{}> {
   render () {
     const { classes, location: { pathname } } = this.props
 
