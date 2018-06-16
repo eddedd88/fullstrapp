@@ -14,7 +14,8 @@ const styles = theme => ({
     position: 'fixed',
     bottom: 0,
     width: '100%',
-    boxShadow: theme.shadows[8]
+    boxShadow: theme.shadows[8],
+    '-webkit-backface-visibility': 'hidden'
   }
 })
 

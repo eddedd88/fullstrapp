@@ -21,7 +21,9 @@ class GridPage extends Component<Props> {
 
     return (
       <MaxWidthDiv>
-        <ListSubheader component='div'>The Grid Page</ListSubheader>
+        <ListSubheader component='div' disableSticky>
+          The Grid Page
+        </ListSubheader>
         <GridList cellHeight={isWidthUp('sm', width) ? 300 : 180}>
           {gridItems &&
             gridItems.map(({ id, title, imgSrc, subtitle }, index) => (
