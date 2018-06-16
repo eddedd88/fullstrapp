@@ -20,7 +20,7 @@ class App extends Component<{||}> {
           </Toolbar>
         </AppBar>
 
-        <div style={{ marginBottom: 65 }}>
+        <div style={{ marginBottom: 64 }}>
           <Switch>
             <Route path={paths.feed} component={FeedPageContainer} />
             <Route path={paths.grid} component={GridPageContainer} />

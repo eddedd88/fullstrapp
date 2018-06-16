@@ -35,7 +35,7 @@ exports[`BottomNavBar renders correctly 1`] = `
 `;
 
 exports[`BottomNavBar renders with router correctly 1`] = `
-<Route
-  render={[Function]}
-/>
+<Route>
+  [Function]
+</Route>
 `;
