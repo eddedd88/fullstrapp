@@ -1,5 +1,5 @@
-// flow-typed signature: 2d946f2ec4aba5210b19d053c411a59d
-// flow-typed version: 95b3e05165/react-test-renderer_v16.x.x/flow_>=v0.47.x
+// flow-typed signature: cd91208a3c81125a801eb305516651a1
+// flow-typed version: 6b56f6033e/react-test-renderer_v16.x.x/flow_>=v0.47.x
 
 // Type definitions for react-test-renderer 16.x.x
 // Ported from: https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-test-renderer
