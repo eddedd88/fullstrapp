@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import FeedItem from '../FeedItem'
 import Button from '@material-ui/core/Button'
 import CreateIcon from '@material-ui/icons/Create'
@@ -8,6 +8,7 @@ import FormDialog from '../FormDialog'
 import TextField from '@material-ui/core/TextField'
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera'
 import FileInput from '../FileInput'
+import AppBar from '../AppBar'
 import type { FeedItemType } from '../../types/FeedItemType'
 
 const FabButton = withStyles(theme => ({
@@ -69,47 +70,54 @@ class FeedPage extends Component<Props, State> {
     const { classes, feedItems } = this.props
 
     return (
-      <MaxWidthDiv>
-        {feedItems &&
-          feedItems.map(({ id, ...rest }) => <FeedItem key={id} {...rest} />)}
-        <FabButton variant='fab' color='secondary' onClick={this.toggleDialog}>
-          <CreateIcon />
-        </FabButton>
+      <Fragment>
+        <AppBar title='Feed' />
+        <MaxWidthDiv>
+          {feedItems &&
+            feedItems.map(({ id, ...rest }) => <FeedItem key={id} {...rest} />)}
+          <FabButton
+            variant='fab'
+            color='secondary'
+            onClick={this.toggleDialog}
+          >
+            <CreateIcon />
+          </FabButton>
 
-        <FormDialog
-          open={open}
-          onClose={this.toggleDialog}
-          title='New Feed Item'
-          submitLabel='Post'
-          onSubmit={this.handleSubmit}
-        >
-          <TextField
-            name='title'
-            label='Title'
-            onChange={this.handleInputChange}
-            fullWidth
-            autoFocus
-            required
-          />
+          <FormDialog
+            open={open}
+            onClose={this.toggleDialog}
+            title='New Feed Item'
+            submitLabel='Post'
+            onSubmit={this.handleSubmit}
+          >
+            <TextField
+              name='title'
+              label='Title'
+              onChange={this.handleInputChange}
+              fullWidth
+              autoFocus
+              required
+            />
 
-          <TextField
-            name='content'
-            label={`What's on your mind?`}
-            onChange={this.handleInputChange}
-            fullWidth
-            multiline
-            margin='normal'
-            required
-          />
+            <TextField
+              name='content'
+              label={`What's on your mind?`}
+              onChange={this.handleInputChange}
+              fullWidth
+              multiline
+              margin='normal'
+              required
+            />
 
-          <FileInput capture='camera'>
-            <Button component='span' className={classes.cameraButton}>
-              <PhotoCameraIcon className={classes.buttonLeftIcon} />
-              Add a Picture
-            </Button>
-          </FileInput>
-        </FormDialog>
-      </MaxWidthDiv>
+            <FileInput capture='camera'>
+              <Button component='span' className={classes.cameraButton}>
+                <PhotoCameraIcon className={classes.buttonLeftIcon} />
+                Add a Picture
+              </Button>
+            </FileInput>
+          </FormDialog>
+        </MaxWidthDiv>
+      </Fragment>
     )
   }
 }

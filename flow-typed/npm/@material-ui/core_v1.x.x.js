@@ -1,5 +1,5 @@
-// flow-typed signature: 15712e3655293dd047f44a3b6a85c71e
-// flow-typed version: 976c9976e3/@material-ui/core_v1.x.x/flow_>=v0.58.x
+// flow-typed signature: 2d496bf01691b846dc34c043d3fcc197
+// flow-typed version: 99cb4a4e98/@material-ui/core_v1.x.x/flow_>=v0.58.x
 
 declare module "@material-ui/core/AppBar/AppBar" {
   declare type Color = "inherit" | "primary" | "secondary" | "default";
@@ -736,7 +736,7 @@ declare module "@material-ui/core/Grid/Grid" {
     | "flex-end"
     | "space-between"
     | "space-around";
-  declare type Spacing = 0 | 8 | 16 | 24 | 40;
+  declare type Spacing = 0 | 8 | 16 | 24 | 32 | 40;
   declare type Wrap = "nowrap" | "wrap" | "wrap-reverse";
 
   declare module.exports: React$ComponentType<{
@@ -2395,7 +2395,7 @@ declare module "@material-ui/core/Typography/Typography" {
     | "inherit"
     | "primary"
     | "secondary"
-    | "accent"
+    | "textSecondary"
     | "error"
     | "default";
   declare type Type =
