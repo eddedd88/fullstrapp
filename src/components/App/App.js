@@ -5,10 +5,31 @@ import FeedPageContainer from '../../containers/FeedPageContainer'
 import GridPageContainer from '../../containers/GridPageContainer'
 import ProfilePageContainer from '../../containers/ProfilePageContainer'
 import paths from '../../routes/paths'
+import Onboarding from '../Onboarding'
 
-class App extends Component<{||}> {
+const onboardingKey = 'alreadyOnboarded'
+type State = {
+  needOnboarding: boolean
+}
+
+class App extends Component<{||}, State> {
+  state = {
+    needOnboarding: !window.localStorage.getItem(onboardingKey)
+  }
+
+  handleFinishOnboarding = () => {
+    window.localStorage.setItem(onboardingKey, true)
+    this.setState({
+      needOnboarding: false
+    })
+  }
+
   render () {
-    return (
+    const { needOnboarding } = this.state
+
+    return needOnboarding ? (
+      <Onboarding onDone={this.handleFinishOnboarding} />
+    ) : (
       <Fragment>
         <div style={{ marginBottom: 64 }}>
           <Switch>
