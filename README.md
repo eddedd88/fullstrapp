@@ -7,10 +7,7 @@
 - Husky + lint-staged
 - CircleCI*
 - Firebase hosting*
-- Netlify hosting + CD*
-- codecov*
-- graphcool*
-- auth0*
+- Firestore*
 - Issue templates
 - React templates (Atom)
 - Workflow guideline
@@ -25,7 +22,7 @@ The main goal of the project is to be able launch a product in very little time,
 - creating a mobile first Progressive Web App (PWA) to target many environments
 - using tools to advance the MVP as further as possible with the least amount of work:
   - react
-  - material-ui and material-ui-icons
+  - material-ui & material-ui-icons
 - automating as many things as possible: formatting, tests, and deploys
   - create-react-app
   - flow
@@ -33,11 +30,7 @@ The main goal of the project is to be able launch a product in very little time,
   - husky + lint-staged
 - using services at a free tier level, where cost would only materialize if the product gets traction
   - CircleCi: CI & CD
-  - codecov: code coverage
-  - graphcool: Cloud Graphql Database
-  - auth0: authentication
   - Firebase: hosting, DB, authentication
-  - Netlify: hosting
 - establishing guidelines and templates:
   - Commit guidelines
   - Issue templates
@@ -76,23 +69,21 @@ Reaching any of the limits should qualify you to raise enough funding to cover i
 
 #### DevOps scripts and Steps to add services
 - CircleCI
-- codecov
 - Firebase
-- graphcool
-- auth0
 
 #### Guidelines and templates:
 - React component atom template
 - Workflow guideline
 - Commit guidelines
 
-## How to deploy to Netlify
-### Create a new site
-- **Signup** at https://www.netlify.com/
-- Create a new site linked to your repo
+## How to setup CircleCI
+- **Signup** at https://circleci.com/ for a CircleCI account
+- Add your github repo as a Project
+- Push a commit to the master branch in your github repo
+
+Every time a commit is pushed to the *master* branch, CircleCI will automatically run in CI tests. See command `ci` in `package.json`.
 
 ## How to deploy to Firebase
-
 ### Setup Project
 - **Signup** at https://firebase.com for a Firebase account
 - **Start a new project**
@@ -104,3 +95,13 @@ Reaching any of the limits should qualify you to raise enough funding to cover i
 - Uncomment deploy job in `.circleci/config.yml`, lines 62-67
 
 Every time a pull request is merged into master, CircleCI will deploy to firebase if all the tests succeed
+
+## How to deploy to Netlify (alternative to Firebase hosting)
+### Create a new site
+- **Signup** at https://www.netlify.com/
+- Create a new site linked to your repo
+
+---
+## Alternatives
+The best alternative to this project I've found:
+- [react-most-wanted](https://www.react-most-wanted.com/)
