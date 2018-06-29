@@ -4,8 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 const styles = theme => ({
   root: {
     maxWidth: theme.breakpoints.values.md,
-    margin: 'auto',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit}px`
+    margin: 'auto'
   }
 })
 

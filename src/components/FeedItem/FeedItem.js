@@ -8,12 +8,6 @@ import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles'
 import type { FeedItemType } from '../../types/FeedItemType'
 
-const CustomCard = withStyles(theme => ({
-  root: {
-    marginTop: theme.spacing.unit
-  }
-}))(Card)
-
 const CustomCardMedia = withStyles({
   root: {
     paddingTop: '45%'
@@ -21,7 +15,10 @@ const CustomCardMedia = withStyles({
 })(CardMedia)
 
 type Props = $Diff<
-  FeedItemType,
+  FeedItemType & {
+    onSeeMore?: string => void,
+    onShare?: string => void
+  },
   {
     id: number
   }
@@ -29,10 +26,10 @@ type Props = $Diff<
 
 class FeedItem extends Component<Props> {
   render () {
-    const { title, content, media } = this.props
+    const { title, content, media, onSeeMore, onShare } = this.props
 
     return (
-      <CustomCard>
+      <Card>
         {media && <CustomCardMedia image={media} title={title} />}
 
         <CardContent>
@@ -45,14 +42,14 @@ class FeedItem extends Component<Props> {
         </CardContent>
 
         <CardActions>
-          <Button size='small' color='primary'>
+          <Button size='small' color='primary' onClick={onSeeMore}>
             See More
           </Button>
-          <Button size='small' color='primary'>
+          <Button size='small' color='primary' onClick={onShare}>
             Share
           </Button>
         </CardActions>
-      </CustomCard>
+      </Card>
     )
   }
 }
