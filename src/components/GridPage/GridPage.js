@@ -5,9 +5,16 @@ import GridListTile from '@material-ui/core/GridListTile'
 import GridListTileBar from '@material-ui/core/GridListTileBar'
 import IconButton from '@material-ui/core/IconButton'
 import InfoIcon from '@material-ui/icons/Info'
-import MaxWidthDiv from '../MaxWidthDiv'
+import Wrapper from '../Wrapper'
+import { withStyles } from '@material-ui/core/styles'
 import type { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import AppBar from '../AppBar'
+
+const CustomWrapper = withStyles(theme => ({
+  root: {
+    marginTop: theme.spacing.unit
+  }
+}))(Wrapper)
 
 type Props = {
   gridItems: Array<{|
@@ -26,7 +33,7 @@ class GridPage extends Component<Props> {
     return (
       <Fragment>
         <AppBar title='Image Grid' />
-        <MaxWidthDiv style={{ marginTop: 8 }}>
+        <CustomWrapper>
           <GridList cellHeight={isWidthUp('sm', width) ? 300 : 180}>
             {gridItems &&
               gridItems.map(({ id, title, imgSrc, subtitle }, index) => (
@@ -44,7 +51,7 @@ class GridPage extends Component<Props> {
                 </GridListTile>
               ))}
           </GridList>
-        </MaxWidthDiv>
+        </CustomWrapper>
       </Fragment>
     )
   }

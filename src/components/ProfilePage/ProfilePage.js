@@ -24,6 +24,12 @@ type Props = {
   }
 }
 
+const CustomWrapper = withStyles(theme => ({
+  root: {
+    marginTop: theme.spacing.unit * 2
+  }
+}))(Wrapper)
+
 const CustomAvatar = withStyles(theme => ({
   root: {
     height: theme.spacing.unit * 12,
@@ -49,8 +55,7 @@ const styles = theme => ({
     padding: theme.spacing.unit
   },
   subheader: {
-    paddingLeft: theme.spacing.unit * 2,
-    paddingTop: theme.spacing.unit * 2
+    padding: theme.spacing.unit * 2
   }
 })
 
@@ -74,7 +79,7 @@ class ProfilePage extends Component<Props> {
           </Typography>
         </AppBar>
 
-        <Wrapper>
+        <CustomWrapper>
           <Card>
             <CardContent>
               <Typography
@@ -121,7 +126,7 @@ class ProfilePage extends Component<Props> {
               />
             </Grid>
           </Grid>
-        </Wrapper>
+        </CustomWrapper>
       </Fragment>
     )
   }

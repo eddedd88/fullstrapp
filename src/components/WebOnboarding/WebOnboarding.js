@@ -10,6 +10,12 @@ import Typography from '@material-ui/core/Typography'
 import Wrapper from '../Wrapper'
 import AppBar from '../AppBar'
 
+const CustomWrapper = withStyles(theme => ({
+  root: {
+    marginTop: theme.spacing.unit * 2
+  }
+}))(Wrapper)
+
 const styles = theme => ({
   button: {
     marginTop: theme.spacing.unit,
@@ -84,7 +90,7 @@ class WebOnboarding extends Component<Props, State> {
       <Fragment>
         <AppBar title='Getting Started' />
 
-        <Wrapper>
+        <CustomWrapper>
           <Stepper activeStep={activeStep} orientation='vertical'>
             {steps.map((label, index) => {
               return (
@@ -132,7 +138,7 @@ class WebOnboarding extends Component<Props, State> {
               </Button>
             </Paper>
           )}
-        </Wrapper>
+        </CustomWrapper>
       </Fragment>
     )
   }

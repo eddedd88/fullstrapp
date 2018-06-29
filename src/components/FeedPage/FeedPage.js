@@ -3,7 +3,7 @@ import FeedItem from '../FeedItem'
 import Button from '@material-ui/core/Button'
 import CreateIcon from '@material-ui/icons/Create'
 import { withStyles } from '@material-ui/core/styles'
-import MaxWidthDiv from '../MaxWidthDiv'
+import Wrapper from '../Wrapper'
 import FormDialog from '../FormDialog'
 import TextField from '@material-ui/core/TextField'
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera'
@@ -24,7 +24,8 @@ type Props = {
   onAddFeedItem: Function,
   classes: {
     cameraButton: string,
-    buttonLeftIcon: string
+    buttonLeftIcon: string,
+    feedItemWrapper: string
   }
 }
 
@@ -65,6 +66,9 @@ class FeedPage extends Component<Props, State> {
     })
   }
 
+  handleSeeMore = id => () => {}
+  handleShare = id => () => {}
+
   render () {
     const { open } = this.state
     const { classes, feedItems } = this.props
@@ -72,9 +76,17 @@ class FeedPage extends Component<Props, State> {
     return (
       <Fragment>
         <AppBar title='Feed' />
-        <MaxWidthDiv>
+        <Wrapper>
           {feedItems &&
-            feedItems.map(({ id, ...rest }) => <FeedItem key={id} {...rest} />)}
+            feedItems.map(({ id, ...rest }) => (
+              <div key={id} className={classes.feedItemWrapper}>
+                <FeedItem
+                  {...rest}
+                  onShare={this.handleShare(id)}
+                  onSeeMore={this.handleSeeMore(id)}
+                />
+              </div>
+            ))}
           <FabButton
             variant='fab'
             color='secondary'
@@ -116,7 +128,7 @@ class FeedPage extends Component<Props, State> {
               </Button>
             </FileInput>
           </FormDialog>
-        </MaxWidthDiv>
+        </Wrapper>
       </Fragment>
     )
   }
@@ -130,5 +142,8 @@ export default withStyles(theme => ({
   buttonLeftIcon: {
     marginRight: theme.spacing.unit,
     paddingLeft: 0
+  },
+  feedItemWrapper: {
+    marginTop: theme.spacing.unit
   }
 }))(FeedPage)
