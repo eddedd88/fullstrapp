@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles'
 import type { FeedItemType } from '../../types/FeedItemType'
+import { Link } from 'react-router-dom'
 
 const CustomCardMedia = withStyles({
   root: {
@@ -14,19 +15,14 @@ const CustomCardMedia = withStyles({
   }
 })(CardMedia)
 
-type Props = $Diff<
-  FeedItemType & {
-    onSeeMore?: string => void,
-    onShare?: string => void
-  },
-  {
-    id: number
-  }
->
+type Props = {|
+  ...FeedItemType,
+  feedItemPagePath?: string
+|}
 
 class FeedItem extends Component<Props> {
   render () {
-    const { title, content, media, onSeeMore, onShare } = this.props
+    const { id, title, content, media, feedItemPagePath } = this.props
 
     return (
       <Card>
@@ -42,10 +38,18 @@ class FeedItem extends Component<Props> {
         </CardContent>
 
         <CardActions>
-          <Button size='small' color='primary' onClick={onSeeMore}>
-            See More
-          </Button>
-          <Button size='small' color='primary' onClick={onShare}>
+          {feedItemPagePath && (
+            <Button
+              size='small'
+              color='primary'
+              component={Link}
+              to={feedItemPagePath.replace(':feedId', id.toString())}
+            >
+              See More
+            </Button>
+          )}
+
+          <Button size='small' color='primary'>
             Share
           </Button>
         </CardActions>

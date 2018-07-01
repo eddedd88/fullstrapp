@@ -12,6 +12,7 @@ import EmailIcon from '@material-ui/icons/Email'
 import PhoneIcon from '@material-ui/icons/Phone'
 import Grid from '@material-ui/core/Grid'
 import Wrapper from '../Wrapper'
+import paths from '../../routes/paths'
 
 type Props = {
   name: string,
@@ -113,16 +114,20 @@ class ProfilePage extends Component<Props> {
           <Grid container spacing={8}>
             <Grid item sm={6} xs={12}>
               <FeedItem
+                id={1}
                 media={Image1}
                 title='Mountains'
                 content='Mountains are high.'
+                feedItemPagePath={paths.profileFeedItem}
               />
             </Grid>
             <Grid item sm={6} xs={12}>
               <FeedItem
+                id={2}
                 media={Image2}
                 title='Lights'
                 content='Lights are bright.'
+                feedItemPagePath={paths.profileFeedItem}
               />
             </Grid>
           </Grid>

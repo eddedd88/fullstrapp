@@ -10,6 +10,7 @@ import PhotoCameraIcon from '@material-ui/icons/PhotoCamera'
 import FileInput from '../FileInput'
 import AppBar from '../AppBar'
 import type { FeedItemType } from '../../types/FeedItemType'
+import paths from '../../routes/paths'
 
 const FabButton = withStyles(theme => ({
   root: {
@@ -78,13 +79,9 @@ class FeedPage extends Component<Props, State> {
         <AppBar title='Feed' />
         <Wrapper>
           {feedItems &&
-            feedItems.map(({ id, ...rest }) => (
-              <div key={id} className={classes.feedItemWrapper}>
-                <FeedItem
-                  {...rest}
-                  onShare={this.handleShare(id)}
-                  onSeeMore={this.handleSeeMore(id)}
-                />
+            feedItems.map(feedItem => (
+              <div key={feedItem.id} className={classes.feedItemWrapper}>
+                <FeedItem {...feedItem} feedItemPagePath={paths.feedItem} />
               </div>
             ))}
           <FabButton

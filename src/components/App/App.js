@@ -6,6 +6,7 @@ import GridPageContainer from '../../containers/GridPageContainer'
 import ProfilePageContainer from '../../containers/ProfilePageContainer'
 import paths from '../../routes/paths'
 import Onboarding from '../Onboarding'
+import FeedItemPageContainer from '../../containers/FeedItemPageContainer'
 
 const onboardingKey = 'alreadyOnboarded'
 type State = {
@@ -33,8 +34,13 @@ class App extends Component<{||}, State> {
       <Fragment>
         <div style={{ marginBottom: 64 }}>
           <Switch>
+            <Route path={paths.feedItem} component={FeedItemPageContainer} />
             <Route path={paths.feed} component={FeedPageContainer} />
             <Route path={paths.grid} component={GridPageContainer} />
+            <Route
+              path={paths.profileFeedItem}
+              component={FeedItemPageContainer}
+            />
             <Route path={paths.profile} component={ProfilePageContainer} />
             <Redirect to={paths.feed} />
           </Switch>
