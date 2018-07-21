@@ -28,7 +28,7 @@ class FeedItem extends Component<Props> {
       navigator.share({
         title,
         text: content,
-        url: `localhost:3000/feed/${id}`
+        url: `${process.env.PUBLIC_URL || ''}/feed/${id}`
       })
     }
   }
