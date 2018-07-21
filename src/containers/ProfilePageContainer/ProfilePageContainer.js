@@ -4,8 +4,9 @@ import analytics from '../../utils/analytics'
 
 class ProfilePageContainer extends Component<{||}> {
   componentDidMount () {
-    analytics.screenViewed({
-      screenName: 'Profile'
+    analytics.pageViewed({
+      pageTitle: 'Profile',
+      pagePath: '/profile'
     })
   }
 

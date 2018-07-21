@@ -17,8 +17,9 @@ class FeedPageContainer extends Component<{||}, State> {
   }
 
   componentDidMount () {
-    analytics.screenViewed({
-      screenName: 'Feed'
+    analytics.pageViewed({
+      pageTitle: 'Feed',
+      pagePath: '/feed'
     })
   }
 

@@ -1,13 +1,15 @@
 const appName = 'material-pwa'
 
 // log it in dev and use gtag in prod
+let gaTrackingId = 'GA_TRACKING_ID'
 let tracker = console.log
 if (
   process.env.NODE_ENV === 'production' &&
   process.env.REACT_APP_GA_TRACKING_ID
 ) {
+  gaTrackingId = process.env.REACT_APP_GA_TRACKING_ID
   global.gtag('js', new Date())
-  global.gtag('config', process.env.REACT_APP_GA_TRACKING_ID, {
+  global.gtag('config', gaTrackingId, {
     send_page_view: false
   })
   tracker = global.gtag
@@ -17,10 +19,16 @@ if (
  * Track a screen viewed event using gtag, for more info see
  * https://developers.google.com/analytics/devguides/collection/gtagjs/screens
  */
-export const screenViewed = ({ screenName }: {| screenName: string |}): void =>
-  tracker('event', 'screen_view', {
-    app_name: appName,
-    screen_name: screenName
+export const pageViewed = ({
+  pageTitle,
+  pagePath
+}: {|
+  pageTitle: string,
+  pagePath: string
+|}): void =>
+  tracker('config', gaTrackingId, {
+    page_path: pagePath,
+    page_title: pageTitle
   })
 
 /**
