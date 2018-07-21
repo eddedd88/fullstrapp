@@ -35,8 +35,9 @@ const gridItems = [
 
 class GridPageContainer extends Component<{||}> {
   componentDidMount () {
-    analytics.screenViewed({
-      screenName: 'Grid'
+    analytics.pageViewed({
+      pageTitle: 'Grid',
+      pagePath: '/grid'
     })
   }
 
