@@ -1,5 +1,3 @@
-const appName = 'material-pwa'
-
 // log it in dev and use gtag in prod
 let gaTrackingId = 'GA_TRACKING_ID'
 let tracker = console.log
