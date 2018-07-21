@@ -21,6 +21,18 @@ type Props = {|
 |}
 
 class FeedItem extends Component<Props> {
+  handleShareClick = () => {
+    const { id, title, content } = this.props
+
+    if (navigator.share) {
+      navigator.share({
+        title,
+        text: content,
+        url: `localhost:3000/feed/${id}`
+      })
+    }
+  }
+
   render () {
     const { id, title, content, media, feedItemPagePath } = this.props
 
@@ -49,7 +61,7 @@ class FeedItem extends Component<Props> {
             </Button>
           )}
 
-          <Button size='small' color='primary'>
+          <Button size='small' color='primary' onClick={this.handleShareClick}>
             Share
           </Button>
         </CardActions>

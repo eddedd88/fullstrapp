@@ -92,7 +92,6 @@ Every time a commit is pushed to the *master* branch, CircleCI will automaticall
 ### Deploy with CircleCI
 - Create a Firebase token: `yarn firebase login:ci`
 - Add the token to CircleCI as an environment variable named `FIREBASE_TOKEN`
-- Uncomment deploy job in `.circleci/config.yml`, lines 62-67
 
 Every time a pull request is merged into master, CircleCI will deploy to firebase if all the tests succeed
 
