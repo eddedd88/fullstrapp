@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import FeedPage from '../../components/FeedPage'
 import type { FeedItemType } from '../../types/FeedItemType'
 import feedItemsData from '../../data/feedItems'
+import analytics from '../../utils/analytics'
 
 // $FlowFixMe
 const initialFeedItems: FeedItemType[] = Object.values(feedItemsData)
@@ -13,6 +14,12 @@ type State = {
 class FeedPageContainer extends Component<{||}, State> {
   state = {
     feedItems: initialFeedItems
+  }
+
+  componentDidMount () {
+    analytics.screenViewed({
+      screenName: 'Feed'
+    })
   }
 
   handleAddFeedItem = (newFeedItem: FeedItemType) => {
