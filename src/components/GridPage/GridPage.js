@@ -18,7 +18,7 @@ const CustomWrapper = withStyles(theme => ({
 
 type Props = {
   gridItems: Array<{|
-    id: number,
+    id: string,
     title: string,
     subtitle: string,
     imgSrc: string

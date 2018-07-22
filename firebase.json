@@ -3,7 +3,7 @@
     "public": "build",
     "headers": [
       {
-        "source":"/service-worker.js",
+        "source": "/service-worker.js",
         "headers": [
           {
             "key": "Cache-Control",
@@ -18,5 +18,12 @@
         "destination": "/index.html"
       }
     ]
+  },
+  "firestore": {
+    "rules": "firebase/firestore.rules",
+    "indexes": "firebase/firestore.indexes.json"
+  },
+  "storage": {
+    "rules": "firebase/storage.rules"
   }
 }

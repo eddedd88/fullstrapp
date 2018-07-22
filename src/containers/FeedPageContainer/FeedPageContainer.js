@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import FeedPage from '../../components/FeedPage'
 import type { FeedItemType } from '../../types/FeedItemType'
-import feedItemsData from '../../data/feedItems'
 import analytics from '../../utils/analytics'
-
-// $FlowFixMe
-const initialFeedItems: FeedItemType[] = Object.values(feedItemsData)
+import firestore from '../../utils/firebase/firestore'
 
 type State = {
   feedItems: FeedItemType[]
@@ -13,14 +10,33 @@ type State = {
 
 class FeedPageContainer extends Component<{||}, State> {
   state = {
-    feedItems: initialFeedItems
+    feedItems: []
   }
+
+  unsubscribeObserver: ?() => void
 
   componentDidMount () {
     analytics.pageViewed({
       pageTitle: 'Feed',
       pagePath: '/feed'
     })
+
+    this.unsubscribeObserver = firestore
+      .collection('posts')
+      .onSnapshot(snapshot => {
+        this.setState({
+          feedItems: snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+          }))
+        })
+      })
+  }
+
+  componentWillUnmount () {
+    if (this.unsubscribeObserver) {
+      this.unsubscribeObserver()
+    }
   }
 
   handleAddFeedItem = (newFeedItem: FeedItemType) => {
