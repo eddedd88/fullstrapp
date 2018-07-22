@@ -1,48 +1,45 @@
 import React, { Component } from 'react'
 import GridPage from '../../components/GridPage'
-import Image1 from '../../media/cassie-boca-293379-unsplash.jpg'
-import Image2 from '../../media/dan-freeman-404566-unsplash.jpg'
-import Image3 from '../../media/fabio-mangione-236846-unsplash.jpg'
-import Image4 from '../../media/tommy-lisbin-276996-unsplash.jpg'
 import analytics from '../../utils/analytics'
+import firestore from '../../utils/firebase/firestore'
 
-const gridItems = [
-  {
-    id: 1,
-    title: 'One',
-    subtitle: 'sub one',
-    imgSrc: Image1
-  },
-  {
-    id: 2,
-    title: 'Two',
-    subtitle: 'sub two',
-    imgSrc: Image2
-  },
-  {
-    id: 3,
-    title: 'Three',
-    subtitle: 'sub three',
-    imgSrc: Image3
-  },
-  {
-    id: 4,
-    title: 'Four',
-    subtitle: 'sub four',
-    imgSrc: Image4
+type State = {
+  gridItems: Array<{|
+    id: string,
+    title: string,
+    subtitle: string,
+    imgSrc: string
+  |}>
+}
+
+class GridPageContainer extends Component<{||}, State> {
+  state = {
+    gridItems: []
   }
-]
 
-class GridPageContainer extends Component<{||}> {
   componentDidMount () {
     analytics.pageViewed({
       pageTitle: 'Grid',
       pagePath: '/grid'
     })
+
+    firestore
+      .collection('posts')
+      .get()
+      .then(snapshot => {
+        this.setState({
+          gridItems: snapshot.docs.map(doc => ({
+            id: doc.id,
+            title: doc.data().title,
+            subtitle: `id: ${doc.id}`,
+            imgSrc: doc.data().media
+          }))
+        })
+      })
   }
 
   render () {
-    return <GridPage gridItems={gridItems} />
+    return <GridPage gridItems={this.state.gridItems} />
   }
 }
 
