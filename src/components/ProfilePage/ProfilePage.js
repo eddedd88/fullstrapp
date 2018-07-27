@@ -13,10 +13,12 @@ import PhoneIcon from '@material-ui/icons/Phone'
 import Grid from '@material-ui/core/Grid'
 import Wrapper from '../Wrapper'
 import paths from '../../routes/paths'
+import Signin from '../Signin'
+import Loading from '@material-ui/core/CircularProgress'
 
 type Props = {
-  name: string,
-  avatarSrc?: string,
+  user: any,
+  statusIsKnown: boolean,
   classes: {
     name: string,
     icon: string,
@@ -62,12 +64,21 @@ const styles = theme => ({
 
 class ProfilePage extends Component<Props> {
   render () {
-    const { name, avatarSrc, classes } = this.props
+    const { statusIsKnown, user, classes } = this.props
 
+    if (!statusIsKnown) {
+      return <Loading />
+    }
+
+    if (statusIsKnown && !user) {
+      return <Signin />
+    }
+
+    // status is known and we have a logged in user
     return (
       <Fragment>
         <AppBar position='static'>
-          <CustomAvatar src={avatarSrc} alt={name}>
+          <CustomAvatar src={user.profilePicture} alt={'user.name'}>
             FN
           </CustomAvatar>
           <Typography
@@ -76,7 +87,7 @@ class ProfilePage extends Component<Props> {
             align='center'
             className={classes.name}
           >
-            {name}
+            {user.name}
           </Typography>
         </AppBar>
 
