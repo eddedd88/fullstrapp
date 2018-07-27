@@ -5,9 +5,9 @@ import IconButton from '@material-ui/core/IconButton'
 import SearchIcon from '@material-ui/icons/Search'
 import Input from '@material-ui/core/Input'
 import InputAdornment from '@material-ui/core/InputAdornment'
-import Transition from 'react-transition-group/Transition'
 import Toolbar from '@material-ui/core/Toolbar'
 import ClearIcon from '@material-ui/icons/Clear'
+import { Transition } from 'react-transition-group'
 import type { TransitionStatus } from 'react-transition-group'
 
 const transitionTimeout: number = 100
@@ -21,7 +21,7 @@ const defaultStyle: InlineStyle = {
   pointerEvents: 'none'
 }
 
-const transitionStyles: { [TransitionStatus]: InlineStyle } = {
+const transitionStyles: { [string]: InlineStyle } = {
   entering: {
     opacity: 1
   },

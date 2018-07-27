@@ -5,8 +5,8 @@ const config = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY || '',
   projectId: 'material-pwa-c6ebb',
   databaseURL: 'https://material-pwa-c6ebb.firebaseio.com',
-  storageBucket: 'gs://material-pwa-c6ebb.appspot.com'
-  // authDomain: "<PROJECT_ID>.firebaseapp.com",
+  storageBucket: 'gs://material-pwa-c6ebb.appspot.com',
+  authDomain: 'material-pwa-c6ebb.firebaseapp.com'
   // messagingSenderId: "<SENDER_ID>",
 }
 
