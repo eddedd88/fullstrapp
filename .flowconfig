@@ -17,3 +17,4 @@ node_modules/flow-inlinestyle/index.js
 
 [options]
 all=true
+module.name_mapper='^@material-ui/icons/.+$' -> '<PROJECT_ROOT>/flow-stubs/@material-ui/icons'
