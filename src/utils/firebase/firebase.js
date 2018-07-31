@@ -1,13 +1,16 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 
+const apiKey = process.env.REACT_APP_FIREBASE_API_KEY || ''
+const projectId = process.env.REACT_APP_FIREBASE_PROJECT_ID || ''
+
 const config = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY || '',
-  projectId: 'material-pwa-c6ebb',
-  databaseURL: 'https://material-pwa-c6ebb.firebaseio.com',
-  storageBucket: 'gs://material-pwa-c6ebb.appspot.com',
-  authDomain: 'material-pwa-c6ebb.firebaseapp.com'
+  apiKey,
+  projectId,
+  authDomain: `${projectId}.firebaseapp.com`,
+  storageBucket: `gs://${projectId}.appspot.com`
   // messagingSenderId: "<SENDER_ID>",
+  // databaseURL: `https://${projectId}.firebaseio.com`
 }
 
 firebase.initializeApp(config)
