@@ -6,11 +6,8 @@
 - prettier-standard
 - Husky + lint-staged
 - CircleCI*
-- Firebase hosting*
-- Firestore*
+- Firebase*: hosting, database, authentication, file storage
 - Issue templates
-- React templates (Atom)
-- Workflow guideline
 - Commit guidelines
 
 \* Requires extra steps to setup
@@ -20,21 +17,10 @@ The main goal of the project is to be able launch a product in very little time,
 
 ### We achieve this is by doing the following:
 - creating a mobile first Progressive Web App (PWA) to target many environments
-- using tools to advance the MVP as further as possible with the least amount of work:
-  - react
-  - material-ui & material-ui-icons
+- using tools to advance the MVP as further as possible with the least amount of work
 - automating as many things as possible: formatting, tests, and deploys
-  - create-react-app
-  - flow
-  - prettier + standard
-  - husky + lint-staged
 - using services at a free tier level, where cost would only materialize if the product gets traction
-  - CircleCi: CI & CD
-  - Firebase: hosting, DB, authentication
-- establishing guidelines and templates:
-  - Commit guidelines
-  - Issue templates
-  - React templates
+- putting in place guidelines and templates
 
 ### Key Performance Measures:
 - to **launch an MVP** as fast as possible: **within a day**
@@ -43,47 +29,50 @@ The main goal of the project is to be able launch a product in very little time,
 - to support up to at least **10K active users per month**
 - to be affordable for the hobbyist developer: **free until meaningful traction**
 
-Reaching any of the limits should qualify you to raise enough funding to cover increased costs, or to pursue other endeavors to mitigate costs, or to request for free services for a non-profit.
+Reaching any of the limits should make it easier to raise enough funding to cover increased costs, or to pursue other endeavors to mitigate costs, or to request for free services for a non-profit.
 
 ---
 
 ## Table of Contents
 
-#### PWA specific components
-- UpdateAppToast
-- AddToHome (TBD)
+### Core
+- Add To Home: prompts the user to add the PWA to their home screen
+- Update App: notification that shows up when a new version of the PWA is available
+- Google Analytics
 
-#### Reusable components that extend material-ui
+#### Components
 - ExpandableSearch
 - PersistentSearch
+- BottomNavBar
+- AppBar
+- FormDialog
+- Signin: firebaseui signin component
 
-#### Full Fledge components
-- LoginPage
-
-#### Pre-built prototypes
-- FeedPage
-- FeedItem
-- ProfilePage
+#### Prototypes
+- Feed Page
+- Feed Item
+- Profile Page
 - Onboarding
-- GridPage
+- Grid Page
 
-#### DevOps scripts and Steps to add services
-- CircleCI
-- Firebase
+#### DevOps
+- CircleCI: scripts to test, build and deploy
+- Firebase: hosting, firestore, auth, and file storage configured
 
 #### Guidelines and templates:
-- React component atom template
 - Workflow guideline
 - Commit guidelines
+- Issue Templates: bug, feature, support
+- React component atom template
 
 ## How to setup CircleCI
 - **Signup** at https://circleci.com/ for a CircleCI account
 - Add your github repo as a Project
-- Push a commit to the master branch in your github repo
+- Press the **Start Building** button (this may fail because Firebase is not setup)
 
 Every time a commit is pushed to the *master* branch, CircleCI will automatically run in CI tests. See command `ci` in `package.json`.
 
-## How to deploy to Firebase
+## How to deploy to Firebase Hosting
 ### Setup Project
 - **Signup** at https://firebase.com for a Firebase account
 - **Start a new project**
