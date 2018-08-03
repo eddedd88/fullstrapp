@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import DemoApp from '../DemoApp'
+import DemoApp from '../../prototypes/DemoApp'
 
 class App extends Component<{||}> {
   render () {

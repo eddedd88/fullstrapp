@@ -7,8 +7,8 @@ import StepContent from '@material-ui/core/StepContent'
 import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
-import Wrapper from '../Wrapper'
-import AppBar from '../AppBar'
+import Wrapper from '../../components/Wrapper'
+import AppBar from '../../components/AppBar'
 
 const CustomWrapper = withStyles(theme => ({
   root: {

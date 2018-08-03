@@ -7,6 +7,23 @@ describe('BottomNavBar', () => {
     const renderer = new ShallowRenderer()
     const tree = renderer.render(
       <BottomNavBar
+        items={[
+          {
+            label: 'Feed',
+            icon: <div />,
+            path: '/feed'
+          },
+          {
+            label: 'Grid',
+            icon: <div />,
+            path: '/grid'
+          },
+          {
+            label: 'Profile',
+            icon: <div />,
+            path: '/profile'
+          }
+        ]}
         classes={{ test: 'test' }}
         location={{
           pathname: '/reasons',

@@ -12,21 +12,21 @@ exports[`BottomNavBar renders correctly 1`] = `
 >
   <WithStyles(BottomNavigationAction)
     component={[Function]}
-    icon={<pure(LocationCity) />}
+    icon={<div />}
     label="Feed"
     to="/feed"
     value="/feed"
   />
   <WithStyles(BottomNavigationAction)
     component={[Function]}
-    icon={<pure(GridOn) />}
+    icon={<div />}
     label="Grid"
     to="/grid"
     value="/grid"
   />
   <WithStyles(BottomNavigationAction)
     component={[Function]}
-    icon={<pure(Person) />}
+    icon={<div />}
     label="Profile"
     to="/profile"
     value="/profile"

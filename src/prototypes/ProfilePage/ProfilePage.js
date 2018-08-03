@@ -11,9 +11,9 @@ import Image2 from '../../assets/dan-freeman-404566-unsplash.jpg'
 import EmailIcon from '@material-ui/icons/Email'
 import PhoneIcon from '@material-ui/icons/Phone'
 import Grid from '@material-ui/core/Grid'
-import Wrapper from '../Wrapper'
+import Wrapper from '../../components/Wrapper'
 import paths from '../../routes/paths'
-import Signin from '../Signin'
+import Signin from '../../components/Signin'
 import Loading from '@material-ui/core/CircularProgress'
 
 type Props = {

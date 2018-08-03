@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import BottomNavBar from '../BottomNavBar'
+import BottomNavBar from '../../components/BottomNavBar'
 import { Switch, Route, Redirect } from 'react-router'
 import FeedPageContainer from '../../containers/FeedPageContainer'
 import GridPageContainer from '../../containers/GridPageContainer'
@@ -7,6 +7,9 @@ import ProfilePageContainer from '../../containers/ProfilePageContainer'
 import paths from '../../routes/paths'
 import Onboarding from '../Onboarding'
 import FeedItemPageContainer from '../../containers/FeedItemPageContainer'
+import GridIcon from '@material-ui/icons/GridOn'
+import PersonIcon from '@material-ui/icons/Person'
+import LocationCityIcon from '@material-ui/icons/LocationCity'
 
 const onboardingKey = 'alreadyOnboarded'
 type State = {
@@ -45,7 +48,25 @@ class App extends Component<{||}, State> {
             <Redirect to={paths.feed} />
           </Switch>
         </div>
-        <BottomNavBar />
+        <BottomNavBar
+          items={[
+            {
+              label: 'Feed',
+              icon: <LocationCityIcon />,
+              path: paths.feed
+            },
+            {
+              label: 'Grid',
+              icon: <GridIcon />,
+              path: paths.grid
+            },
+            {
+              label: 'Profile',
+              icon: <PersonIcon />,
+              path: paths.profile
+            }
+          ]}
+        />
       </Fragment>
     )
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ProfilePage from '../../components/ProfilePage'
+import ProfilePage from '../../prototypes/ProfilePage'
 import analytics from '../../utils/analytics'
 import firebase from '../../utils/firebase'
 
