@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import FeedItemPage from '../../components/FeedItemPage'
+import FeedItemPage from '../../prototypes/FeedItemPage'
 import type { Match } from 'react-router'
 import type { FeedItemType } from '../../types/FeedItemType'
 import paths from '../../routes/paths'

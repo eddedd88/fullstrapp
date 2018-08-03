@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import AppBar from '../AppBar'
+import AppBar from '../../components/AppBar'
 import type { FeedItemType } from '../../types/FeedItemType'
 import FeedItem from '../FeedItem'
 import Wrapper from '../../components/Wrapper'

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import FeedPage from '../../components/FeedPage'
+import FeedPage from '../../prototypes/FeedPage'
 import type { FeedItemType } from '../../types/FeedItemType'
 import analytics from '../../utils/analytics'
 import firestore from '../../utils/firebase/firestore'

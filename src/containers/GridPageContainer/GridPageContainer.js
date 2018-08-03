@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import GridPage from '../../components/GridPage'
+import GridPage from '../../prototypes/GridPage'
 import analytics from '../../utils/analytics'
 import firestore from '../../utils/firebase/firestore'
 
