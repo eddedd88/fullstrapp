@@ -38,7 +38,7 @@ class FeedItem extends Component<Props> {
 
     return (
       <Card>
-        {media && <CustomCardMedia image={media} title={title} />}
+        {media && <CustomCardMedia image={media} />}
 
         <CardContent>
           {title && (

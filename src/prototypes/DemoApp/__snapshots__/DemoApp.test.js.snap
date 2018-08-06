@@ -200,14 +200,14 @@ Array [
             className="MuiStep-root-113 MuiStep-vertical-115"
         >
             <span
-                className="MuiStepLabel-root-117 MuiStepLabel-vertical-119"
+                className="MuiStepLabel-root-118 MuiStepLabel-vertical-120"
             >
                 <span
-                    className="MuiStepLabel-iconContainer-125"
+                    className="MuiStepLabel-iconContainer-126"
                 >
                     <svg
                         aria-hidden="true"
-                        className="MuiSvgIcon-root-77 MuiStepIcon-root-128 MuiStepIcon-active-130"
+                        className="MuiSvgIcon-root-77 MuiStepIcon-root-129 MuiStepIcon-active-131"
                         color={undefined}
                         focusable="false"
                         viewBox="0 0 24 24"
@@ -218,7 +218,7 @@ Array [
                             r="12"
                         />
                         <text
-                            className="MuiStepIcon-text-129"
+                            className="MuiStepIcon-text-130"
                             textAnchor="middle"
                             x="12"
                             y="16"
@@ -228,22 +228,22 @@ Array [
                     </svg>
                 </span>
                 <span
-                    className="MuiStepLabel-labelContainer-127"
+                    className="MuiStepLabel-labelContainer-128"
                 >
                     <span
-                        className="MuiTypography-root-43 MuiTypography-body1-52 MuiStepLabel-label-120 MuiStepLabel-active-121"
+                        className="MuiTypography-root-43 MuiTypography-body1-52 MuiStepLabel-label-121 MuiStepLabel-active-122"
                     >
                         Select campaign settings
                     </span>
                 </span>
             </span>
             <div
-                className="MuiStepContent-root-133"
+                className="MuiStepContent-root-134"
                 disabled={false}
                 icon={1}
             >
                 <div
-                    className="MuiCollapse-container-136 MuiCollapse-entered-137 MuiStepContent-transition-135"
+                    className="MuiCollapse-container-137 MuiCollapse-entered-138 MuiStepContent-transition-136"
                     style={
                         Object {
                             "minHeight": "0px",
@@ -251,10 +251,10 @@ Array [
                     }
                 >
                     <div
-                        className="MuiCollapse-wrapper-138"
+                        className="MuiCollapse-wrapper-139"
                     >
                         <div
-                            className="MuiCollapse-wrapperInner-139"
+                            className="MuiCollapse-wrapperInner-140"
                         >
                             <p
                                 className="MuiTypography-root-43 MuiTypography-body1-52"
@@ -268,7 +268,7 @@ Array [
                             >
                                 <div>
                                     <button
-                                        className="MuiButtonBase-root-74 MuiButtonBase-disabled-75 MuiButton-root-140 MuiButton-text-142 MuiButton-flat-145 MuiButton-disabled-158 WebOnboarding-button-1"
+                                        className="MuiButtonBase-root-74 MuiButtonBase-disabled-75 MuiButton-root-141 MuiButton-text-143 MuiButton-flat-146 MuiButton-disabled-159 WebOnboarding-button-1"
                                         disabled={true}
                                         onBlur={[Function]}
                                         onClick={[Function]}
@@ -285,13 +285,13 @@ Array [
                                         type="button"
                                     >
                                         <span
-                                            className="MuiButton-label-141"
+                                            className="MuiButton-label-142"
                                         >
                                             Back
                                         </span>
                                     </button>
                                     <button
-                                        className="MuiButtonBase-root-74 MuiButton-root-140 MuiButton-contained-149 MuiButton-containedPrimary-150 MuiButton-raised-152 MuiButton-raisedPrimary-153 WebOnboarding-button-1"
+                                        className="MuiButtonBase-root-74 MuiButton-root-141 MuiButton-contained-150 MuiButton-containedPrimary-151 MuiButton-raised-153 MuiButton-raisedPrimary-154 WebOnboarding-button-1"
                                         disabled={false}
                                         onBlur={[Function]}
                                         onClick={[Function]}
@@ -308,7 +308,7 @@ Array [
                                         type="button"
                                     >
                                         <span
-                                            className="MuiButton-label-141"
+                                            className="MuiButton-label-142"
                                         >
                                             Next
                                         </span>
@@ -324,24 +324,24 @@ Array [
             </div>
         </div>
         <div
-            className="MuiStepConnector-root-164 MuiStepConnector-vertical-166"
+            className="MuiStepConnector-root-165 MuiStepConnector-vertical-167"
         >
             <span
-                className="MuiStepConnector-line-168 MuiStepConnector-lineVertical-170"
+                className="MuiStepConnector-line-169 MuiStepConnector-lineVertical-171"
             />
         </div>
         <div
             className="MuiStep-root-113 MuiStep-vertical-115"
         >
             <span
-                className="MuiStepLabel-root-117 MuiStepLabel-vertical-119 MuiStepLabel-disabled-124"
+                className="MuiStepLabel-root-118 MuiStepLabel-vertical-120 MuiStepLabel-disabled-125"
             >
                 <span
-                    className="MuiStepLabel-iconContainer-125"
+                    className="MuiStepLabel-iconContainer-126"
                 >
                     <svg
                         aria-hidden="true"
-                        className="MuiSvgIcon-root-77 MuiStepIcon-root-128"
+                        className="MuiSvgIcon-root-77 MuiStepIcon-root-129"
                         color={undefined}
                         focusable="false"
                         viewBox="0 0 24 24"
@@ -352,7 +352,7 @@ Array [
                             r="12"
                         />
                         <text
-                            className="MuiStepIcon-text-129"
+                            className="MuiStepIcon-text-130"
                             textAnchor="middle"
                             x="12"
                             y="16"
@@ -362,40 +362,40 @@ Array [
                     </svg>
                 </span>
                 <span
-                    className="MuiStepLabel-labelContainer-127"
+                    className="MuiStepLabel-labelContainer-128"
                 >
                     <span
-                        className="MuiTypography-root-43 MuiTypography-body1-52 MuiStepLabel-label-120"
+                        className="MuiTypography-root-43 MuiTypography-body1-52 MuiStepLabel-label-121"
                     >
                         Create an ad group
                     </span>
                 </span>
             </span>
             <div
-                className="MuiStepContent-root-133"
+                className="MuiStepContent-root-134"
                 disabled={true}
                 icon={2}
             />
         </div>
         <div
-            className="MuiStepConnector-root-164 MuiStepConnector-vertical-166"
+            className="MuiStepConnector-root-165 MuiStepConnector-vertical-167"
         >
             <span
-                className="MuiStepConnector-line-168 MuiStepConnector-lineVertical-170"
+                className="MuiStepConnector-line-169 MuiStepConnector-lineVertical-171"
             />
         </div>
         <div
             className="MuiStep-root-113 MuiStep-vertical-115"
         >
             <span
-                className="MuiStepLabel-root-117 MuiStepLabel-vertical-119 MuiStepLabel-disabled-124"
+                className="MuiStepLabel-root-118 MuiStepLabel-vertical-120 MuiStepLabel-disabled-125"
             >
                 <span
-                    className="MuiStepLabel-iconContainer-125"
+                    className="MuiStepLabel-iconContainer-126"
                 >
                     <svg
                         aria-hidden="true"
-                        className="MuiSvgIcon-root-77 MuiStepIcon-root-128"
+                        className="MuiSvgIcon-root-77 MuiStepIcon-root-129"
                         color={undefined}
                         focusable="false"
                         viewBox="0 0 24 24"
@@ -406,7 +406,7 @@ Array [
                             r="12"
                         />
                         <text
-                            className="MuiStepIcon-text-129"
+                            className="MuiStepIcon-text-130"
                             textAnchor="middle"
                             x="12"
                             y="16"
@@ -416,17 +416,17 @@ Array [
                     </svg>
                 </span>
                 <span
-                    className="MuiStepLabel-labelContainer-127"
+                    className="MuiStepLabel-labelContainer-128"
                 >
                     <span
-                        className="MuiTypography-root-43 MuiTypography-body1-52 MuiStepLabel-label-120"
+                        className="MuiTypography-root-43 MuiTypography-body1-52 MuiStepLabel-label-121"
                     >
                         Create an ad
                     </span>
                 </span>
             </span>
             <div
-                className="MuiStepContent-root-133 MuiStepContent-last-134"
+                className="MuiStepContent-root-134 MuiStepContent-last-135"
                 disabled={true}
                 icon={3}
             />
