@@ -1,37 +1,19 @@
-# Material PWA
+<img src="./src/assets/icon.png" width="200" style="border-radius: 25px" />
 
-### Extends *create-react-app*, and adds the following:
-- Material UI + Icons
+# fullstrapp
+Launch a production PWA for every platform in very little time, without compromising on scalability and quality.
+
+#### Dependencies:
+- create-react-app
+- Material UI
 - Flow
 - prettier-standard
 - Husky + lint-staged
-- CircleCI*
-- Firebase*: hosting, database, authentication, file storage
-- Issue templates
-- Commit guidelines
+- CircleCI
+- Firebase
 
-\* Requires extra steps to setup
-
-## Launch a production PWA for every platform within a day
-The main goal of the project is to be able launch a product in very little time, without compromising on scalability and quality.
-
-### We achieve this is by doing the following:
-- creating a mobile first Progressive Web App (PWA) to target many environments
-- using tools to advance the MVP as further as possible with the least amount of work
-- automating as many things as possible: formatting, tests, and deploys
-- using services at a free tier level, where cost would only materialize if the product gets traction
-- putting in place guidelines and templates
-
-### Key Performance Measures:
-- to **launch an MVP** as fast as possible: **within a day**
-- to iterate on features quickly: **under 2 minute tests and deploys**
-- to provide **tools for teams of up to 5 people**
-- to support up to at least **10K active users per month**
-- to be affordable for the hobbyist developer: **free until meaningful traction**
-
-Reaching any of the limits should make it easier to raise enough funding to cover increased costs, or to pursue other endeavors to mitigate costs, or to request for free services for a non-profit.
-
----
+## Getting Started
+TODO
 
 ## Table of Contents
 
@@ -63,7 +45,6 @@ Reaching any of the limits should make it easier to raise enough funding to cove
 - Workflow guideline
 - Commit guidelines
 - Issue Templates: bug, feature, support
-- React component atom template
 
 ## How to setup CircleCI
 - **Signup** at https://circleci.com/ for a CircleCI account
@@ -90,6 +71,25 @@ Every time a pull request is merged into master, CircleCI will deploy to firebas
 - Create a new site linked to your repo
 
 ---
+
+### Goals
+- creating a mobile first Progressive Web App (PWA) to target many environments
+- using tools to advance the MVP as further as possible with the least amount of work
+- automating as many things as possible: formatting, tests, and deploys
+- using services at a free tier level, where cost would only materialize if the product gets traction
+- putting in place guidelines and templates
+
+### Key Performance Measures
+- to **launch an MVP** as fast as possible: **within a day**
+- to iterate on features quickly: **under 2 minute tests and deploys**
+- to provide **tools and guidelines for teams of up to 5 people**
+- to support up to at least **10K active users per month**
+- to be affordable for the hobbyist developer: **free until meaningful traction**
+
+Reaching any of the limits should make it easier to raise enough funding to cover increased costs, or to pursue other endeavors to mitigate costs, or to request for free services for a non-profit.
+
+---
+
 ## Alternatives
 The best alternative to this project I've found:
 - [react-most-wanted](https://www.react-most-wanted.com/)
