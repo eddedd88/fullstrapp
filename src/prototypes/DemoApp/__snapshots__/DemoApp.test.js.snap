@@ -268,7 +268,7 @@ Array [
                             >
                                 <div>
                                     <button
-                                        className="MuiButtonBase-root-74 MuiButtonBase-disabled-75 MuiButton-root-141 MuiButton-text-143 MuiButton-flat-146 MuiButton-disabled-159 WebOnboarding-button-1"
+                                        className="MuiButtonBase-root-74 MuiButtonBase-disabled-75 MuiButton-root-141 MuiButton-text-143 MuiButton-flat-146 MuiButton-disabled-161 WebOnboarding-button-1"
                                         disabled={true}
                                         onBlur={[Function]}
                                         onClick={[Function]}
@@ -291,7 +291,7 @@ Array [
                                         </span>
                                     </button>
                                     <button
-                                        className="MuiButtonBase-root-74 MuiButton-root-141 MuiButton-contained-150 MuiButton-containedPrimary-151 MuiButton-raised-153 MuiButton-raisedPrimary-154 WebOnboarding-button-1"
+                                        className="MuiButtonBase-root-74 MuiButton-root-141 MuiButton-contained-152 MuiButton-containedPrimary-153 MuiButton-raised-155 MuiButton-raisedPrimary-156 WebOnboarding-button-1"
                                         disabled={false}
                                         onBlur={[Function]}
                                         onClick={[Function]}
@@ -324,10 +324,10 @@ Array [
             </div>
         </div>
         <div
-            className="MuiStepConnector-root-165 MuiStepConnector-vertical-167"
+            className="MuiStepConnector-root-167 MuiStepConnector-vertical-169"
         >
             <span
-                className="MuiStepConnector-line-169 MuiStepConnector-lineVertical-171"
+                className="MuiStepConnector-line-171 MuiStepConnector-lineVertical-173"
             />
         </div>
         <div
@@ -378,10 +378,10 @@ Array [
             />
         </div>
         <div
-            className="MuiStepConnector-root-165 MuiStepConnector-vertical-167"
+            className="MuiStepConnector-root-167 MuiStepConnector-vertical-169"
         >
             <span
-                className="MuiStepConnector-line-169 MuiStepConnector-lineVertical-171"
+                className="MuiStepConnector-line-171 MuiStepConnector-lineVertical-173"
             />
         </div>
         <div

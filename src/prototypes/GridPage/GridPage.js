@@ -6,7 +6,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar'
 import IconButton from '@material-ui/core/IconButton'
 import InfoIcon from '@material-ui/icons/Info'
 import Wrapper from '../../components/Wrapper'
-import { withStyles } from '@material-ui/core/styles'
+import withStyles from '@material-ui/core/styles/withStyles'
 import type { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import AppBar from '../../components/AppBar'
 

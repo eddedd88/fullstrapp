@@ -3,7 +3,7 @@ import AppBar from '../../components/AppBar'
 import type { FeedItemType } from '../../types/FeedItemType'
 import FeedItem from '../FeedItem'
 import Wrapper from '../../components/Wrapper'
-import { withStyles } from '@material-ui/core'
+import withStyles from '@material-ui/core/styles/withStyles'
 
 const CustomWrapper = withStyles(theme => ({
   root: {

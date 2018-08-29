@@ -4,7 +4,8 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import CloseIcon from '@material-ui/icons/Close'
-import { withStyles } from '@material-ui/core/styles'
+import withStyles from '@material-ui/core/styles/withStyles'
+import type { WithStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 
@@ -21,19 +22,19 @@ const styles = theme => ({
   }
 })
 
-type Props = {
+type Props = {|
   title: string,
   submitLabel: string,
   onClose: Function,
   submitButton?: Node,
 
-  // computed by HOC withStyles
+  ...$Exact<WithStyles>,
   classes: {
     title: string,
     closeButton: string,
     submitButotn: string
   }
-}
+|}
 
 class FullScreenDialogAppBar extends Component<Props> {
   static defaultProps = {
