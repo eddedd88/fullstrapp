@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import BottomNavigation from '@material-ui/core/BottomNavigation'
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
-import { Link, withRouter } from 'react-router-dom'
-import type { Location } from 'react-router-dom'
-import { withStyles } from '@material-ui/core/styles'
+import { Link, withRouter, type Location } from 'react-router-dom'
+import withStyles from '@material-ui/core/styles/withStyles'
+import type { WithStyles, Theme } from '@material-ui/core/styles'
 
-const styles = theme => ({
+const styles = (theme: Theme) => ({
   root: {
     position: 'fixed',
     bottom: 0,
@@ -21,8 +21,8 @@ type Props = {
     path: string,
     icon: React$Element<any>
   }>,
-  classes: {},
-  location: Location
+  location: Location,
+  ...$Exact<WithStyles>
 }
 
 export class BottomNavBar extends Component<Props> {

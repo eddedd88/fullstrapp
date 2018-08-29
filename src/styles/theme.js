@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core/styles'
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 
 // https://material-ui.com/customization/themes/#themes
 

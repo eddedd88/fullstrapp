@@ -7,6 +7,7 @@ describe('BottomNavBar', () => {
     const renderer = new ShallowRenderer()
     const tree = renderer.render(
       <BottomNavBar
+        innerRef={React.createRef()}
         items={[
           {
             label: 'Feed',

@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography'
 import ExpandableSearch from '../ExpandableSearch'
 import IconButton from '@material-ui/core/IconButton'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
-import { withStyles } from '@material-ui/core/styles'
+import withStyles from '@material-ui/core/styles/withStyles'
 import { Link } from 'react-router-dom'
 
 type Props = {|
