@@ -1,6 +1,5 @@
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 
-// test
 // https://material-ui.com/customization/themes/#themes
 
 const theme = createMuiTheme({
