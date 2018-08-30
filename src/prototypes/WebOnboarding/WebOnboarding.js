@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
-import type { WithStyles } from '@material-ui/core/styles'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
@@ -54,7 +53,6 @@ function getStepContent (step) {
 
 type Props = {
   onDone: () => void,
-  ...$Exact<WithStyles>,
   classes: {
     button: string,
     actionsContainer: string,

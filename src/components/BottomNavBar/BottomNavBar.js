@@ -2,16 +2,19 @@ import React, { Component } from 'react'
 import BottomNavigation from '@material-ui/core/BottomNavigation'
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
 import { Link, withRouter, type Location } from 'react-router-dom'
-import withStyles from '@material-ui/core/styles/withStyles'
-import type { WithStyles, Theme } from '@material-ui/core/styles'
+import withStyles, {
+  type StyleRulesCallback,
+  type Theme
+} from '@material-ui/core/styles/withStyles'
 
-const styles = (theme: Theme) => ({
+const styles: StyleRulesCallback = (theme: Theme) => ({
   root: {
     position: 'fixed',
     bottom: 0,
     width: '100%',
     boxShadow: theme.shadows[8],
-    '-webkit-backface-visibility': 'hidden'
+    backfaceVisibility: 'hidden'
+    // '-webkit-backface-visibility': 'hidden'
   }
 })
 
@@ -22,7 +25,7 @@ type Props = {
     icon: React$Element<any>
   }>,
   location: Location,
-  ...$Exact<WithStyles>
+  classes: {}
 }
 
 export class BottomNavBar extends Component<Props> {

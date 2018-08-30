@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
-import type { WithStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Avatar from '@material-ui/core/Avatar'
 import AppBar from '@material-ui/core/AppBar'
@@ -20,7 +19,6 @@ import Loading from '@material-ui/core/CircularProgress'
 type Props = {
   user: any,
   statusIsKnown: boolean,
-  ...$Exact<WithStyles>,
   classes: {
     name: string,
     icon: string,
