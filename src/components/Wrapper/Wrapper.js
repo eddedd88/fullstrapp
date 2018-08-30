@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
-import type { WithStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
   root: {
@@ -10,7 +9,6 @@ const styles = theme => ({
 })
 
 type Props = {
-  ...$Exact<WithStyles>,
   classes: {
     root: string
   }

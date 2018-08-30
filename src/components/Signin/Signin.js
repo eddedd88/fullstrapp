@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
-import type { WithStyles } from '@material-ui/core/styles'
 import firebase from '../../utils/firebase'
 import * as firebaseui from 'firebaseui'
 import 'firebaseui/dist/firebaseui.css'
@@ -19,7 +18,6 @@ const styles = theme => ({
 })
 
 type Props = {
-  ...$Exact<WithStyles>,
   classes: {
     wrapper: string,
     signinButtons: string

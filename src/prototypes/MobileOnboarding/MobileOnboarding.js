@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
-import type { WithStyles } from '@material-ui/core/styles'
 import MobileStepper from '@material-ui/core/MobileStepper'
 import Button from '@material-ui/core/Button'
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
@@ -32,7 +31,6 @@ const styles = theme => ({
 
 type Props = {
   onDone: () => void,
-  ...$Exact<WithStyles>,
   classes: {
     stepWrapper: string,
     swipeableViews: string,

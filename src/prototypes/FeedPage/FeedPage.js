@@ -2,8 +2,7 @@ import React, { Component, Fragment } from 'react'
 import FeedItem from '../FeedItem'
 import Button from '@material-ui/core/Button'
 import CreateIcon from '@material-ui/icons/Create'
-import withStyles from '@material-ui/core/styles/withStyles'
-import type { WithStyles, Theme } from '@material-ui/core/styles'
+import withStyles, { type Theme } from '@material-ui/core/styles/withStyles'
 import Wrapper from '../../components/Wrapper'
 import FormDialog from '../../components/FormDialog'
 import TextField from '@material-ui/core/TextField'
@@ -13,7 +12,7 @@ import AppBar from '../../components/AppBar'
 import type { FeedItemType } from '../../types/FeedItemType'
 import paths from '../../routes/paths'
 
-const FabButton = withStyles(theme => ({
+const FabButton = withStyles((theme: Theme) => ({
   root: {
     position: 'fixed',
     bottom: theme.spacing.unit * 9,
@@ -24,7 +23,6 @@ const FabButton = withStyles(theme => ({
 type Props = {
   feedItems: FeedItemType[],
   onAddFeedItem: Function,
-  ...$Exact<WithStyles>,
   classes: {
     cameraButton: string,
     buttonLeftIcon: string,
