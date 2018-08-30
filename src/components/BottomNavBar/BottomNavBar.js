@@ -14,7 +14,6 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
     width: '100%',
     boxShadow: theme.shadows[8],
     backfaceVisibility: 'hidden'
-    // '-webkit-backface-visibility': 'hidden'
   }
 })
 
