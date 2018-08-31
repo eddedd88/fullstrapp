@@ -1,5 +1,0 @@
-[Build]
-  Command = "yarn ci && yarn build"
-  Publish = "build/"
-  Functions = ""
-  Environment = { CI = "true" }
