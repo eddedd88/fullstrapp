@@ -1,7 +1,7 @@
 <img src="./src/assets/icon.png" width="200" style="border-radius: 25px" />
 
 # fullstrapp
-Launch a production PWA for every platform in very little time, without compromising on scalability and quality.
+Launch an app for every platform in very little time, without compromising on scalability and quality.
 
 #### Dependencies:
 - create-react-app
@@ -12,81 +12,67 @@ Launch a production PWA for every platform in very little time, without compromi
 - CircleCI
 - Firebase
 
-## Getting Started
-TODO
+## Getting Ready for Takeoff
+- Download or clone repo
+- [Setup Firebase Hosting](#how-to-setup-firebase-hosting)
+- [Setup Firestore (Firebase Database)](#how-to-setup-firestore)
+- [Setup Firebase Authentication](#how-to setup-firebase-authentication)
+- [Setup CircleCI](#how-to-setup-circleci)
+- [Deploy to Firebase with CircleCI](#deploy-to-firebase-with-circleci)
 
-## Table of Contents
+## How to setup Firebase Hosting
+- **Signup** at https://firebase.com for a Firebase account
+- **Start a new project**
+- Copy the *Project ID* from the *project settings* in Firebase
+- In the file **.firebaserc** set the *default* project to your new *project id*
+- Deploy manually by running command: `yarn firebase deploy`, or [deploy with CircleCI (recommended)](#deploy-to-firebase-with circleci)
 
-### Core
-- Add To Home: prompts the user to add the PWA to their home screen
-- Update App: notification that shows up when a new version of the PWA is available
-- Google Analytics
+## How to setup Firestore
+- Create a **.env.local** file to store environment variables
+- Add your new *project id* as a local environment variable called: `REACT_APP_FIREBASE_PROJECT_ID`
+- Copy the *Web API Key* from the *project settings* in Firebase
+- Add the *Web API Key* as a local environment variable called `REACT_APP_FIREBASE_API_KEY`
+- Create a Firestore in Firebase
 
-#### Components
-- ExpandableSearch
-- PersistentSearch
-- BottomNavBar
-- AppBar
-- FormDialog
-- Signin: firebaseui signin component
-
-#### Prototypes
-- Feed Page
-- Feed Item
-- Profile Page
-- Onboarding
-- Grid Page
-
-#### DevOps
-- CircleCI: scripts to test, build and deploy
-- Firebase: hosting, firestore, auth, and file storage configured
-
-#### Guidelines and templates:
-- Workflow guideline
-- Commit guidelines
-- Issue Templates: bug, feature, support
+## How to setup Firebase Authentication
+- Do the first 4 steps of [#how-to-setup-firestore](#how-to-setup-firestore)
+- Enable Firebase Authentication and Sign-in methods of choice
 
 ## How to setup CircleCI
 - **Signup** at https://circleci.com/ for a CircleCI account
 - Add your github repo as a Project
-- Press the **Start Building** button (this may fail because Firebase is not setup)
+- Press the **Start Building** button (this may fail if Firebase is not setup)
+- Every time a commit is pushed to github, CircleCI will automatically run CI tests. See command `ci` in `package.json`.
 
-Every time a commit is pushed to the *master* branch, CircleCI will automatically run in CI tests. See command `ci` in `package.json`.
-
-## How to deploy to Firebase Hosting
-### Setup Project
-- **Signup** at https://firebase.com for a Firebase account
-- **Start a new project**
-- Copy the **Project ID** from the *project settings* and in the file **.firebaserc** replace *PROJECT_ID* with your new *project id*
-
-### Deploy with CircleCI
+### Deploy to Firebase with CircleCI
 - Create a Firebase token: `yarn firebase login:ci`
 - Add the token to CircleCI as an environment variable named `FIREBASE_TOKEN`
+- Add the previously created environment variables to CircleCI:
+  - `REACT_APP_FIREBASE_PROJECT_ID`
+  - `REACT_APP_FIREBASE_API_KEY`
+- Every time a pull request is merged into master, CircleCI will deploy to firebase if all the tests succeed
 
-Every time a pull request is merged into master, CircleCI will deploy to firebase if all the tests succeed
-
-## How to deploy to Netlify (alternative to Firebase hosting)
-### Create a new site
-- **Signup** at https://www.netlify.com/
-- Create a new site linked to your repo
+### How to setup Google Analytics
+- Find your tracking id: https://support.google.com/analytics/answer/1008080?hl=en
+- Add the *tracking id* to CircleCI as an environment variable called `REACT_APP_GA_TRACKING_ID`
 
 ---
 
 ### Goals
-- creating a mobile first Progressive Web App (PWA) to target many environments
-- using tools to advance the MVP as further as possible with the least amount of work
-- automating as many things as possible: formatting, tests, and deploys
-- using services at a free tier level, where cost would only materialize if the product gets traction
-- putting in place guidelines and templates
-
-### Key Performance Measures
-- to **launch an MVP** as fast as possible: **within a day**
-- to iterate on features quickly: **under 2 minute tests and deploys**
-- to provide **tools and guidelines for teams of up to 5 people**
-- to support up to at least **10K active users per month**
-- to be affordable for the hobbyist developer: **free until meaningful traction**
+- To **launch an MVP** as fast as possible: **within a day**
+- To iterate on features quickly: **under 2 minute tests and deploys**
+- To provide **tools and guidelines for teams of up to 5 people**
+- To support up to at least **10K active users per month**
+- To be affordable for the hobbyist developer: **free until meaningful traction**
 
 Reaching any of the limits should make it easier to raise enough funding to cover increased costs, or to pursue other endeavors to mitigate costs, or to request for free services for a non-profit.
+
+### Strategy to achieve Goals
+- Create a mobile first Progressive Web App (PWA) to target many environments
+- Use tools to advance the MVP as further as possible with the least amount of work
+- Automate as many things as possible: formatting, tests, and deploys
+- Use services at a free tier level, where cost would only materialize if the product gets traction
+- Put in place guidelines and templates
 
 ---
 
