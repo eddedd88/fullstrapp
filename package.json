@@ -16,7 +16,6 @@
     "typeface-roboto": "^0.0.54"
   },
   "devDependencies": {
-    "csstype": "^2.5.6",
     "firebase-tools": "^4.2.1",
     "flow-bin": "^0.79.1",
     "flow-inlinestyle": "^1.0.9",

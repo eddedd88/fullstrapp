@@ -6,18 +6,21 @@ import ExpandableSearch from '../ExpandableSearch'
 import IconButton from '@material-ui/core/IconButton'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import withStyles from '@material-ui/core/styles/withStyles'
+import type { Theme } from '@material-ui/core/styles/withStyles'
 import { Link } from 'react-router-dom'
+import GithubImage from '../../assets/github.png'
 
 type Props = {|
   title: string,
   backLink?: string
 |}
 
-const BackLinkButton = withStyles(theme => ({
+const AppTitle = withStyles((theme: Theme) => ({
   root: {
-    marginRight: theme.spacing.unit * 2
+    marginLeft: theme.spacing.unit * 2,
+    flex: 'auto'
   }
-}))(IconButton)
+}))(Typography)
 
 class AppBar extends Component<Props> {
   render () {
@@ -25,15 +28,18 @@ class AppBar extends Component<Props> {
 
     return (
       <MaterialAppBar position='static'>
-        <Toolbar disableGutters={!!backLink}>
+        <Toolbar disableGutters>
           {backLink && (
-            <BackLinkButton color='inherit' component={Link} to={backLink}>
+            <IconButton color='inherit' component={Link} to={backLink}>
               <ArrowBackIcon />
-            </BackLinkButton>
+            </IconButton>
           )}
-          <Typography variant='title' color='inherit' style={{ flex: 'auto' }}>
+          <AppTitle variant='title' color='inherit'>
             {title}
-          </Typography>
+          </AppTitle>
+          <IconButton href='https://github.com/eddedd88/fullstrapp'>
+            <img src={GithubImage} alt='github repo' />
+          </IconButton>
           <ExpandableSearch onChangeValue={console.log} placeholder='Search' />
         </Toolbar>
       </MaterialAppBar>
