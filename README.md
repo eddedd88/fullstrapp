@@ -1,9 +1,9 @@
 <img src="./src/assets/icon.png" width="200" style="border-radius: 25px" />
 
 # fullstrapp
-Launch an app for every platform in very little time, without compromising on scalability and quality.
+Launch a production ready PWA in very little time, without compromising on scalability and quality.
 
-#### Dependencies:
+#### Core Dependencies:
 - create-react-app
 - Material UI
 - Flow
@@ -12,13 +12,14 @@ Launch an app for every platform in very little time, without compromising on sc
 - CircleCI
 - Firebase
 
-## Getting Ready for Takeoff
+## Getting Started
 - Download or clone repo
 - [Setup Firebase Hosting](#how-to-setup-firebase-hosting)
 - [Setup Firestore (Firebase Database)](#how-to-setup-firestore)
-- [Setup Firebase Authentication](#how-to setup-firebase-authentication)
+- [Setup Firebase Authentication](#how-to-setup-firebase-authentication)
 - [Setup CircleCI](#how-to-setup-circleci)
 - [Deploy to Firebase with CircleCI](#deploy-to-firebase-with-circleci)
+- [Setup Google Analytics](#how-to-setup-google-analytics)
 
 ## How to setup Firebase Hosting
 - **Signup** at https://firebase.com for a Firebase account
@@ -35,7 +36,7 @@ Launch an app for every platform in very little time, without compromising on sc
 - Create a Firestore in Firebase
 
 ## How to setup Firebase Authentication
-- Do the first 4 steps of [#how-to-setup-firestore](#how-to-setup-firestore)
+- Do the first 4 steps of [How to setup Firestore](#how-to-setup-firestore)
 - Enable Firebase Authentication and Sign-in methods of choice
 
 ## How to setup CircleCI
@@ -67,13 +68,15 @@ Launch an app for every platform in very little time, without compromising on sc
 
 Reaching any of the limits should make it easier to raise enough funding to cover increased costs, or to pursue other endeavors to mitigate costs, or to request for free services for a non-profit.
 
-### Strategy to achieve Goals
+### Strategy
 - Create a mobile first Progressive Web App (PWA) to target many environments
 - Use tools to advance the MVP as further as possible with the least amount of work
 - Automate as many things as possible: formatting, tests, and deploys
 - Use services at a free tier level, where cost would only materialize if the product gets traction
 - Put in place guidelines and templates
 
+#### Demo
+https://material-pwa-c6ebb.firebaseapp.com
 ---
 
 ## Alternatives
