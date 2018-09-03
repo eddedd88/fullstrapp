@@ -24,7 +24,7 @@ const styles = theme => ({
 type Props = {|
   title: string,
   submitLabel: string,
-  onClose: Function,
+  onClose: () => void,
   submitButton?: Node,
   classes: {
     title: string,

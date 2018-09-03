@@ -4,8 +4,7 @@ import analytics from '../../utils/analytics'
 import firebase from '../../utils/firebase'
 
 type State = {
-  statusIsKnown: boolean,
-  user: any
+  statusIsKnown: boolean
 }
 
 class ProfilePageContainer extends Component<{||}, State> {
@@ -16,9 +15,9 @@ class ProfilePageContainer extends Component<{||}, State> {
     })
 
     firebase.auth().onAuthStateChanged(user => {
+      console.log(user)
       this.setState({
-        statusIsKnown: true,
-        user
+        statusIsKnown: true
       })
     })
   }

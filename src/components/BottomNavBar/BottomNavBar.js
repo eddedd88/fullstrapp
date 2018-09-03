@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, type Element } from 'react'
 import BottomNavigation from '@material-ui/core/BottomNavigation'
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
 import { Link, withRouter, type Location } from 'react-router-dom'
@@ -6,6 +6,7 @@ import withStyles, {
   type StyleRulesCallback,
   type Theme
 } from '@material-ui/core/styles/withStyles'
+import SvgIcon from '@material-ui/core/SvgIcon'
 
 const styles: StyleRulesCallback = (theme: Theme) => ({
   root: {
@@ -21,7 +22,7 @@ type Props = {
   items: Array<{
     label: string,
     path: string,
-    icon: React$Element<any>
+    icon: string | Element<typeof SvgIcon>
   }>,
   location: Location,
   classes: {}

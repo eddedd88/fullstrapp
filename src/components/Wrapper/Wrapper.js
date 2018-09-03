@@ -18,7 +18,7 @@ class Wrapper extends Component<Props> {
   render () {
     const { classes, ...rest } = this.props
 
-    return <div className={classes.root} {...rest} />
+    return <div {...rest} className={classes.root} />
   }
 }
 
