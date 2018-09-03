@@ -22,7 +22,7 @@ const FabButton = withStyles((theme: Theme) => ({
 
 type Props = {
   feedItems: FeedItemType[],
-  onAddFeedItem: Function,
+  onAddFeedItem: FeedItemType => void,
   classes: {
     cameraButton: string,
     buttonLeftIcon: string,
@@ -32,13 +32,18 @@ type Props = {
 
 type State = {
   open: boolean,
-  form: Object
+  form: FeedItemType
 }
 
 class FeedPage extends Component<Props, State> {
   state = {
     open: false,
-    form: {}
+    form: {
+      id: 10,
+      title: '',
+      content: '',
+      media: ''
+    }
   }
 
   toggleDialog = () => {
@@ -52,7 +57,12 @@ class FeedPage extends Component<Props, State> {
 
     this.setState({
       open: false,
-      form: {}
+      form: {
+        id: this.props.feedItems.length * 10,
+        title: '',
+        content: '',
+        media: ''
+      }
     })
 
     this.props.onAddFeedItem(this.state.form)
@@ -66,9 +76,6 @@ class FeedPage extends Component<Props, State> {
       }
     })
   }
-
-  handleSeeMore = id => () => {}
-  handleShare = id => () => {}
 
   render () {
     const { open } = this.state

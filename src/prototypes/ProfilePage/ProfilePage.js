@@ -17,7 +17,10 @@ import Signin from '../../components/Signin'
 import Loading from '@material-ui/core/CircularProgress'
 
 type Props = {
-  user: any,
+  user?: {
+    profilePicture: string,
+    name: string
+  },
   statusIsKnown: boolean,
   classes: {
     name: string,
@@ -70,7 +73,7 @@ class ProfilePage extends Component<Props> {
       return <Loading />
     }
 
-    if (statusIsKnown && !user) {
+    if (!user) {
       return <Signin />
     }
 

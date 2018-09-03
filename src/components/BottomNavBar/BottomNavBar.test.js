@@ -7,21 +7,20 @@ describe('BottomNavBar', () => {
     const renderer = new ShallowRenderer()
     const tree = renderer.render(
       <BottomNavBar
-        innerRef={React.createRef()}
         items={[
           {
             label: 'Feed',
-            icon: <div />,
+            icon: 'div',
             path: '/feed'
           },
           {
             label: 'Grid',
-            icon: <div />,
+            icon: 'div',
             path: '/grid'
           },
           {
             label: 'Profile',
-            icon: <div />,
+            icon: 'div',
             path: '/profile'
           }
         ]}

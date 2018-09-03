@@ -3,6 +3,7 @@
 .*/build/.*
 .*/coverage/.*
 .*/public/.*
+.*/flow-coverage/.*
 <PROJECT_ROOT>/yarn-error.log
 <PROJECT_ROOT>/yarn.lock
 <PROJECT_ROOT>/src/registerServiceWorker.js
@@ -14,6 +15,8 @@
 node_modules/flow-inlinestyle/index.js
 
 [lints]
+all=error
+sketchy-null=off
 
 [options]
 all=true

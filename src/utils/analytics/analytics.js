@@ -45,8 +45,8 @@ export const track = (
   }
 ): void =>
   tracker('event', action, {
+    ...rest,
     event_category: category,
     event_label: label,
-    value,
-    ...rest
+    value
   })

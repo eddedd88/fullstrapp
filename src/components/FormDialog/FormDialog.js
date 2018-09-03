@@ -14,8 +14,8 @@ type Props = {
   cancelLabel?: string,
   children: Node,
   appBarButton: Node,
-  onSubmit: Function,
-  onClose: Function,
+  onSubmit: () => void,
+  onClose: () => void,
 
   // set automatically by HOC withMobileDialog
   fullScreen: boolean
