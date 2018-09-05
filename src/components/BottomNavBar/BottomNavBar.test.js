@@ -37,7 +37,7 @@ describe('BottomNavBar', () => {
 
   it('renders with router correctly', () => {
     const renderer = new ShallowRenderer()
-    const tree = renderer.render(<BottomNavBarWithRouter />)
+    const tree = renderer.render(<BottomNavBarWithRouter items={[]} />)
     expect(tree).toMatchSnapshot()
   })
 })
