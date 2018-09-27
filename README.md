@@ -19,9 +19,7 @@ The following big choices have been made:
 This project builds into this [demo](https://material-pwa-c6ebb.firebaseapp.com). But you can easily create your app and point to it following the guides below.
 
 ### Getting Started
-1. Download or clone repo
-2. Install dependencies: `yarn install`
-3. Follow the Setup Guides below
+COMING SOON...
 
 ## Table of Contents
 - Setup Guides
