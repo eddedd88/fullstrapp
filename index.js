@@ -83,7 +83,7 @@ const promptQuestions = () => inquirer.prompt([
    {
      name: 'firebaseProjectId',
      type: 'input',
-     message: 'Enter your Firebase project ID:',
+     message: 'Enter your Firebase Project ID:',
      validate: val => !!val || 'This is required in order to host your app.'
    },
    {
@@ -102,7 +102,7 @@ const promptFirebaseQuestions = () => inquirer.prompt([
   {
     name: 'firebaseApiKey',
     type: 'input',
-    message: 'Please enter your Firebase project API Key:',
+    message: 'Enter your Firebase Web API Key:',
     validate: val => !!val ||
       'This is required in order to connect to Firebase Database and Authentication locally'
   }
