@@ -7,7 +7,6 @@ const os = require('os')
 const inquirer = require('inquirer')
 const deepmerge = require('deepmerge')
 const { execSync } = require('child_process')
-
 const packageJsonTemplate = require('./templates/packageJson.js')
 
 const appName = process.argv[2]
@@ -39,19 +38,18 @@ const devPackages = {
     'flow-bin',
     'flow-coverage-report',
     'husky',
-    'jest',
     'jest-localstorage-mock',
     'lint-staged',
     'prettier-standard',
     'react-test-renderer',
-    'source-map-explorer'
+    'source-map-explorer',
+    'flow-inlinestyle'
   ]
 }
 
 const flowTypes = {
   core: [
-    // '@material-ui/core', latest version doesnt match with flow-typed
-    'jest',
+    // '@material-ui/core' - latest version doesnt match with flow-typed
     'jest-localstorage-mock',
     'react-router',
     'react-router-dom',
@@ -61,7 +59,7 @@ const flowTypes = {
   ],
   firebase: [
     'firebase',
-    'firebaseui'
+    // 'firebaseui' - this is not in fow-typed
   ]
 }
 
@@ -85,8 +83,29 @@ const promptQuestions = () => inquirer.prompt([
    {
      name: 'firebaseProjectId',
      type: 'input',
-     message: 'Enter your Firebase project ID:'
+     message: 'Enter your Firebase project ID:',
+     validate: val => !!val || 'This is required in order to host your app.'
+   },
+   {
+     name: 'useFirebase',
+     type: 'confirm',
+     message: 'Would you like to use Firebase Database & Authentication?'
+   },
+   {
+     name: 'useGoogleAnalytics',
+     type: 'confirm',
+     message: 'Would you like to use Google Analytics to track app usage?'
    }
+])
+
+const promptFirebaseQuestions = () => inquirer.prompt([
+  {
+    name: 'firebaseApiKey',
+    type: 'input',
+    message: 'Please enter your Firebase project API Key:',
+    validate: val => !!val ||
+      'This is required in order to connect to Firebase Database and Authentication locally'
+  }
 ])
 
 const createReactApp = appName => new Promise(
@@ -106,6 +125,10 @@ const createReactApp = appName => new Promise(
 
 const installPackages = (packages, forDev) => new Promise(
   resolve => {
+    if (!packages || packages.length < 1) {
+      resolve()
+    }
+
     console.log(`\nInstalling ${forDev ? 'dev ' : '' }dependencies ${chalk.cyan(packages.join(', '))} \n`)
 
     const installCommand = forDev
@@ -122,11 +145,12 @@ const installPackages = (packages, forDev) => new Promise(
 const installDependencies = setupType =>
   installPackages(packages[setupType])
     .then(() => installPackages(devPackages[setupType], true))
-    .then(() => fs.copy(
-      `${__dirname}/templates/${setupType}`,
-      `${appDirectory}`
-    ))
-    .catch(console.error)
+
+const copyTemplates = setupType =>
+  fs.copy(
+    `${__dirname}/templates/${setupType}`,
+    `${appDirectory}`
+  )
 
 const installFlowTypes = setupType => new Promise(
   resolve => {
@@ -143,8 +167,13 @@ const installFlowTypes = setupType => new Promise(
           packageName => `${packageName}@${allDeps[packageName]}`
         )
 
-        // add material-ui version 1 - latest in flow-typed
-        packagesWithVersion.push('@material-ui/core@1')
+        if (setupType === 'core') {
+          // add material-ui version 1 - latest in flow-typed
+          packagesWithVersion.push('@material-ui/core@1')
+
+          // add latest jest version that is bundled with cra
+          packagesWithVersion.push('jest@23')
+        }
 
         shell.exec(`flow-typed install ${packagesWithVersion.join(' ')}`, () => {
           console.log(chalk.green('Finished installing flow types for dependencies'))
@@ -183,6 +212,14 @@ const updateFirebaseRc = firebaseProjectId =>
     }
   )
 
+const createFirebaseEnvVars = ({
+  firebaseApiKey,
+  firebaseProjectId
+}) => fs.writeFile(
+  `${appDirectory}/.env.local`,
+  `REACT_APP_FIREBASE_API_KEY=${firebaseApiKey}\nREACT_APP_FIREBASE_PROJECT_ID=${firebaseProjectId}`
+)
+
 const run = async () => {
   console.log(chalk.magenta('\nfullstrapping...\n'))
 
@@ -191,13 +228,16 @@ const run = async () => {
     return false
   }
 
-  const { firebaseProjectId } = await promptQuestions()
-  console.log('')
+  const {
+    firebaseProjectId,
+    useFirebase,
+    useGoogleAnalytics
+  } = await promptQuestions()
 
-  if (!firebaseProjectId) {
-    console.log('\nPlease try again and enter a Firebase Project ID,')
-    console.log('this is required in order to be able to host your app.')
-    return false
+  let fbApiKey = ''
+  if (useFirebase) {
+    const { firebaseApiKey } = await promptFirebaseQuestions()
+    fbApiKey = firebaseApiKey
   }
 
   const success = await createReactApp(appName)
@@ -205,15 +245,33 @@ const run = async () => {
     return false
   }
 
+  // setup the essentials for a new app
   shell.cd(appName)
   shell.rm('./README.md')
   shell.rm('./src/logo.svg')
   shell.rm('./src/App*')
+  await copyTemplates('core')
   await installDependencies('core')
   await installFlowTypes('core')
   await enhancePackageJson()
   await updateFirebaseRc(firebaseProjectId)
-  console.log(`\nAll done!. You are ${chalk.magenta('fullstrapped')}!\n`)
+
+  if (useFirebase) {
+    await copyTemplates('firebase')
+    await installDependencies('firebase')
+    await installFlowTypes('firebase')
+    await createFirebaseEnvVars({
+      firebaseProjectId,
+      firebaseApiKey: fbApiKey
+    })
+  }
+  console.log('')
+
+  if (useGoogleAnalytics) {
+    await copyTemplates('analytics')
+  }
+
+  console.log(`All done!. You are ${chalk.magenta('fullstrapped')}!\n`)
 }
 
 run()
