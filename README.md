@@ -5,7 +5,7 @@ Launch a production ready PWA in very little time, without compromising on scala
 
 This project tries to make as many opinionated choices as possible, in a sensible manner, about the dev stack, in order to quickly build a product that could sustain a significant amount of traffic/users.
 
-The following big choices have been made:
+The following core choices have been made:
 - **React** front-end framework
 - **material-ui** component library
 - **Progressive Web App** mobile first
@@ -16,71 +16,49 @@ The following big choices have been made:
 - **CircleCI** to automate tests and deploys
 - **Google Analytics** to track app usage
 
-This project builds into this [demo](https://material-pwa-c6ebb.firebaseapp.com). But you can easily create your app and point to it following the guides below.
-
-### Getting Started
-COMING SOON...
-
 ## Table of Contents
-- Setup Guides
-  - [How to setup Firebase Hosting?](#how-to-setup-firebase-hosting)
-  - [How to setup Firestore (Firebase Database)?](#how-to-setup-firestore)
-  - [How to setup Firebase Authentication?](#how-to-setup-firebase-authentication)
-  - [How to setup CircleCI?](#how-to-setup-circleci)
-  - [How to deploy to Firebase with CircleCI?](#deploy-to-firebase-with-circleci)
-  - [How to Setup Google Analytics?](#how-to-setup-google-analytics)
+- [Getting Started](#getting-started)
 - Components
   - Signin: firebaseui-web pre-configured to use all signin methods
-  - MobileOnboarding
-  - WebOnboarding
 - Github Flow
 - Commit Guidelines
 - Issue Templates
 - [Project Goals & Strategy](#goals)
 - [Alternatives](#alternatives)
 
-## How to setup Firebase Hosting
-- **Signup** at https://firebase.com for a Firebase account
-- **Start a new project**
-- Copy the *Project ID* from the *project settings* in Firebase
-- In the file **.firebaserc** set the *default* project to your new *project id*
-- Deploy manually by running command: `yarn firebase deploy`, or [deploy with CircleCI (recommended)](#deploy-to-firebase-with circleci)
 
-## How to setup Firestore
-- Create a **.env.local** file to store environment variables
-- Add your new *project id* as a local environment variable called: `REACT_APP_FIREBASE_PROJECT_ID`
-- Copy the *Web API Key* from the *project settings* in Firebase
-- Add the *Web API Key* as a local environment variable called `REACT_APP_FIREBASE_API_KEY`
-- Create a Firestore in Firebase
+### Getting Started
+1. Install and create app
 
-The environment variables will allow your local environment to connect to Firebase
+```
+yarn global add fullstrapp
 
-## How to setup Firebase Authentication
-- Do the first 4 steps of [How to setup Firestore](#how-to-setup-firestore)
-- Enable Firebase Authentication and Sign-in methods of choice
-- Update the sign-in methods in the `src/components/Signin` component
+fullstrapp myapp
+```
+Firebase Project ID and Web API Key can be found in your Firebase Project settings.
 
-## How to setup CircleCI
-- **Signup** at https://circleci.com/ for a CircleCI account
-- Add your github repo as a Project
-- Press the **Start Building** button (this may fail if Firebase is not setup)
+2. Setup CircleCI
+  - Add your github repo as Project
+  - Press **Start Building** or follow your project.
 
-Every time a commit is pushed to github, CircleCI will automatically run CI tests. See command `ci` in `package.json`.
 
-## Deploy to Firebase with CircleCI
-- Create a Firebase token: `yarn firebase login:ci`
-- Add the token to CircleCI as an environment variable named `FIREBASE_TOKEN`
-- Add the previously created environment variables to CircleCI:
+3. Add the environment variables created in `.env.local` to CircleCI:
   - `REACT_APP_FIREBASE_PROJECT_ID`
   - `REACT_APP_FIREBASE_API_KEY`
 
-Every time a pull request is merged into master, CircleCI will deploy to firebase if all the tests succeed
 
-## How to setup Google Analytics
-- Find your tracking id: https://support.google.com/analytics/answer/1008080?hl=en
-- Add the *tracking id* to CircleCI as an environment variable called `REACT_APP_GA_TRACKING_ID`
+3. Add a Firebase Auth Token to CircleCI
+  - Create a Firebase token: `yarn firebase login:ci`
+  - Add the token to CircleCI as an environment variable named `FIREBASE_TOKEN`
 
----
+
+4. Setup Google Analytics
+  - Find your tracking id: https://support.google.com/analytics/answer/1008080?hl=en
+  - Add the *tracking id* to CircleCI as an environment variable called `REACT_APP_GA_TRACKING_ID`
+
+Every time a commit is pushed to github, CircleCI will automatically run CI tests. See command `ci` in `package.json`.
+
+Every time a pull request is merged into master, CircleCI will deploy to firebase if all the tests succeed.
 
 ### Goals
 - To **launch an MVP** as fast as possible: **within a day**
