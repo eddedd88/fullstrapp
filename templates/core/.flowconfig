@@ -6,7 +6,7 @@
 .*/flow-coverage/.*
 <PROJECT_ROOT>/yarn-error.log
 <PROJECT_ROOT>/yarn.lock
-<PROJECT_ROOT>/src/registerServiceWorker.js
+<PROJECT_ROOT>/src/serviceWorker.js
 <PROJECT_ROOT>/src/index.js
 
 [include]
