@@ -1,7 +1,26 @@
 {
   "name": "fullstrapp",
   "version": "0.1.0",
-  "private": true,
+  "description": "Fastest route to MVP, launch your app today.",
+  "keywords": ["react", "material-ui", "firebase", "bootstrap"],
+  "homepage": "https://github.com/eddedd88/fullstrapp",
+  "bugs": "https://github.com/eddedd88/fullstrapp/issues",
+  "author": {
+    "name" : "Eduardo Duran",
+    "email" : "eduardo.durandiaz@gmail.com",
+    "url" : "https://edurandiaz.com/"
+  },
+  "license": "MIT",
+  "bin": {
+    "fullstrapp": "index.js"
+  },
+  "files": [
+    "docs/",
+    "templates/",
+    "README.md",
+    "index.js",
+    "LICENSE"
+  ],
   "dependencies": {
     "@material-ui/core": "^3.1.2",
     "@material-ui/icons": "^3.0.1",
@@ -45,9 +64,6 @@
     "eject": "react-scripts eject",
     "flow": "flow",
     "format": "prettier-standard 'src/**/*.js'"
-  },
-  "bin": {
-    "fullstrapp": "index.js"
   },
   "jest": {
     "coverageThreshold": {
