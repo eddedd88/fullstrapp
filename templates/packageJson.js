@@ -1,6 +1,6 @@
 module.exports = {
   scripts: {
-    coverage: 'react-scripts test --env=jsdom --coverage && flow-coverage-report',
+    coverage: 'react-scripts test --coverage && flow-coverage-report',
     analyze: 'yarn build && source-map-explorer build/static/js/main.*',
     ci: 'yarn test && yarn flow',
     'ci:local': 'CI=true yarn ci && CI=true yarn build',
@@ -26,7 +26,7 @@ module.exports = {
       'coverage/**',
       'flow-coverage/**',
       'public/**',
-      'src/registerServiceWorker.js',
+      'src/serviceWorker.js',
       'src/index.js'
     ],
     'includeGlob': [

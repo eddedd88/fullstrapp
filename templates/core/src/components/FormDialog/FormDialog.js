@@ -10,8 +10,8 @@ import Button from '@material-ui/core/Button'
 
 type Props = {
   title: string,
-  submitLabel?: string,
-  cancelLabel?: string,
+  submitLabel: string,
+  cancelLabel: string,
   children: Node,
   appBarButton: Node,
   onSubmit: () => void,
