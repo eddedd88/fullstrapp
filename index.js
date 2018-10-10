@@ -217,7 +217,7 @@ const createFirebaseEnvVars = ({
   firebaseProjectId
 }) => fs.writeFile(
   `${appDirectory}/.env.local`,
-  `REACT_APP_FIREBASE_API_KEY=${firebaseApiKey}\nREACT_APP_FIREBASE_PROJECT_ID=${firebaseProjectId}`
+  `REACT_APP_FIREBASE_PROJECT_ID=${firebaseProjectId}\nREACT_APP_FIREBASE_API_KEY=${firebaseApiKey}`
 )
 
 const run = async () => {
