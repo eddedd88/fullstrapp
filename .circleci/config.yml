@@ -32,7 +32,7 @@ jobs:
 
       - run: yarn ci
 
-  publish:
+  deploy:
     docker:
       - image: circleci/node:10.11.0
 
@@ -42,18 +42,23 @@ jobs:
       - checkout
       - *restore_dependencies_cache
 
-      - run: yarn publish
+      - run:
+          name: Authenticate with npm registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+      - run:
+          name: Publish package
+          command: npm publish
 
 workflows:
   version: 2
-  test-and-publish:
+  test-and-deploy:
     jobs:
       - test
-      # - publish:
-      #     requires:
-      #       - test
-      #     filters:
-      #       tags:
-      #         only: /^v.*/
-      #       branches:
-      #         only: master
+      - deploy:
+          requires:
+            - test
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              only: master
