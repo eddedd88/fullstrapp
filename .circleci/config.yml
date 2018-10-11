@@ -54,6 +54,9 @@ workflows:
   test-and-deploy:
     jobs:
       - test
+        filters:
+          tags:
+            only: /^v.*/
       - deploy:
           requires:
             - test
