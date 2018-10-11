@@ -1,7 +1,7 @@
 import React, { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
 import App from './components/App'
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from './serviceWorker'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import addToHomeScreen from './addToHomeScreen'
 import { BrowserRouter } from 'react-router-dom'
