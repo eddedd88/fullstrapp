@@ -40,7 +40,7 @@
     "prettier-standard": "^8.0.1"
   },
   "scripts": {
-    "test": "",
+    "test": "echo \"TODO write tests\"",
     "ci": "yarn test",
     "format": "prettier-standard \"{index.js,*/!(packageJson).js,templates/**/!(flow-typed)/**.js}\""
   },
