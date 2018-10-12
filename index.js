@@ -205,6 +205,14 @@ const createFirebaseEnvVars = ({ firebaseApiKey, firebaseProjectId }) =>
     `REACT_APP_FIREBASE_PROJECT_ID=${firebaseProjectId}\nREACT_APP_FIREBASE_API_KEY=${firebaseApiKey}`
   )
 
+const createGitCommit = () => {
+  execSync('git add -A', { stdio: 'ignore' })
+  execSync('git commit -m "Initial commit from fullstrapp"', {
+    stdio: 'ignore'
+  })
+  console.log('\nCommitted changes to git.')
+}
+
 const run = async () => {
   console.log(chalk.magenta('\nfullstrapping...\n'))
 
@@ -262,6 +270,7 @@ const run = async () => {
     await copyTemplates('analytics')
   }
 
+  createGitCommit()
   console.log(`\nAll done!. You are ${chalk.magenta('fullstrapped')}!\n`)
 }
 
