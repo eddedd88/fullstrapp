@@ -7,6 +7,7 @@ const os = require('os')
 const inquirer = require('inquirer')
 const deepmerge = require('deepmerge')
 const packageJsonTemplate = require('./templates/packageJson.js')
+const execSync = require('child_process').execSync
 
 const appName = process.argv[2]
 const appDirectory = `${process.cwd()}/${appName}`
@@ -102,50 +103,39 @@ const promptFirebaseQuestions = () =>
     }
   ])
 
-const createReactApp = appName =>
-  new Promise(resolve => {
-    if (appName) {
-      shell.exec(`yarn create react-app ${appName}`, () => {
-        console.log(chalk.green('\nCreated react app with create-react-app'))
-        resolve(true)
-      })
-    } else {
-      console.log(chalk.red('\nNo app name was provided.'))
-      console.log(
-        `\nProvide an app name in the following format: ${chalk.cyan(
-          'fullstrapp app-name'
-        )}\n`
-      )
-      resolve(false)
-    }
+const createReactApp = appName => {
+  console.log('')
+  execSync(`yarn create react-app ${appName}`, {
+    stdio: 'inherit'
   })
+  console.log(chalk.green('\nCreated react app with create-react-app'))
+}
 
-const installPackages = (packages, forDev) =>
-  new Promise(resolve => {
-    if (!packages || packages.length < 1) {
-      resolve()
-    }
+const installPackages = (packages, forDev) => {
+  if (!packages || packages.length < 1) {
+    return
+  }
 
-    console.log(
-      `\nInstalling ${forDev ? 'dev ' : ''}dependencies ${chalk.cyan(
-        packages.join(', ')
-      )} \n`
-    )
-
-    const installCommand = forDev ? 'yarn add --dev' : 'yarn add'
-
-    shell.exec(`${installCommand} ${packages.join(' ')}`, () => {
-      console.log(
-        chalk.green(`\nFinished installing ${forDev ? 'dev ' : ''}depencies`)
-      )
-      resolve()
-    })
-  })
-
-const installDependencies = setupType =>
-  installPackages(packages[setupType]).then(() =>
-    installPackages(devPackages[setupType], true)
+  console.log(
+    `\nInstalling ${forDev ? 'dev ' : ''}dependencies ${chalk.cyan(
+      packages.join(', ')
+    )} \n`
   )
+
+  const installCommand = forDev ? 'yarn add --dev' : 'yarn add'
+
+  execSync(`${installCommand} ${packages.join(' ')}`, {
+    stdio: 'inherit'
+  })
+  console.log(
+    chalk.green(`\nFinished installing ${forDev ? 'dev ' : ''}depencies`)
+  )
+}
+
+const installDependencies = setupType => {
+  installPackages(packages[setupType])
+  installPackages(devPackages[setupType], true)
+}
 
 const copyTemplates = setupType =>
   fs.copy(`${__dirname}/templates/${setupType}`, `${appDirectory}`)
@@ -176,12 +166,13 @@ const installFlowTypes = setupType =>
         packagesWithVersion.push('jest@23')
       }
 
-      shell.exec(`flow-typed install ${packagesWithVersion.join(' ')}`, () => {
-        console.log(
-          chalk.green('Finished installing flow types for dependencies')
-        )
-        resolve()
+      execSync(`flow-typed install ${packagesWithVersion.join(' ')}`, {
+        stdio: 'inherit'
       })
+      console.log(
+        chalk.green('Finished installing flow types for dependencies')
+      )
+      resolve()
     })
   })
 
@@ -196,7 +187,6 @@ const enhancePackageJson = () =>
 
 const updateFirebaseRc = firebaseProjectId =>
   fs.readJson(`${appDirectory}/.firebaserc`, (err, firebaseRcFile) => {
-    console.log(firebaseProjectId)
     const newFirebaseRcFile = deepmerge(firebaseRcFile, {
       projects: {
         default: firebaseProjectId
@@ -223,6 +213,16 @@ const run = async () => {
     return false
   }
 
+  if (!appName) {
+    console.log(chalk.red('No app name was provided.'))
+    console.log(
+      `\nProvide an app name in the following format: ${chalk.cyan(
+        'fullstrapp app-name'
+      )}\n`
+    )
+    return false
+  }
+
   const {
     firebaseProjectId,
     useFirebase,
@@ -235,38 +235,34 @@ const run = async () => {
     fbApiKey = firebaseApiKey
   }
 
-  const success = await createReactApp(appName)
-  if (!success) {
-    return false
-  }
+  createReactApp(appName)
 
   // setup the essentials for a new app
   shell.cd(appName)
   shell.rm('./README.md')
   shell.rm('./src/logo.svg')
   shell.rm('./src/App*')
+  installDependencies('core')
   await copyTemplates('core')
-  await installDependencies('core')
   await installFlowTypes('core')
   await enhancePackageJson()
   await updateFirebaseRc(firebaseProjectId)
 
   if (useFirebase) {
+    installDependencies('firebase')
     await copyTemplates('firebase')
-    await installDependencies('firebase')
     await installFlowTypes('firebase')
     await createFirebaseEnvVars({
       firebaseProjectId,
       firebaseApiKey: fbApiKey
     })
   }
-  console.log('')
 
   if (useGoogleAnalytics) {
     await copyTemplates('analytics')
   }
 
-  console.log(`All done!. You are ${chalk.magenta('fullstrapped')}!\n`)
+  console.log(`\nAll done!. You are ${chalk.magenta('fullstrapped')}!\n`)
 }
 
 run()
