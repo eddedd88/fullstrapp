@@ -71,25 +71,31 @@ const checkGlobalCommandsAreAvailable = () => {
   return !aCommandIsMissing
 }
 
-const promptQuestions = () =>
-  inquirer.prompt([
-    {
+const promptQuestions = updatingProject => {
+  let questions = []
+  if (!updatingProject) {
+    questions.push({
       name: 'firebaseProjectId',
       type: 'input',
       message: 'Enter your Firebase Project ID:',
       validate: val => !!val || 'This is required in order to host your app.'
-    },
-    {
-      name: 'useFirebase',
-      type: 'confirm',
-      message: 'Would you like to use Firebase Database & Authentication?'
-    },
-    {
-      name: 'useGoogleAnalytics',
-      type: 'confirm',
-      message: 'Would you like to use Google Analytics to track app usage?'
-    }
-  ])
+    })
+  }
+
+  questions.push({
+    name: 'useFirebase',
+    type: 'confirm',
+    message: 'Would you like to use Firebase Database & Authentication?'
+  })
+
+  questions.push({
+    name: 'useGoogleAnalytics',
+    type: 'confirm',
+    message: 'Would you like to use Google Analytics to track app usage?'
+  })
+
+  return inquirer.prompt(questions)
+}
 
 const promptFirebaseQuestions = () =>
   inquirer.prompt([
@@ -178,7 +184,9 @@ const installFlowTypes = setupType =>
 
 const enhancePackageJson = () =>
   fs.readJson(`${appDirectory}/package.json`, (err, currentPkgJson) => {
-    const enhancedPkgJson = deepmerge(currentPkgJson, packageJsonTemplate)
+    const enhancedPkgJson = deepmerge(currentPkgJson, packageJsonTemplate, {
+      arrayMerge: (destinationArray, sourceArray, options) => sourceArray
+    })
     return fs.writeFile(
       `${appDirectory}/package.json`,
       JSON.stringify(enhancedPkgJson, null, 2) + os.EOL
@@ -231,25 +239,36 @@ const run = async () => {
     return false
   }
 
+  const updatingProject = fs.existsSync(appName)
+  if (updatingProject) {
+    console.log("We found a project there. Let's try to update it.\n")
+  }
+
   const {
     firebaseProjectId,
     useFirebase,
     useGoogleAnalytics
-  } = await promptQuestions()
+  } = await promptQuestions(updatingProject)
 
   let fbApiKey = ''
-  if (useFirebase) {
+  if (useFirebase && !updatingProject) {
     const { firebaseApiKey } = await promptFirebaseQuestions()
     fbApiKey = firebaseApiKey
   }
 
-  createReactApp(appName)
+  if (!updatingProject) {
+    createReactApp(appName)
+  }
 
-  // setup the essentials for a new app
   shell.cd(appName)
-  shell.rm('./README.md')
-  shell.rm('./src/logo.svg')
-  shell.rm('./src/App*')
+
+  // remove unnecessary create-react-app files
+  if (!updatingProject) {
+    shell.rm('./README.md')
+    shell.rm('./src/logo.svg')
+    shell.rm('./src/App*')
+  }
+
   installDependencies('core')
   await copyTemplates('core')
   await installFlowTypes('core')
@@ -260,17 +279,21 @@ const run = async () => {
     installDependencies('firebase')
     await copyTemplates('firebase')
     await installFlowTypes('firebase')
-    await createFirebaseEnvVars({
-      firebaseProjectId,
-      firebaseApiKey: fbApiKey
-    })
+    if (!updatingProject) {
+      await createFirebaseEnvVars({
+        firebaseProjectId,
+        firebaseApiKey: fbApiKey
+      })
+    }
   }
 
   if (useGoogleAnalytics) {
     await copyTemplates('analytics')
   }
 
-  createGitCommit()
+  if (!updatingProject) {
+    createGitCommit()
+  }
   console.log(`\nAll done!. You are ${chalk.magenta('fullstrapped')}!\n`)
 }
 
