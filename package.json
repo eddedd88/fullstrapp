@@ -37,12 +37,12 @@
   "devDependencies": {
     "husky": "^1.0.1",
     "lint-staged": "^7.3.0",
-    "prettier-standard": "^8.0.1"
+    "prettier": "^1.14.3"
   },
   "scripts": {
     "test": "echo \"TODO write tests\"",
     "ci": "yarn test",
-    "format": "prettier-standard \"{index.js,*/!(packageJson).js,templates/**/!(flow-typed)/**.js}\""
+    "format": "prettier --write --single-quote --no-semi \"{index.js,templates/**/src/**/*.js}\""
   },
   "jest": {
     "coverageThreshold": {
@@ -61,8 +61,8 @@
   },
   "lint-staged": {
     "linters": {
-      "{index.js,*/!(packageJson).js,templates/**/!(flow-typed)/**.js}": [
-        "prettier-standard",
+      "{index.js,templates/**/src/**/*.js}": [
+        "prettier --write",
         "git add"
       ]
     }
