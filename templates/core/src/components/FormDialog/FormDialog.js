@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import type { Node } from 'react'
-import Dialog from '@material-ui/core/Dialog'
-import DialogContent from '@material-ui/core/DialogContent'
-import DialogActions from '@material-ui/core/DialogActions'
-import DialogTitle from '@material-ui/core/DialogTitle'
-import withMobileDialog from '@material-ui/core/withMobileDialog'
-import FullScreenDialogAppBar from '../FullScreenDialogAppBar'
-import Button from '@material-ui/core/Button'
+import React, { Component } from "react";
+import type { Node } from "react";
+import Dialog from "@material-ui/core/Dialog";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import withMobileDialog from "@material-ui/core/withMobileDialog";
+import FullScreenDialogAppBar from "../FullScreenDialogAppBar";
+import Button from "@material-ui/core/Button";
 
 type Props = {
   title: string,
@@ -19,15 +19,15 @@ type Props = {
 
   // set automatically by HOC withMobileDialog
   fullScreen: boolean
-}
+};
 
 class FormDialog extends Component<Props> {
   static defaultProps = {
-    submitLabel: 'Submit',
-    cancelLabel: 'Cancel'
-  }
+    submitLabel: "Submit",
+    cancelLabel: "Cancel"
+  };
 
-  render () {
+  render() {
     const {
       title,
       submitLabel,
@@ -38,11 +38,11 @@ class FormDialog extends Component<Props> {
       appBarButton,
       fullScreen,
       ...rest
-    } = this.props
+    } = this.props;
 
     return (
       <Dialog {...rest} onClose={onClose} fullScreen={fullScreen}>
-        <form onSubmit={onSubmit} noValidate autoComplete='off'>
+        <form onSubmit={onSubmit} noValidate autoComplete="off">
           {fullScreen && (
             <FullScreenDialogAppBar
               onClose={onClose}
@@ -58,15 +58,15 @@ class FormDialog extends Component<Props> {
           {!fullScreen && (
             <DialogActions>
               <Button onClick={onClose}>{cancelLabel}</Button>
-              <Button color='primary' variant='raised' type='submit'>
+              <Button color="primary" variant="raised" type="submit">
                 {submitLabel}
               </Button>
             </DialogActions>
           )}
         </form>
       </Dialog>
-    )
+    );
   }
 }
 
-export default withMobileDialog()(FormDialog)
+export default withMobileDialog()(FormDialog);

@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import type { Node } from 'react'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import CloseIcon from '@material-ui/icons/Close'
-import withStyles from '@material-ui/core/styles/withStyles'
-import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
+import React, { Component } from "react";
+import type { Node } from "react";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import CloseIcon from "@material-ui/icons/Close";
+import withStyles from "@material-ui/core/styles/withStyles";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
 
 const styles = theme => ({
   title: {
@@ -19,7 +19,7 @@ const styles = theme => ({
     marginLeft: -12,
     marginRight: 20
   }
-})
+});
 
 type Props = {|
   title: string,
@@ -31,36 +31,36 @@ type Props = {|
     closeButton: string,
     submitButotn: string
   }
-|}
+|};
 
 class FullScreenDialogAppBar extends Component<Props> {
   static defaultProps = {
-    submitLabel: 'save'
-  }
+    submitLabel: "save"
+  };
 
-  render () {
-    const { title, submitLabel, submitButton, onClose, classes } = this.props
+  render() {
+    const { title, submitLabel, submitButton, onClose, classes } = this.props;
 
     return (
       <AppBar>
         <Toolbar>
           <IconButton
-            color='inherit'
+            color="inherit"
             onClick={onClose}
-            aria-label='Close'
+            aria-label="Close"
             className={classes.closeButton}
           >
             <CloseIcon />
           </IconButton>
-          <Typography variant='title' color='inherit' className={classes.title}>
+          <Typography variant="title" color="inherit" className={classes.title}>
             {title}
           </Typography>
 
           {submitButton || (
             <Button
-              color='inherit'
-              type='submit'
-              size='small'
+              color="inherit"
+              type="submit"
+              size="small"
               className={classes.submitButotn}
             >
               {submitLabel}
@@ -68,8 +68,8 @@ class FullScreenDialogAppBar extends Component<Props> {
           )}
         </Toolbar>
       </AppBar>
-    )
+    );
   }
 }
 
-export default withStyles(styles)(FullScreenDialogAppBar)
+export default withStyles(styles)(FullScreenDialogAppBar);

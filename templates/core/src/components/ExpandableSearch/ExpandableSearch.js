@@ -1,25 +1,25 @@
-import React, { Component, Fragment } from 'react'
-import Paper from '@material-ui/core/Paper'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack'
-import IconButton from '@material-ui/core/IconButton'
-import SearchIcon from '@material-ui/icons/Search'
-import Input from '@material-ui/core/Input'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import Toolbar from '@material-ui/core/Toolbar'
-import ClearIcon from '@material-ui/icons/Clear'
-import { Transition } from 'react-transition-group'
-import type { TransitionStatus } from 'react-transition-group'
+import React, { Component, Fragment } from "react";
+import Paper from "@material-ui/core/Paper";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import IconButton from "@material-ui/core/IconButton";
+import SearchIcon from "@material-ui/icons/Search";
+import Input from "@material-ui/core/Input";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Toolbar from "@material-ui/core/Toolbar";
+import ClearIcon from "@material-ui/icons/Clear";
+import { Transition } from "react-transition-group";
+import type { TransitionStatus } from "react-transition-group";
 
-const transitionTimeout: number = 100
+const transitionTimeout: number = 100;
 const defaultStyle: InlineStyle = {
   transition: `opacity ${transitionTimeout}ms linear`,
   opacity: 0,
-  width: '100%',
-  position: 'absolute',
+  width: "100%",
+  position: "absolute",
   left: 0,
-  overflow: 'hidden',
-  pointerEvents: 'none'
-}
+  overflow: "hidden",
+  pointerEvents: "none"
+};
 
 const transitionStyles: { [TransitionStatus]: InlineStyle } = {
   entering: {
@@ -27,76 +27,76 @@ const transitionStyles: { [TransitionStatus]: InlineStyle } = {
   },
   entered: {
     opacity: 1,
-    pointerEvents: 'auto'
+    pointerEvents: "auto"
   }
-}
+};
 
 type Props = {
   placeholder: string,
   onChangeValue: (?string) => void
-}
+};
 
 type State = {
   value: string,
   searchModeOn: boolean
-}
+};
 
 class ExpandableSearch extends Component<Props, State> {
   state = {
-    value: '',
+    value: "",
     searchModeOn: false
-  }
+  };
 
-  searchInput: ?HTMLInputElement
+  searchInput: ?HTMLInputElement;
 
   setSearchInputRef = (element: HTMLInputElement) => {
-    this.searchInput = element
-  }
+    this.searchInput = element;
+  };
 
   handleValueChange = (e: SyntheticEvent<HTMLInputElement>) => {
-    const value: string = e.currentTarget.value
+    const value: string = e.currentTarget.value;
 
     this.setState({
       value
-    })
+    });
 
-    this.props.onChangeValue(value)
-  }
+    this.props.onChangeValue(value);
+  };
 
   toggleSearchMode = () => {
-    const { onChangeValue } = this.props
-    const searchModeOn: boolean = !this.state.searchModeOn
+    const { onChangeValue } = this.props;
+    const searchModeOn: boolean = !this.state.searchModeOn;
 
     this.setState({
-      value: '',
+      value: "",
       searchModeOn
-    })
+    });
 
     if (searchModeOn && this.searchInput) {
-      this.searchInput.focus()
+      this.searchInput.focus();
     } else {
-      onChangeValue('')
+      onChangeValue("");
     }
-  }
+  };
 
   handleClickClear = () => {
     this.setState({
-      value: ''
-    })
-    this.props.onChangeValue('')
+      value: ""
+    });
+    this.props.onChangeValue("");
     if (this.searchInput) {
-      this.searchInput.focus()
+      this.searchInput.focus();
     }
-  }
+  };
 
-  render () {
-    const { placeholder } = this.props
+  render() {
+    const { placeholder } = this.props;
 
-    const { value, searchModeOn } = this.state
+    const { value, searchModeOn } = this.state;
 
     return (
       <Fragment>
-        <IconButton color='inherit' onClick={this.toggleSearchMode}>
+        <IconButton color="inherit" onClick={this.toggleSearchMode}>
           <SearchIcon />
         </IconButton>
 
@@ -105,7 +105,7 @@ class ExpandableSearch extends Component<Props, State> {
             <Paper
               square
               elevation={1}
-              color='inherit'
+              color="inherit"
               style={{
                 ...defaultStyle,
                 ...transitionStyles[transitionState]
@@ -116,7 +116,7 @@ class ExpandableSearch extends Component<Props, State> {
                   <ArrowBackIcon />
                 </IconButton>
                 <Input
-                  type='search'
+                  type="search"
                   placeholder={placeholder}
                   fullWidth
                   disableUnderline
@@ -124,9 +124,9 @@ class ExpandableSearch extends Component<Props, State> {
                   onChange={this.handleValueChange}
                   inputRef={this.setSearchInputRef}
                   endAdornment={
-                    <InputAdornment position='end'>
+                    <InputAdornment position="end">
                       <IconButton
-                        aria-label='Clear search query'
+                        aria-label="Clear search query"
                         onClick={this.handleClickClear}
                       >
                         <ClearIcon />
@@ -139,8 +139,8 @@ class ExpandableSearch extends Component<Props, State> {
           )}
         </Transition>
       </Fragment>
-    )
+    );
   }
 }
 
-export default ExpandableSearch
+export default ExpandableSearch;
