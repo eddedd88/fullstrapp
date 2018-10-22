@@ -1,17 +1,17 @@
-<img src="./src/assets/icon.png" width="200" />
+<img src="./icon.png" width="200" />
 
 # fullstrapp
 Launch a production ready PWA in very little time, without compromising on scalability and quality.
 
 This project tries to make as many opinionated choices as possible, in a sensible manner, about the dev stack, in order to quickly build a product that could sustain a significant amount of traffic/users.
 
-The following core choices have been made:
+The following choices have been made:
 - **React** front-end framework
-- **material-ui** component library
-- **Progressive Web App** mobile first
 - **create-react-app** as a starting project which provides: testing (jest), linting and building
+- **material-ui** component library
+- **Progressive Web App** mobile first development approach
 - **flow** for type checking
-- **prettier-standard** for formatting and enforcing coding styles
+- **prettier** for formatting code base
 - **Firebase** for Hosting, Database (Firestore), and Authentication
 - **CircleCI** to automate tests and deploys
 - **Google Analytics** to track app usage
@@ -19,7 +19,7 @@ The following core choices have been made:
 ## Table of Contents
 - [Getting Started](#getting-started)
 - Components
-  - Signin: firebaseui-web pre-configured to use all signin methods
+  - Signin: [firebaseui-web](https://github.com/firebase/firebaseui-web) pre-configured to use all signin methods
 - Github Flow
 - Commit Guidelines
 - Issue Templates
@@ -28,7 +28,7 @@ The following core choices have been made:
 
 
 ### Getting Started
-1. Install and create app
+#### 1. Install and create app
 
 ```
 yarn global add fullstrapp
@@ -37,22 +37,22 @@ fullstrapp myapp
 ```
 Firebase Project ID and Web API Key can be found in your Firebase Project settings.
 
-2. Setup CircleCI
+#### 2. Setup CircleCI
   - Add your github repo as Project
   - Press **Start Building** or follow your project.
 
 
-3. Add the environment variables created in `.env.local` to CircleCI:
+#### 3. Add the environment variables created in `.env.local` to CircleCI:
   - `REACT_APP_FIREBASE_PROJECT_ID`
   - `REACT_APP_FIREBASE_API_KEY`
 
 
-3. Add a Firebase Auth Token to CircleCI
+#### 4. Add a Firebase Auth Token to CircleCI
   - Create a Firebase token: `yarn firebase login:ci`
   - Add the token to CircleCI as an environment variable named `FIREBASE_TOKEN`
 
 
-4. Setup Google Analytics
+#### 5. Setup Google Analytics
   - Find your tracking id: https://support.google.com/analytics/answer/1008080?hl=en
   - Add the *tracking id* to CircleCI as an environment variable called `REACT_APP_GA_TRACKING_ID`
 
@@ -76,8 +76,6 @@ Reaching any of the limits should make it easier to raise enough funding to cove
 - Use services at a free tier level, where cost would only materialize if the product gets traction
 - Put in place guidelines and templates
 
----
-
-## Alternatives
+### Alternatives
 The best alternative to this project I've found:
 - [react-most-wanted](https://www.react-most-wanted.com/)
