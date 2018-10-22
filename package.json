@@ -62,7 +62,7 @@
   "lint-staged": {
     "linters": {
       "{index.js,templates/**/src/**/*.js}": [
-        "prettier --write",
+        "prettier --write --single-quote --no-semi",
         "git add"
       ]
     }
