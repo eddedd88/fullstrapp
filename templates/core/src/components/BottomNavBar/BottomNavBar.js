@@ -1,22 +1,22 @@
-import React, { Component, type Element } from "react";
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import { Link, withRouter, type Location } from "react-router-dom";
+import React, { Component, type Element } from 'react'
+import BottomNavigation from '@material-ui/core/BottomNavigation'
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
+import { Link, withRouter, type Location } from 'react-router-dom'
 import withStyles, {
   type StyleRulesCallback,
   type Theme
-} from "@material-ui/core/styles/withStyles";
-import SvgIcon from "@material-ui/core/SvgIcon";
+} from '@material-ui/core/styles/withStyles'
+import SvgIcon from '@material-ui/core/SvgIcon'
 
 const styles: StyleRulesCallback = (theme: Theme) => ({
   root: {
-    position: "fixed",
+    position: 'fixed',
     bottom: 0,
-    width: "100%",
+    width: '100%',
     boxShadow: theme.shadows[8],
-    backfaceVisibility: "hidden"
+    backfaceVisibility: 'hidden'
   }
-});
+})
 
 type Props = {
   items: Array<{
@@ -26,7 +26,7 @@ type Props = {
   }>,
   location: Location,
   classes: {}
-};
+}
 
 export class BottomNavBar extends Component<Props> {
   render() {
@@ -34,11 +34,11 @@ export class BottomNavBar extends Component<Props> {
       items,
       classes,
       location: { pathname }
-    } = this.props;
+    } = this.props
 
-    const secondPathIndex = pathname.indexOf("/", 1);
+    const secondPathIndex = pathname.indexOf('/', 1)
     const tabValue =
-      secondPathIndex < 0 ? pathname : pathname.substring(0, secondPathIndex);
+      secondPathIndex < 0 ? pathname : pathname.substring(0, secondPathIndex)
 
     return (
       <BottomNavigation value={tabValue} classes={classes} showLabels>
@@ -53,8 +53,8 @@ export class BottomNavBar extends Component<Props> {
           />
         ))}
       </BottomNavigation>
-    );
+    )
   }
 }
 
-export default withRouter(withStyles(styles)(BottomNavBar));
+export default withRouter(withStyles(styles)(BottomNavBar))

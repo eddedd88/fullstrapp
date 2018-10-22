@@ -1,12 +1,12 @@
-import React, { Component, Fragment } from "react";
-import withStyles from "@material-ui/core/styles/withStyles";
-import firebase from "../../utils/firebase";
-import * as firebaseui from "firebaseui";
-import "firebaseui/dist/firebaseui.css";
-import Typography from "@material-ui/core/Typography";
-import AppBar from "../AppBar";
+import React, { Component, Fragment } from 'react'
+import withStyles from '@material-ui/core/styles/withStyles'
+import firebase from '../../utils/firebase'
+import * as firebaseui from 'firebaseui'
+import 'firebaseui/dist/firebaseui.css'
+import Typography from '@material-ui/core/Typography'
+import AppBar from '../AppBar'
 
-const ui = new firebaseui.auth.AuthUI(firebase.auth());
+const ui = new firebaseui.auth.AuthUI(firebase.auth())
 
 const styles = theme => ({
   wrapper: {
@@ -15,19 +15,19 @@ const styles = theme => ({
   signinButtons: {
     marginTop: theme.spacing.unit * 4
   }
-});
+})
 
 type Props = {
   classes: {
     wrapper: string,
     signinButtons: string
   }
-};
+}
 
 class Signin extends Component<Props> {
   componentDidMount() {
     if (ui) {
-      ui.start("#firebaseui-auth-container", {
+      ui.start('#firebaseui-auth-container', {
         // Firebase UI config options
         signInOptions: [
           firebase.auth.EmailAuthProvider.PROVIDER_ID,
@@ -37,12 +37,12 @@ class Signin extends Component<Props> {
           firebase.auth.TwitterAuthProvider.PROVIDER_ID,
           firebase.auth.GithubAuthProvider.PROVIDER_ID
         ]
-      });
+      })
     }
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes } = this.props
 
     return (
       <Fragment>
@@ -59,8 +59,8 @@ class Signin extends Component<Props> {
           />
         </div>
       </Fragment>
-    );
+    )
   }
 }
 
-export default withStyles(styles)(Signin);
+export default withStyles(styles)(Signin)

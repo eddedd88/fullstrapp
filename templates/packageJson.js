@@ -6,7 +6,7 @@ module.exports = {
     'ci:local': 'CI=true yarn ci && CI=true yarn build',
     deploy: 'firebase deploy --token \"$FIREBASE_TOKEN\"',
     flow: 'flow',
-    format: 'prettier --write --single-quote --no-semi \"src/**/*.js\"'
+    format: 'prettier --write --single-quote --no-semi \"src/**/*.{js,json,css,md}\"'
   },
   jest: {
     'coverageThreshold': {
@@ -47,8 +47,8 @@ module.exports = {
   },
   'lint-staged': {
     'linters': {
-      'src/**/*.js': [
-        'prettier --write',
+      'src/**/*.{js,json,css,md}': [
+        'prettier --write --single-quote --no-semi',
         'git add'
       ]
     }

@@ -34,7 +34,7 @@ const devPackages = {
     'husky',
     'jest-localstorage-mock',
     'lint-staged',
-    'prettier-standard',
+    'prettier',
     'react-test-renderer',
     'source-map-explorer',
     'flow-inlinestyle'
@@ -56,6 +56,8 @@ const flowTypes = {
     // 'firebaseui' - this is not in fow-typed
   ]
 }
+
+const filesToIgnoreWhenUpdating = ['.firebaserc']
 
 const checkGlobalCommandsAreAvailable = () => {
   let aCommandIsMissing = false
@@ -85,13 +87,13 @@ const promptQuestions = updatingProject => {
   questions.push({
     name: 'useFirebase',
     type: 'confirm',
-    message: 'Would you like to use Firebase Database & Authentication?'
+    message: 'Would you like to include Firebase Database & Authentication?'
   })
 
   questions.push({
     name: 'useGoogleAnalytics',
     type: 'confirm',
-    message: 'Would you like to use Google Analytics to track app usage?'
+    message: 'Would you like to include Google Analytics to track app usage?'
   })
 
   return inquirer.prompt(questions)
@@ -143,8 +145,14 @@ const installDependencies = setupType => {
   installPackages(devPackages[setupType], true)
 }
 
-const copyTemplates = setupType =>
-  fs.copy(`${__dirname}/templates/${setupType}`, `${appDirectory}`)
+const copyTemplates = (setupType, updatingProject) =>
+  fs.copy(`${__dirname}/templates/${setupType}`, `${appDirectory}`, {
+    filter: filePath =>
+      !updatingProject ||
+      filesToIgnoreWhenUpdating.some(pathToIgnore =>
+        filePath.endsWith(pathToIgnore)
+      )
+  })
 
 const installFlowTypes = setupType =>
   new Promise(resolve => {
@@ -270,10 +278,12 @@ const run = async () => {
   }
 
   installDependencies('core')
-  await copyTemplates('core')
+  await copyTemplates('core', updatingProject)
   await installFlowTypes('core')
   await enhancePackageJson()
-  await updateFirebaseRc(firebaseProjectId)
+  if (!updatingProject) {
+    await updateFirebaseRc(firebaseProjectId)
+  }
 
   if (useFirebase) {
     installDependencies('firebase')
