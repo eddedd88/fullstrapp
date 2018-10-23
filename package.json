@@ -1,12 +1,13 @@
 {
   "name": "fullstrapp",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Fastest route to MVP, launch your app today.",
   "keywords": [
     "react",
     "material-ui",
     "firebase",
-    "bootstrap"
+    "bootstrap",
+    "pwa"
   ],
   "homepage": "https://github.com/eddedd88/fullstrapp",
   "bugs": "https://github.com/eddedd88/fullstrapp/issues",
