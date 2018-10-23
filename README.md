@@ -1,4 +1,4 @@
-<img src="./icon.png" width="200" />
+<img src="https://raw.githubusercontent.com/eddedd88/fullstrapp/master/icon.png" width="200" />
 
 # fullstrapp
 Launch a production ready PWA in very little time, without compromising on scalability and quality.
