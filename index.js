@@ -73,16 +73,26 @@ const checkGlobalCommandsAreAvailable = () => {
   return !aCommandIsMissing
 }
 
+const promptDestinationConfirmation = destination => {
+  const destinationExists = fs.existsSync(destination)
+  if (destinationExists) {
+    console.log(
+      `It seems there already is a project at ${chalk.cyan(destination)}\n`
+    )
+    return inquirer.prompt({
+      name: 'confirmUpdate',
+      type: 'confirm',
+      message: `Would you like to update ${chalk.cyan(destination)}?`
+    })
+  } else {
+    return {
+      confirmUpdate: true
+    }
+  }
+}
+
 const promptQuestions = updatingProject => {
   let questions = []
-  if (!updatingProject) {
-    questions.push({
-      name: 'firebaseProjectId',
-      type: 'input',
-      message: 'Enter your Firebase Project ID:',
-      validate: val => !!val || 'This is required in order to host your app.'
-    })
-  }
 
   questions.push({
     name: 'useFirebase',
@@ -95,6 +105,15 @@ const promptQuestions = updatingProject => {
     type: 'confirm',
     message: 'Would you like to include Google Analytics to track app usage?'
   })
+
+  if (!updatingProject) {
+    questions.push({
+      name: 'firebaseProjectId',
+      type: 'input',
+      message: 'Enter your Firebase Project ID:',
+      validate: val => !!val || 'This is required in order to host your app.'
+    })
+  }
 
   return inquirer.prompt(questions)
 }
@@ -233,14 +252,14 @@ const run = async () => {
   console.log(chalk.magenta('\nfullstrapping...\n'))
 
   if (!checkGlobalCommandsAreAvailable()) {
-    console.log('\nPlease install the missing global commands\n')
+    console.log('Please install the missing global commands\n')
     return false
   }
 
   if (!appName) {
     console.log(chalk.red('No app name was provided.'))
     console.log(
-      `\nProvide an app name in the following format: ${chalk.cyan(
+      `Provide an app name in the following format: ${chalk.cyan(
         'fullstrapp app-name'
       )}\n`
     )
@@ -248,8 +267,9 @@ const run = async () => {
   }
 
   const updatingProject = fs.existsSync(appName)
-  if (updatingProject) {
-    console.log("We found a project there. Let's try to update it.\n")
+  const { confirmUpdate } = await promptDestinationConfirmation(appName)
+  if (!confirmUpdate) {
+    return false
   }
 
   const {
