@@ -6,6 +6,7 @@ const fs = require('fs-extra')
 const os = require('os')
 const inquirer = require('inquirer')
 const deepmerge = require('deepmerge')
+const envfile = require('envfile')
 const packageJsonTemplate = require('./templates/packageJson.js')
 const execSync = require('child_process').execSync
 
@@ -91,39 +92,34 @@ const promptDestinationConfirmation = destination => {
   }
 }
 
-const promptQuestions = updatingProject => {
-  let questions = []
-
-  questions.push({
-    name: 'useFirebase',
-    type: 'confirm',
-    message: 'Would you like to include Firebase Database & Authentication?'
-  })
-
-  questions.push({
-    name: 'useGoogleAnalytics',
-    type: 'confirm',
-    message: 'Would you like to include Google Analytics to track app usage?'
-  })
-
-  if (!updatingProject) {
-    questions.push({
+const promptCoreQuestions = defaultFirebaseProjectId =>
+  inquirer.prompt([
+    {
+      name: 'useFirebase',
+      type: 'confirm',
+      message: 'Would you like to include Firebase Database & Authentication?'
+    },
+    {
+      name: 'useGoogleAnalytics',
+      type: 'confirm',
+      message: 'Would you like to include Google Analytics to track app usage?'
+    },
+    {
       name: 'firebaseProjectId',
       type: 'input',
       message: 'Enter your Firebase Project ID:',
+      default: defaultFirebaseProjectId,
       validate: val => !!val || 'This is required in order to host your app.'
-    })
-  }
+    }
+  ])
 
-  return inquirer.prompt(questions)
-}
-
-const promptFirebaseQuestions = () =>
+const promptFirebaseQuestions = defaultFirebaseApiKey =>
   inquirer.prompt([
     {
       name: 'firebaseApiKey',
       type: 'input',
       message: 'Enter your Firebase Web API Key:',
+      default: defaultFirebaseApiKey,
       validate: val =>
         !!val ||
         'This is required in order to connect to Firebase Database and Authentication locally'
@@ -164,14 +160,8 @@ const installDependencies = setupType => {
   installPackages(devPackages[setupType], true)
 }
 
-const copyTemplates = (setupType, updatingProject) =>
-  fs.copy(`${__dirname}/templates/${setupType}`, `${appDirectory}`, {
-    filter: filePath =>
-      !updatingProject ||
-      filesToIgnoreWhenUpdating.some(pathToIgnore =>
-        filePath.endsWith(pathToIgnore)
-      )
-  })
+const copyTemplates = setupType =>
+  fs.copy(`${__dirname}/templates/${setupType}`, `${appDirectory}`)
 
 const installFlowTypes = setupType =>
   new Promise(resolve => {
@@ -266,24 +256,40 @@ const run = async () => {
     return false
   }
 
-  const updatingProject = fs.existsSync(appName)
   const { confirmUpdate } = await promptDestinationConfirmation(appName)
   if (!confirmUpdate) {
     return false
   }
 
+  const firebaseRcJson =
+    fs.existsSync(`${appDirectory}/.firebaserc`) &&
+    fs.readJsonSync(`${appDirectory}/.firebaserc`)
+
+  const localEnvVars =
+    fs.existsSync(`${appDirectory}/.env.local`) &&
+    envfile.parseFileSync(`${appDirectory}/.env.local`)
+
+  const defaultFirebaseProjectId =
+    (firebaseRcJson && firebaseRcJson.projects.default) ||
+    (localEnvVars && localEnvVars.REACT_APP_FIREBASE_PROJECT_ID) ||
+    undefined
+
   const {
     firebaseProjectId,
     useFirebase,
     useGoogleAnalytics
-  } = await promptQuestions(updatingProject)
+  } = await promptCoreQuestions(defaultFirebaseProjectId)
 
-  let fbApiKey = ''
-  if (useFirebase && !updatingProject) {
-    const { firebaseApiKey } = await promptFirebaseQuestions()
+  let fbApiKey = localEnvVars
+    ? localEnvVars.REACT_APP_FIREBASE_API_KEY
+    : undefined
+
+  if (useFirebase) {
+    const { firebaseApiKey } = await promptFirebaseQuestions(fbApiKey)
     fbApiKey = firebaseApiKey
   }
 
+  const updatingProject = fs.existsSync(appName)
   if (!updatingProject) {
     createReactApp(appName)
   }
@@ -298,23 +304,19 @@ const run = async () => {
   }
 
   installDependencies('core')
-  await copyTemplates('core', updatingProject)
+  await copyTemplates('core')
   await installFlowTypes('core')
   await enhancePackageJson()
-  if (!updatingProject) {
-    await updateFirebaseRc(firebaseProjectId)
-  }
+  await updateFirebaseRc(firebaseProjectId)
 
   if (useFirebase) {
     installDependencies('firebase')
     await copyTemplates('firebase')
     await installFlowTypes('firebase')
-    if (!updatingProject) {
-      await createFirebaseEnvVars({
-        firebaseProjectId,
-        firebaseApiKey: fbApiKey
-      })
-    }
+    await createFirebaseEnvVars({
+      firebaseProjectId,
+      firebaseApiKey: fbApiKey
+    })
   }
 
   if (useGoogleAnalytics) {
