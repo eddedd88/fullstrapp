@@ -1,4 +1,4 @@
-import React, { StrictMode } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './components/App'
 import * as serviceWorker from './serviceWorker'
@@ -16,13 +16,11 @@ import theme from './styles/theme'
 import './index.css'
 
 ReactDOM.render(
-  <StrictMode>
-    <MuiThemeProvider theme={theme}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </MuiThemeProvider>
-  </StrictMode>,
+  <MuiThemeProvider theme={theme}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </MuiThemeProvider>,
   document.getElementById('root')
 )
 

@@ -58,7 +58,7 @@ class FormDialog extends Component<Props> {
           {!fullScreen && (
             <DialogActions>
               <Button onClick={onClose}>{cancelLabel}</Button>
-              <Button color="primary" variant="raised" type="submit">
+              <Button color="primary" variant="contained" type="submit">
                 {submitLabel}
               </Button>
             </DialogActions>
