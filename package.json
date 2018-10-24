@@ -1,6 +1,6 @@
 {
   "name": "fullstrapp",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Fastest route to MVP, launch your app today.",
   "keywords": [
     "react",
@@ -30,6 +30,7 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "deepmerge": "^2.1.1",
+    "envfile": "^2.3.0",
     "fs-extra": "^7.0.0",
     "inquirer": "^6.2.0",
     "os": "^0.1.1",
@@ -43,7 +44,7 @@
   "scripts": {
     "test": "echo \"TODO write tests\"",
     "ci": "yarn test",
-    "format": "prettier --write --single-quote --no-semi \"{index.js,templates/**/src/**/*.js}\""
+    "format": "prettier --write --single-quote --no-semi \"{index.js,templates/**/src/**/*.{js,json,css,md}}\""
   },
   "jest": {
     "coverageThreshold": {
@@ -62,7 +63,7 @@
   },
   "lint-staged": {
     "linters": {
-      "{index.js,templates/**/src/**/*.js}": [
+      "{index.js,templates/**/src/**/*.{js,json,css,md}}": [
         "prettier --write --single-quote --no-semi",
         "git add"
       ]

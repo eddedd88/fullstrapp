@@ -16,6 +16,8 @@ The following choices have been made:
 - **CircleCI** to automate tests and deploys
 - **Google Analytics** to track app usage
 
+[Take a look at this demo app created with **fullstrapp**](https://material-pwa-c6ebb.firebaseapp.com/)
+
 ## Table of Contents
 - [Getting Started](#getting-started)
 - Components
