@@ -52,7 +52,7 @@ class FullScreenDialogAppBar extends Component<Props> {
           >
             <CloseIcon />
           </IconButton>
-          <Typography variant="title" color="inherit" className={classes.title}>
+          <Typography variant="h6" color="inherit" className={classes.title}>
             {title}
           </Typography>
 
