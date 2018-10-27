@@ -58,8 +58,6 @@ const flowTypes = {
   ]
 }
 
-const filesToIgnoreWhenUpdating = ['.firebaserc']
-
 const checkGlobalCommandsAreAvailable = () => {
   let aCommandIsMissing = false
 

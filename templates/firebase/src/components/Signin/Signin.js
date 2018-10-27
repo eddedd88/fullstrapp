@@ -48,7 +48,7 @@ class Signin extends Component<Props> {
       <Fragment>
         <AppBar title="Sign In" />
         <div className={classes.wrapper}>
-          <Typography variant="headline" align="center" gutterBottom>
+          <Typography variant="h5" align="center" gutterBottom>
             Material PWA
           </Typography>
           <Typography align="center">Test the Sign In!</Typography>

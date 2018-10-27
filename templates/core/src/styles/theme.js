@@ -9,10 +9,7 @@ const theme = createMuiTheme({
     // error: color3
   },
   typography: {
-    fontSize: 16,
-    subheading: {
-      fontSize: '1.2rem'
-    }
+    useNextVariants: true
   }
 })
 

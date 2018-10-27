@@ -33,7 +33,7 @@ class AppBar extends Component<Props> {
               <ArrowBackIcon />
             </IconButton>
           )}
-          <AppTitle variant="title" color="inherit">
+          <AppTitle variant="h6" color="inherit">
             {title}
           </AppTitle>
           <ExpandableSearch onChangeValue={console.log} placeholder="Search" />
