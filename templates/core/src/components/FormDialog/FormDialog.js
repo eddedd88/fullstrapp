@@ -7,6 +7,15 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import withMobileDialog from '@material-ui/core/withMobileDialog'
 import FullScreenDialogAppBar from '../FullScreenDialogAppBar'
 import Button from '@material-ui/core/Button'
+import withStyles, { type Theme } from '@material-ui/core/styles/withStyles'
+
+const CustomDialogContent = withStyles((theme: Theme) => ({
+  root: {
+    [theme.breakpoints.down('md')]: {
+      marginTop: theme.spacing.unit * 10
+    }
+  }
+}))(DialogContent)
 
 type Props = {
   title: string,
@@ -17,7 +26,7 @@ type Props = {
   onSubmit: () => void,
   onClose: () => void,
 
-  // set automatically by HOC withMobileDialog
+  // injected props
   fullScreen: boolean
 }
 
@@ -52,8 +61,9 @@ class FormDialog extends Component<Props> {
             />
           )}
 
-          <DialogTitle>{title}</DialogTitle>
-          <DialogContent>{children}</DialogContent>
+          {!fullScreen && <DialogTitle>{title}</DialogTitle>}
+
+          <CustomDialogContent>{children}</CustomDialogContent>
 
           {!fullScreen && (
             <DialogActions>
