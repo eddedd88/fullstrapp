@@ -6,8 +6,10 @@
     "react",
     "material-ui",
     "firebase",
-    "bootstrap",
-    "pwa"
+    "typescript",
+    "pwa",
+    "fullstack",
+    "bootstrap"
   ],
   "homepage": "https://github.com/eddedd88/fullstrapp",
   "bugs": "https://github.com/eddedd88/fullstrapp/issues",
@@ -44,7 +46,7 @@
   "scripts": {
     "test": "echo \"TODO write tests\"",
     "ci": "yarn test",
-    "format": "prettier --write --single-quote --no-semi \"{index.js,templates/**/src/**/*.{js,json,css,md}}\""
+    "format": "prettier --write --single-quote --no-semi \"{index.js,templates/**/src/**/*.{ts,tsx,js,json,css,md}}\""
   },
   "jest": {
     "coverageThreshold": {
@@ -63,7 +65,7 @@
   },
   "lint-staged": {
     "linters": {
-      "{index.js,templates/**/src/**/*.{js,json,css,md}}": [
+      "{index.js,templates/**/src/**/*.{ts,tsx,js,json,css,md}}": [
         "prettier --write --single-quote --no-semi",
         "git add"
       ]

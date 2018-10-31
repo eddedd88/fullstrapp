@@ -4,7 +4,7 @@ import BottomNavBarWithRouter, { BottomNavBar } from './BottomNavBar'
 
 describe('BottomNavBar', () => {
   it('renders correctly', () => {
-    const renderer = new ShallowRenderer()
+    const renderer = ShallowRenderer.createRenderer()
     const tree = renderer.render(
       <BottomNavBar
         items={[
@@ -36,7 +36,7 @@ describe('BottomNavBar', () => {
   })
 
   it('renders with router correctly', () => {
-    const renderer = new ShallowRenderer()
+    const renderer = ShallowRenderer.createRenderer()
     const tree = renderer.render(<BottomNavBarWithRouter items={[]} />)
     expect(tree).toMatchSnapshot()
   })

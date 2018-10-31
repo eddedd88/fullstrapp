@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import type { Node } from 'react'
+import React, { Component, ReactNode } from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
@@ -8,7 +7,7 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 
-const styles = theme => ({
+const styles = () => ({
   title: {
     flex: 1
   },
@@ -21,17 +20,17 @@ const styles = theme => ({
   }
 })
 
-type Props = {|
-  title: string,
-  submitLabel: string,
-  onClose: () => void,
-  submitButton?: Node,
+type Props = {
+  title: string
+  submitLabel: string
+  onClose: () => void
+  submitButton?: ReactNode
   classes: {
-    title: string,
-    closeButton: string,
+    title: string
+    closeButton: string
     submitButotn: string
   }
-|}
+}
 
 class FullScreenDialogAppBar extends Component<Props> {
   static defaultProps = {

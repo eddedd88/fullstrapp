@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment, ChangeEvent } from 'react'
 import Paper from '@material-ui/core/Paper'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import IconButton from '@material-ui/core/IconButton'
@@ -7,11 +7,10 @@ import Input from '@material-ui/core/Input'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import Toolbar from '@material-ui/core/Toolbar'
 import ClearIcon from '@material-ui/icons/Clear'
-import { Transition } from 'react-transition-group'
-import type { TransitionStatus } from 'react-transition-group'
+import Transition, { TransitionStatus } from 'react-transition-group/Transition'
 
 const transitionTimeout: number = 100
-const defaultStyle: InlineStyle = {
+const defaultStyle = {
   transition: `opacity ${transitionTimeout}ms linear`,
   opacity: 0,
   width: '100%',
@@ -21,7 +20,7 @@ const defaultStyle: InlineStyle = {
   pointerEvents: 'none'
 }
 
-const transitionStyles: { [TransitionStatus]: InlineStyle } = {
+const transitionStyles: { [key in TransitionStatus]?: any } = {
   entering: {
     opacity: 1
   },
@@ -32,12 +31,12 @@ const transitionStyles: { [TransitionStatus]: InlineStyle } = {
 }
 
 type Props = {
-  placeholder: string,
-  onChangeValue: (?string) => void
+  placeholder: string
+  onChangeValue: (value: string) => void
 }
 
 type State = {
-  value: string,
+  value: string
   searchModeOn: boolean
 }
 
@@ -47,13 +46,13 @@ class ExpandableSearch extends Component<Props, State> {
     searchModeOn: false
   }
 
-  searchInput: ?HTMLInputElement
+  searchInput?: HTMLInputElement
 
   setSearchInputRef = (element: HTMLInputElement) => {
     this.searchInput = element
   }
 
-  handleValueChange = (e: SyntheticEvent<HTMLInputElement>) => {
+  handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value: string = e.currentTarget.value
 
     this.setState({

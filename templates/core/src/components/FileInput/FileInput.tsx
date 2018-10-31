@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
-import type { Node } from 'react'
+import React, { Component, HTMLProps } from 'react'
+import { ReactNode } from 'react'
+
 type Props = {
-  children: Node
-}
+  children: ReactNode
+} & HTMLProps<HTMLInputElement>
 
 class FileInput extends Component<Props> {
   render() {
