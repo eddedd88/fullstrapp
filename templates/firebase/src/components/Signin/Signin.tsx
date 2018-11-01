@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import withStyles from '@material-ui/core/styles/withStyles'
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
+import createStyles from '@material-ui/core/styles/createStyles'
+import { Theme } from '@material-ui/core/styles/createMuiTheme'
 import firebase from '../../utils/firebase'
 import * as firebaseui from 'firebaseui'
 import 'firebaseui/dist/firebaseui.css'
@@ -8,21 +10,17 @@ import AppBar from '../AppBar'
 
 const ui = new firebaseui.auth.AuthUI(firebase.auth())
 
-const styles = theme => ({
-  wrapper: {
-    marginTop: theme.spacing.unit * 6
-  },
-  signinButtons: {
-    marginTop: theme.spacing.unit * 4
-  }
-})
+const styles = (theme: Theme) =>
+  createStyles({
+    wrapper: {
+      marginTop: theme.spacing.unit * 6
+    },
+    signinButtons: {
+      marginTop: theme.spacing.unit * 4
+    }
+  })
 
-type Props = {
-  classes: {
-    wrapper: string,
-    signinButtons: string
-  }
-}
+type Props = WithStyles<typeof styles>
 
 class Signin extends Component<Props> {
   componentDidMount() {

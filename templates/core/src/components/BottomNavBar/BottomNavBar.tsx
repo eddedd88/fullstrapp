@@ -1,12 +1,12 @@
-import React, { Component, type Element } from 'react'
+import React, { Component, ReactElement } from 'react'
 import BottomNavigation from '@material-ui/core/BottomNavigation'
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
-import { Link, withRouter, type Location } from 'react-router-dom'
+import { Link, withRouter, RouteComponentProps } from 'react-router-dom'
 import withStyles, {
-  type StyleRulesCallback,
-  type Theme
+  StyleRulesCallback
 } from '@material-ui/core/styles/withStyles'
 import SvgIcon from '@material-ui/core/SvgIcon'
+import { Theme } from '@material-ui/core/styles/createMuiTheme'
 
 const styles: StyleRulesCallback = (theme: Theme) => ({
   root: {
@@ -18,17 +18,18 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
   }
 })
 
-type Props = {
+type Props = RouteComponentProps & {
   items: Array<{
-    label: string,
-    path: string,
-    icon: string | Element<typeof SvgIcon>
-  }>,
-  location: Location,
+    label: string
+    path: string
+    icon: string | ReactElement<typeof SvgIcon>
+  }>
   classes: {}
 }
 
 export class BottomNavBar extends Component<Props> {
+  renderLink = (path: string) => (props: any) => <Link {...props} to={path} />
+
   render() {
     const {
       items,
@@ -45,11 +46,10 @@ export class BottomNavBar extends Component<Props> {
         {items.map(({ path, label, icon }) => (
           <BottomNavigationAction
             key={path}
-            to={path}
             value={path}
             label={label}
             icon={icon}
-            component={Link}
+            component={this.renderLink(path)}
           />
         ))}
       </BottomNavigation>

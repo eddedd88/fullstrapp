@@ -1,13 +1,15 @@
-import React, { Component } from 'react'
-import type { Node } from 'react'
-import Dialog from '@material-ui/core/Dialog'
+import React, { Component, FormEvent, ReactNode } from 'react'
+import Dialog, { DialogProps } from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import withMobileDialog from '@material-ui/core/withMobileDialog'
+import withMobileDialog, {
+  InjectedProps
+} from '@material-ui/core/withMobileDialog'
 import FullScreenDialogAppBar from '../FullScreenDialogAppBar'
 import Button from '@material-ui/core/Button'
-import withStyles, { type Theme } from '@material-ui/core/styles/withStyles'
+import withStyles from '@material-ui/core/styles/withStyles'
+import { Theme } from '@material-ui/core/styles/createMuiTheme'
 
 const CustomDialogContent = withStyles((theme: Theme) => ({
   root: {
@@ -18,17 +20,14 @@ const CustomDialogContent = withStyles((theme: Theme) => ({
 }))(DialogContent)
 
 type Props = {
-  title: string,
-  submitLabel: string,
-  cancelLabel: string,
-  children: Node,
-  appBarButton: Node,
-  onSubmit: () => void,
-  onClose: () => void,
-
-  // injected props
-  fullScreen: boolean
-}
+  title: string
+  submitLabel?: string
+  cancelLabel?: string
+  children: ReactNode
+  appBarButton?: ReactNode
+  onSubmit: (e: FormEvent<HTMLFormElement>) => void
+  onClose: () => void
+} & DialogProps
 
 class FormDialog extends Component<Props> {
   static defaultProps = {
@@ -79,4 +78,4 @@ class FormDialog extends Component<Props> {
   }
 }
 
-export default withMobileDialog()(FormDialog)
+export default withMobileDialog<Props>()(FormDialog)

@@ -14,21 +14,18 @@ exports[`BottomNavBar renders correctly 1`] = `
     component={[Function]}
     icon="div"
     label="Feed"
-    to="/feed"
     value="/feed"
   />
   <WithStyles(BottomNavigationAction)
     component={[Function]}
     icon="div"
     label="Grid"
-    to="/grid"
     value="/grid"
   />
   <WithStyles(BottomNavigationAction)
     component={[Function]}
     icon="div"
     label="Profile"
-    to="/profile"
     value="/profile"
   />
 </WithStyles(BottomNavigation)>

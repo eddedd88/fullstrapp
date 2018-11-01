@@ -18,10 +18,10 @@ if (
 export const pageViewed = ({
   pageTitle,
   pagePath
-}: {|
-  pageTitle: string,
+}: {
+  pageTitle: string
   pagePath: string
-|}): void =>
+}): void =>
   tracker('config', gaTrackingId, {
     page_path: pagePath,
     page_title: pageTitle
@@ -39,8 +39,8 @@ export const track = (
     value,
     ...rest
   }: {
-    category: string,
-    label: string,
+    category: string
+    label: string
     value: number
   }
 ): void =>

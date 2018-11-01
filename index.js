@@ -13,48 +13,37 @@ const execSync = require('child_process').execSync
 const appName = process.argv[2]
 const appDirectory = `${process.cwd()}/${appName}`
 
-const globalCommands = ['yarn', 'flow-typed']
+const globalCommands = ['yarn']
 
 const packages = {
   core: [
+    '@types/node',
+    '@types/react',
+    '@types/react-dom',
+    '@types/react-router-dom',
+    '@types/react-swipeable-views',
     '@material-ui/core',
     '@material-ui/icons',
     'react-router',
     'react-router-dom',
     'react-swipeable-views',
-    'react-transition-group'
+    'react-transition-group',
+    'typescript'
   ],
   firebase: ['firebase', 'firebaseui']
 }
 
 const devPackages = {
   core: [
+    '@types/jest',
+    '@types/react-test-renderer',
     'firebase-tools',
-    'flow-bin',
-    'flow-coverage-report',
     'husky',
     'jest-localstorage-mock',
     'lint-staged',
     'prettier',
     'react-test-renderer',
-    'source-map-explorer',
-    'flow-inlinestyle'
-  ]
-}
-
-const flowTypes = {
-  core: [
-    // '@material-ui/core' - latest version doesnt match with flow-typed
-    'jest-localstorage-mock',
-    'react-router',
-    'react-router-dom',
-    'react-test-renderer',
-    'react-swipeable-views',
-    'react-transition-group'
-  ],
-  firebase: [
-    'firebase'
-    // 'firebaseui' - this is not in fow-typed
+    'source-map-explorer'
   ]
 }
 
@@ -126,7 +115,7 @@ const promptFirebaseQuestions = defaultFirebaseApiKey =>
 
 const createReactApp = appName => {
   console.log('')
-  execSync(`yarn create react-app ${appName}`, {
+  execSync(`yarn create react-app ${appName} --typescript`, {
     stdio: 'inherit'
   })
   console.log(chalk.green('\nCreated react app with create-react-app'))
@@ -160,42 +149,6 @@ const installDependencies = setupType => {
 
 const copyTemplates = setupType =>
   fs.copy(`${__dirname}/templates/${setupType}`, `${appDirectory}`)
-
-const installFlowTypes = setupType =>
-  new Promise(resolve => {
-    fs.readJson(`${appDirectory}/package.json`, (err, currentPkgJson) => {
-      console.log(
-        `\nInstalling types for ${chalk.cyan(
-          flowTypes[setupType].join(', ')
-        )} \n`
-      )
-
-      const allDeps = {
-        ...currentPkgJson.dependencies,
-        ...currentPkgJson.devDependencies
-      }
-
-      let packagesWithVersion = flowTypes[setupType].map(
-        packageName => `${packageName}@${allDeps[packageName]}`
-      )
-
-      if (setupType === 'core') {
-        // add material-ui version 1 - latest in flow-typed
-        packagesWithVersion.push('@material-ui/core@1')
-
-        // add latest jest version that is bundled with cra
-        packagesWithVersion.push('jest@23')
-      }
-
-      execSync(`flow-typed install ${packagesWithVersion.join(' ')}`, {
-        stdio: 'inherit'
-      })
-      console.log(
-        chalk.green('Finished installing flow types for dependencies')
-      )
-      resolve()
-    })
-  })
 
 const enhancePackageJson = () =>
   fs.readJson(`${appDirectory}/package.json`, (err, currentPkgJson) => {
@@ -303,14 +256,12 @@ const run = async () => {
 
   installDependencies('core')
   await copyTemplates('core')
-  await installFlowTypes('core')
   await enhancePackageJson()
   await updateFirebaseRc(firebaseProjectId)
 
   if (useFirebase) {
     installDependencies('firebase')
     await copyTemplates('firebase')
-    await installFlowTypes('firebase')
     await createFirebaseEnvVars({
       firebaseProjectId,
       firebaseApiKey: fbApiKey
