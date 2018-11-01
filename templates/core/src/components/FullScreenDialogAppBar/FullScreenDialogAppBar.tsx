@@ -3,11 +3,12 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import CloseIcon from '@material-ui/icons/Close'
-import withStyles from '@material-ui/core/styles/withStyles'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
+import createStyles from '@material-ui/core/styles/createStyles'
 
-const styles = () => ({
+const styles = createStyles({
   title: {
     flex: 1
   },
@@ -25,12 +26,7 @@ type Props = {
   submitLabel: string
   onClose: () => void
   submitButton?: ReactNode
-  classes: {
-    title: string
-    closeButton: string
-    submitButotn: string
-  }
-}
+} & WithStyles<typeof styles>
 
 class FullScreenDialogAppBar extends Component<Props> {
   static defaultProps = {
