@@ -6,6 +6,7 @@ import ExpandableSearch from '../ExpandableSearch'
 import IconButton from '@material-ui/core/IconButton'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import withStyles from '@material-ui/core/styles/withStyles'
+import createStyles from '@material-ui/core/styles/createStyles'
 import { Theme } from '@material-ui/core/styles/createMuiTheme'
 import { Link } from 'react-router-dom'
 import { LocationDescriptor } from 'history'
@@ -16,12 +17,14 @@ type Props = {
   backLink?: LocationDescriptor
 }
 
-const AppTitle = withStyles((theme: Theme) => ({
-  root: {
-    marginLeft: theme.spacing.unit * 2,
-    flex: 'auto'
-  }
-}))(Typography)
+const AppTitle = withStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      marginLeft: theme.spacing.unit * 2,
+      flex: 'auto'
+    }
+  })
+)(Typography)
 
 class AppBar extends Component<Props> {
   renderLink = (props: any) => {
