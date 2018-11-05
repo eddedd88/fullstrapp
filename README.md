@@ -10,7 +10,7 @@ The following choices have been made:
 - **create-react-app** as a starting project which provides: testing (jest), linting and building
 - **material-ui** component library
 - **Progressive Web App** mobile first development approach
-- **flow** for type checking
+- **Typescript** for type checking
 - **prettier** for formatting code base
 - **Firebase** for Hosting, Database (Firestore), and Authentication
 - **CircleCI** to automate tests and deploys
@@ -24,7 +24,7 @@ The following choices have been made:
   - Signin: [firebaseui-web](https://github.com/firebase/firebaseui-web) pre-configured to use all signin methods
 - Github Flow
 - Commit Guidelines
-- Issue Templates
+- Issue Templates: Bug Report & Enhancement(User Story)
 - [Project Goals & Strategy](#goals)
 - [Alternatives](#alternatives)
 
