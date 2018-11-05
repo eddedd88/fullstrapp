@@ -7,8 +7,9 @@ const os = require('os')
 const inquirer = require('inquirer')
 const deepmerge = require('deepmerge')
 const envfile = require('envfile')
-const packageJsonTemplate = require('./templates/packageJson.js')
 const execSync = require('child_process').execSync
+const packageJsonTemplate = require('./templates/packageJson.js')
+const tsConfigJsonTemplate = require('./templates/tsconfig.js')
 
 const appName = process.argv[2]
 const appDirectory = `${process.cwd()}/${appName}`
@@ -150,16 +151,17 @@ const installDependencies = setupType => {
 const copyTemplates = setupType =>
   fs.copy(`${__dirname}/templates/${setupType}`, `${appDirectory}`)
 
-const enhancePackageJson = () =>
-  fs.readJson(`${appDirectory}/package.json`, (err, currentPkgJson) => {
-    const enhancedPkgJson = deepmerge(currentPkgJson, packageJsonTemplate, {
-      arrayMerge: (destinationArray, sourceArray, options) => sourceArray
-    })
-    return fs.writeFile(
-      `${appDirectory}/package.json`,
-      JSON.stringify(enhancedPkgJson, null, 2) + os.EOL
-    )
+const enhanceJsonFile = (jsonFilePath, jsonTemplate) => {
+  const jsonFile = fs.readJsonSync(jsonFilePath)
+  const mergedJson = deepmerge(jsonFile, jsonTemplate, {
+    arrayMerge: (destinationArray, sourceArray, options) => sourceArray
   })
+
+  return fs.writeFile(
+    jsonFilePath,
+    JSON.stringify(mergedJson, null, 2) + os.EOL
+  )
+}
 
 const updateFirebaseRc = firebaseProjectId =>
   fs.readJson(`${appDirectory}/.firebaserc`, (err, firebaseRcFile) => {
@@ -256,7 +258,8 @@ const run = async () => {
 
   installDependencies('core')
   await copyTemplates('core')
-  await enhancePackageJson()
+  await enhanceJsonFile(`${appDirectory}/package.json`, packageJsonTemplate)
+  await enhanceJsonFile(`${appDirectory}/tsconfig.json`, tsConfigJsonTemplate)
   await updateFirebaseRc(firebaseProjectId)
 
   if (useFirebase) {

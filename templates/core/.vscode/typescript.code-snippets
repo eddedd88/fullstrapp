@@ -1,18 +1,26 @@
 {
-  "newTest": {
+  "withStyles": {
     "prefix": "withStyles",
+    "description": "Material-ui withStyles",
     "body": [
       "import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'",
       "import createStyles from '@material-ui/core/styles/createStyles'",
       "import { Theme } from '@material-ui/core/styles/createMuiTheme'",
       "",
       "const styles = (theme: Theme) => createStyles({",
-      "",
+      "\t",
       "})",
       "",
       "type Props = WithStyles<typeof styles>",
       ""
-    ],
-    "description": "Material-ui withStyles"
+    ]
+  },
+  "exportDefault": {
+    "prefix": "exportDefault",
+    "description": "Export default",
+    "body": [
+      "export { default } from './${TM_DIRECTORY/(.*)\\\///}'",
+      ""
+    ]
   }
 }
