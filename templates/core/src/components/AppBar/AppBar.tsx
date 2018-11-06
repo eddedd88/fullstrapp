@@ -10,7 +10,6 @@ import createStyles from '@material-ui/core/styles/createStyles'
 import { Theme } from '@material-ui/core/styles/createMuiTheme'
 import { Link } from 'react-router-dom'
 import { LocationDescriptor } from 'history'
-import GithubIcon from '../../assets/github.png'
 
 type Props = {
   title: string
@@ -47,12 +46,6 @@ class AppBar extends Component<Props> {
             {title}
           </AppTitle>
           <ExpandableSearch onChangeValue={console.log} placeholder="Search" />
-          <IconButton
-            component="a"
-            href="https://github.com/eddedd88/fullstrapp-demo"
-          >
-            <img src={GithubIcon} alt="github" />
-          </IconButton>
         </Toolbar>
       </MaterialAppBar>
     )

@@ -1,4 +1,22 @@
 {
+  "rcc": {
+    "prefix": "rcc",
+    "description": "React class component",
+    "body": [
+      "import React, { Component } from 'react'",
+      "",
+      "class ${TM_FILENAME/(.*)\\..+$/$1/} extends Component {",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t$0",
+      "\t\t)",
+      "\t}",
+      "}",
+      "",
+      "export default ${TM_FILENAME/(.*)\\..+$/$1/}",
+      ""
+    ]
+  },
   "withStyles": {
     "prefix": "withStyles",
     "description": "Material-ui withStyles",
@@ -7,9 +25,10 @@
       "import createStyles from '@material-ui/core/styles/createStyles'",
       "import { Theme } from '@material-ui/core/styles/createMuiTheme'",
       "",
-      "const styles = (theme: Theme) => createStyles({",
-      "\t",
-      "})",
+      "const styles = (theme: Theme) =>",
+      "\tcreateStyles({",
+      "\t\t",
+      "\t})",
       "",
       "type Props = WithStyles<typeof styles>",
       ""
@@ -20,6 +39,26 @@
     "description": "Export default",
     "body": [
       "export { default } from './${TM_DIRECTORY/(.*)\\\///}'",
+      ""
+    ]
+  },
+  "unitTest": {
+    "prefix": "unitTest",
+    "description": "React unit test component",
+    "body": [
+      "import React from 'react'",
+      "import ShallowRenderer from 'react-test-renderer/shallow'",
+      "import ${TM_FILENAME/(.*)\\.test.+$/$1/} from './${TM_FILENAME/(.*)\\.test.+$/$1/}'",
+      "",
+      "describe('${TM_FILENAME/(.*)\\.test.+$/$1/}', () => {",
+      "\tit('renders correctly', () => {",
+      "\t\tconst renderer = ShallowRenderer.createRenderer()",
+      "\t\tconst tree = renderer.render(",
+      "\t\t\t<${TM_FILENAME/(.*)\\.test.+$/$1/}$0/>",
+      "\t\t)",
+      "\t\texpect(tree).toMatchSnapshot()",
+      "\t})",
+      "})",
       ""
     ]
   }
