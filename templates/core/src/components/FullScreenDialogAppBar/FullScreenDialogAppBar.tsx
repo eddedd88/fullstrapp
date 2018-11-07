@@ -40,22 +40,22 @@ class FullScreenDialogAppBar extends Component<Props> {
       <AppBar>
         <Toolbar>
           <IconButton
-            color="inherit"
+            color='inherit'
             onClick={onClose}
-            aria-label="Close"
+            aria-label='Close'
             className={classes.closeButton}
           >
             <CloseIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" className={classes.title}>
+          <Typography variant='h6' color='inherit' className={classes.title}>
             {title}
           </Typography>
 
           {submitButton || (
             <Button
-              color="inherit"
-              type="submit"
-              size="small"
+              color='inherit'
+              type='submit'
+              size='small'
               className={classes.submitButotn}
             >
               {submitLabel}

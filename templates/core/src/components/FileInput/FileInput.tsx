@@ -11,7 +11,7 @@ class FileInput extends Component<Props> {
 
     return (
       <label>
-        <input {...rest} type="file" hidden />
+        <input {...rest} type='file' hidden />
         {children}
       </label>
     )

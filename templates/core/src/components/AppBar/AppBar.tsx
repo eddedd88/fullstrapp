@@ -35,17 +35,17 @@ class AppBar extends Component<Props> {
     const { title, backLink } = this.props
 
     return (
-      <MaterialAppBar position="static">
+      <MaterialAppBar position='static'>
         <Toolbar disableGutters>
           {backLink && (
-            <IconButton color="inherit" component={this.renderLink}>
+            <IconButton color='inherit' component={this.renderLink}>
               <ArrowBackIcon />
             </IconButton>
           )}
-          <AppTitle variant="h6" color="inherit">
+          <AppTitle variant='h6' color='inherit'>
             {title}
           </AppTitle>
-          <ExpandableSearch onChangeValue={console.log} placeholder="Search" />
+          <ExpandableSearch onChangeValue={console.log} placeholder='Search' />
         </Toolbar>
       </MaterialAppBar>
     )

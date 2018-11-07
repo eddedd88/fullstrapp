@@ -44,15 +44,15 @@ class Signin extends Component<Props> {
 
     return (
       <Fragment>
-        <AppBar title="Sign In" />
+        <AppBar title='Sign In' />
         <div className={classes.wrapper}>
-          <Typography variant="h5" align="center" gutterBottom>
+          <Typography variant='h5' align='center' gutterBottom>
             Material PWA
           </Typography>
-          <Typography align="center">Test the Sign In!</Typography>
+          <Typography align='center'>Test the Sign In!</Typography>
 
           <div
-            id="firebaseui-auth-container"
+            id='firebaseui-auth-container'
             className={classes.signinButtons}
           />
         </div>

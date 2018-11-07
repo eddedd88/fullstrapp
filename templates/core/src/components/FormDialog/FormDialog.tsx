@@ -50,7 +50,7 @@ class FormDialog extends Component<Props> {
 
     return (
       <Dialog {...rest} onClose={onClose} fullScreen={fullScreen}>
-        <form onSubmit={onSubmit} noValidate autoComplete="off">
+        <form onSubmit={onSubmit} noValidate autoComplete='off'>
           {fullScreen && (
             <FullScreenDialogAppBar
               onClose={onClose}
@@ -67,7 +67,7 @@ class FormDialog extends Component<Props> {
           {!fullScreen && (
             <DialogActions>
               <Button onClick={onClose}>{cancelLabel}</Button>
-              <Button color="primary" variant="contained" type="submit">
+              <Button color='primary' variant='contained' type='submit'>
                 {submitLabel}
               </Button>
             </DialogActions>
