@@ -5,6 +5,7 @@ import * as serviceWorker from './serviceWorker'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import addToHomeScreen from './addToHomeScreen'
 import { BrowserRouter } from 'react-router-dom'
+import CssBaseline from '@material-ui/core/CssBaseline'
 
 // material ui theme
 import theme from './styles/theme'
@@ -17,6 +18,7 @@ import './index.css'
 
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
+    <CssBaseline />
     <BrowserRouter>
       <App />
     </BrowserRouter>
