@@ -8,7 +8,7 @@ import { BrowserRouter } from 'react-router-dom'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 // material ui theme
-import theme from './styles/theme'
+import theme from './theme'
 
 // fonts - material ui was built with roboto in mind
 // import 'typeface-roboto'
