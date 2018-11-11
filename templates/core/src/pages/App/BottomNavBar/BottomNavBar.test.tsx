@@ -7,28 +7,11 @@ describe('BottomNavBar', () => {
     const renderer = ShallowRenderer.createRenderer()
     const tree = renderer.render(
       <BottomNavBar
-        items={[
-          {
-            label: 'Feed',
-            icon: 'div',
-            path: '/feed'
-          },
-          {
-            label: 'Grid',
-            icon: 'div',
-            path: '/grid'
-          },
-          {
-            label: 'Profile',
-            icon: 'div',
-            path: '/profile'
-          }
-        ]}
-        classes={{ test: 'test' }}
+        classes={{
+          root: 'test'
+        }}
         location={{
-          pathname: '/reasons',
-          hash: '',
-          search: ''
+          pathname: '/test'
         }}
       />
     )
@@ -37,7 +20,7 @@ describe('BottomNavBar', () => {
 
   it('renders with router correctly', () => {
     const renderer = ShallowRenderer.createRenderer()
-    const tree = renderer.render(<BottomNavBarWithRouter items={[]} />)
+    const tree = renderer.render(<BottomNavBarWithRouter />)
     expect(tree).toMatchSnapshot()
   })
 })

@@ -4,27 +4,27 @@ exports[`BottomNavBar renders correctly 1`] = `
 <WithStyles(BottomNavigation)
   classes={
     Object {
-      "test": "test",
+      "root": "test",
     }
   }
   showLabels={true}
-  value="/reasons"
+  value="/test"
 >
   <WithStyles(BottomNavigationAction)
     component={[Function]}
-    icon="div"
+    icon={<pure(LocationCityIcon) />}
     label="Feed"
     value="/feed"
   />
   <WithStyles(BottomNavigationAction)
     component={[Function]}
-    icon="div"
+    icon={<pure(GridOnIcon) />}
     label="Grid"
     value="/grid"
   />
   <WithStyles(BottomNavigationAction)
     component={[Function]}
-    icon="div"
+    icon={<pure(PersonIcon) />}
     label="Profile"
     value="/profile"
   />

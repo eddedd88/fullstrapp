@@ -1,4 +1,4 @@
-import React, { Component, Fragment, ChangeEvent } from 'react'
+import React, { Component, ChangeEvent } from 'react'
 import Paper from '@material-ui/core/Paper'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import IconButton from '@material-ui/core/IconButton'
@@ -94,7 +94,7 @@ class ExpandableSearch extends Component<Props, State> {
     const { value, searchModeOn } = this.state
 
     return (
-      <Fragment>
+      <>
         <IconButton color='inherit' onClick={this.toggleSearchMode}>
           <SearchIcon />
         </IconButton>
@@ -137,7 +137,7 @@ class ExpandableSearch extends Component<Props, State> {
             </Paper>
           )}
         </Transition>
-      </Fragment>
+      </>
     )
   }
 }
