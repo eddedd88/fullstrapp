@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import createStyles from '@material-ui/core/styles/createStyles'
 import { Theme } from '@material-ui/core/styles/createMuiTheme'
@@ -43,7 +43,7 @@ class Signin extends Component<Props> {
     const { classes } = this.props
 
     return (
-      <Fragment>
+      <>
         <AppBar title='Sign In' />
         <div className={classes.wrapper}>
           <Typography variant='h5' align='center' gutterBottom>
@@ -56,7 +56,7 @@ class Signin extends Component<Props> {
             className={classes.signinButtons}
           />
         </div>
-      </Fragment>
+      </>
     )
   }
 }

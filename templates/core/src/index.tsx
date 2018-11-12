@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './components/App'
+import App from './pages/App'
 import * as serviceWorker from './serviceWorker'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import addToHomeScreen from './addToHomeScreen'
