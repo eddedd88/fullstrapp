@@ -3,21 +3,25 @@ import Dialog, { DialogProps } from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import withMobileDialog, {
-  InjectedProps
-} from '@material-ui/core/withMobileDialog'
+import withMobileDialog from '@material-ui/core/withMobileDialog'
 import FullScreenDialogAppBar from '../FullScreenDialogAppBar'
 import Button from '@material-ui/core/Button'
-import withStyles from '@material-ui/core/styles/withStyles'
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
+import createStyles from '@material-ui/core/styles/createStyles'
 import { Theme } from '@material-ui/core/styles/createMuiTheme'
 
-const CustomDialogContent = withStyles((theme: Theme) => ({
-  root: {
-    [theme.breakpoints.down('md')]: {
-      marginTop: theme.spacing.unit * 10
+const styles = (theme: Theme) =>
+  createStyles({
+    dialogContent: {
+      [theme.breakpoints.down('md')]: {
+        marginTop: theme.spacing.unit * 10
+      }
+    },
+    form: {
+      display: 'flex',
+      flexDirection: 'column'
     }
-  }
-}))(DialogContent)
+  })
 
 type Props = {
   title: string
@@ -27,7 +31,8 @@ type Props = {
   appBarButton?: ReactNode
   onSubmit: (e: FormEvent<HTMLFormElement>) => void
   onClose: () => void
-} & DialogProps
+} & DialogProps &
+  WithStyles<typeof styles>
 
 class FormDialog extends Component<Props> {
   static defaultProps = {
@@ -45,12 +50,18 @@ class FormDialog extends Component<Props> {
       children,
       appBarButton,
       fullScreen,
+      classes,
       ...rest
     } = this.props
 
     return (
       <Dialog {...rest} onClose={onClose} fullScreen={fullScreen}>
-        <form onSubmit={onSubmit} noValidate autoComplete='off'>
+        <form
+          onSubmit={onSubmit}
+          noValidate
+          autoComplete='off'
+          className={classes.form}
+        >
           {fullScreen && (
             <FullScreenDialogAppBar
               onClose={onClose}
@@ -62,7 +73,9 @@ class FormDialog extends Component<Props> {
 
           {!fullScreen && <DialogTitle>{title}</DialogTitle>}
 
-          <CustomDialogContent>{children}</CustomDialogContent>
+          <DialogContent className={classes.dialogContent}>
+            {children}
+          </DialogContent>
 
           {!fullScreen && (
             <DialogActions>
@@ -78,4 +91,4 @@ class FormDialog extends Component<Props> {
   }
 }
 
-export default withMobileDialog<Props>()(FormDialog)
+export default withStyles(styles)(withMobileDialog<Props>()(FormDialog))
