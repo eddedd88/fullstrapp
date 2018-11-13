@@ -29,7 +29,8 @@ const packages = {
     'react-router-dom',
     'react-swipeable-views',
     'react-transition-group',
-    'typescript'
+    'typescript',
+    'typeface-roboto'
   ],
   firebase: ['firebase', 'firebaseui']
 }

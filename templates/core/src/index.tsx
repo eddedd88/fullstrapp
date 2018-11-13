@@ -11,7 +11,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from './theme'
 
 // fonts - material ui was built with roboto in mind
-// import 'typeface-roboto'
+import 'typeface-roboto'
 
 // some global css
 import './index.css'
