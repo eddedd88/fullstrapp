@@ -4,11 +4,14 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import withMobileDialog from '@material-ui/core/withMobileDialog'
-import FullScreenDialogAppBar from '../FullScreenDialogAppBar'
 import Button from '@material-ui/core/Button'
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import createStyles from '@material-ui/core/styles/createStyles'
 import { Theme } from '@material-ui/core/styles/createMuiTheme'
+import IconButton from '@material-ui/core/IconButton'
+import AppBar from '../AppBar'
+import AppBarTitle from '../AppBarTitle'
+import CloseIcon from '@material-ui/icons/Close'
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -25,12 +28,12 @@ const styles = (theme: Theme) =>
 
 type Props = {
   title: string
-  submitLabel?: string
-  cancelLabel?: string
-  children: ReactNode
-  appBarButton?: ReactNode
   onSubmit: (e: FormEvent<HTMLFormElement>) => void
   onClose: () => void
+  children: ReactNode
+  submitLabel?: string
+  cancelLabel?: string
+  appBarButton?: ReactNode
 } & DialogProps &
   WithStyles<typeof styles>
 
@@ -63,12 +66,19 @@ class FormDialog extends Component<Props> {
           className={classes.form}
         >
           {fullScreen && (
-            <FullScreenDialogAppBar
-              onClose={onClose}
-              title={title}
-              submitButton={appBarButton}
-              submitLabel={submitLabel}
-            />
+            <AppBar>
+              <IconButton onClick={onClose} color='inherit'>
+                <CloseIcon />
+              </IconButton>
+
+              <AppBarTitle>{title}</AppBarTitle>
+
+              {appBarButton || (
+                <Button color='inherit' type='submit' size='small'>
+                  {submitLabel}
+                </Button>
+              )}
+            </AppBar>
           )}
 
           {!fullScreen && <DialogTitle>{title}</DialogTitle>}
