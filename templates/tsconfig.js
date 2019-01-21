@@ -1,5 +1,5 @@
 module.exports = {
   compilerOptions: {
-    target: "es6"
+    skipLibCheck: false
   }
 }

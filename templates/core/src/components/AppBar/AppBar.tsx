@@ -1,52 +1,23 @@
 import React, { Component } from 'react'
 import MaterialAppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import ExpandableSearch from '../ExpandableSearch'
-import IconButton from '@material-ui/core/IconButton'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import withStyles from '@material-ui/core/styles/withStyles'
 import createStyles from '@material-ui/core/styles/createStyles'
-import { Theme } from '@material-ui/core/styles/createMuiTheme'
-import { Link } from 'react-router-dom'
-import { LocationDescriptor } from 'history'
 
-type Props = {
-  title: string
-  backLink?: LocationDescriptor
-}
-
-const AppTitle = withStyles((theme: Theme) =>
+const CustomToolbar = withStyles(
   createStyles({
-    root: {
-      marginLeft: theme.spacing.unit * 2,
-      flex: 'auto'
+    gutters: {
+      paddingLeft: 4,
+      paddingRight: 4
     }
   })
-)(Typography)
+)(Toolbar)
 
-class AppBar extends Component<Props> {
-  renderLink = (props: any) => {
-    const { backLink } = this.props
-    return backLink ? <Link {...props} to={backLink} /> : null
-  }
-
+class AppBar extends Component {
   render() {
-    const { title, backLink } = this.props
-
     return (
       <MaterialAppBar position='static'>
-        <Toolbar disableGutters>
-          {backLink && (
-            <IconButton color='inherit' component={this.renderLink}>
-              <ArrowBackIcon />
-            </IconButton>
-          )}
-          <AppTitle variant='h6' color='inherit'>
-            {title}
-          </AppTitle>
-          <ExpandableSearch onChangeValue={console.log} placeholder='Search' />
-        </Toolbar>
+        <CustomToolbar>{this.props.children}</CustomToolbar>
       </MaterialAppBar>
     )
   }
