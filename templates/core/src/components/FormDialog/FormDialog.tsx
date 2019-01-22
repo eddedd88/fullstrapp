@@ -17,7 +17,7 @@ const styles = (theme: Theme) =>
   createStyles({
     dialogContent: {
       [theme.breakpoints.down('md')]: {
-        marginTop: theme.spacing.unit * 10
+        marginTop: theme.spacing.unit * 3
       }
     },
     form: {
