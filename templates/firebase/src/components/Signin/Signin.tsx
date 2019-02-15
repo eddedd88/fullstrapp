@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import createStyles from '@material-ui/core/styles/createStyles'
 import { Theme } from '@material-ui/core/styles/createMuiTheme'
@@ -28,8 +28,8 @@ const styles = (theme: Theme) =>
 
 type Props = WithStyles<typeof styles>
 
-class Signin extends Component<Props> {
-  componentDidMount() {
+const Signin: FunctionComponent<Props> = props => {
+  useEffect(() => {
     ui.start('#firebaseui-auth-container', {
       // Firebase UI config options
       signInSuccessUrl: '/',
@@ -60,33 +60,29 @@ class Signin extends Component<Props> {
         }
       }
     })
-  }
+  }, [])
 
-  render() {
-    const { classes } = this.props
+  return (
+    <>
+      <AppBar>
+        <IconButton color='inherit'>
+          <CloseIcon />
+        </IconButton>
+        <AppBarTitle>Signin</AppBarTitle>
+      </AppBar>
+      <div className={props.classes.wrapper}>
+        <Typography variant='h5' align='center' gutterBottom>
+          fullstrapp
+        </Typography>
+        <Typography align='center'>Test the Sign In!</Typography>
 
-    return (
-      <>
-        <AppBar>
-          <IconButton color='inherit'>
-            <CloseIcon />
-          </IconButton>
-          <AppBarTitle>Signin</AppBarTitle>
-        </AppBar>
-        <div className={classes.wrapper}>
-          <Typography variant='h5' align='center' gutterBottom>
-            fullstrapp
-          </Typography>
-          <Typography align='center'>Test the Sign In!</Typography>
-
-          <div
-            id='firebaseui-auth-container'
-            className={classes.signinButtons}
-          />
-        </div>
-      </>
-    )
-  }
+        <div
+          id='firebaseui-auth-container'
+          className={props.classes.signinButtons}
+        />
+      </div>
+    </>
+  )
 }
 
 export default withStyles(styles)(Signin)

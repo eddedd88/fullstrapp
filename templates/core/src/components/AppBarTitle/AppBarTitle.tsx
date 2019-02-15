@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { FunctionComponent } from 'react'
 import Typography from '@material-ui/core/Typography'
 import withStyles from '@material-ui/core/styles/withStyles'
 import createStyles from '@material-ui/core/styles/createStyles'
@@ -12,10 +12,8 @@ const CustomTypography = withStyles(
   })
 )(Typography)
 
-class AppBarTitle extends Component {
-  render() {
-    return <CustomTypography color='inherit' variant='h6' {...this.props} />
-  }
+const AppBarTitle: FunctionComponent = props => {
+  return <CustomTypography color='inherit' variant='h6' {...props} />
 }
 
 export default AppBarTitle
