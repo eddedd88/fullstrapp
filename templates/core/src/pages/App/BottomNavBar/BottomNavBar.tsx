@@ -1,4 +1,4 @@
-import React, { Component, ReactElement } from 'react'
+import React, { FunctionComponent } from 'react'
 import BottomNavigation from '@material-ui/core/BottomNavigation'
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
 import { Link, withRouter, RouteComponentProps } from 'react-router-dom'
@@ -23,42 +23,39 @@ const styles = (theme: Theme) =>
 
 type Props = WithStyles<typeof styles> & RouteComponentProps
 
-export class BottomNavBar extends Component<Props> {
-  renderLink = (path: string) => (props: any) => <Link {...props} to={path} />
+export const BottomNavBar: FunctionComponent<Props> = props => {
+  const renderLink = (path: string) => (props: any) => (
+    <Link {...props} to={path} />
+  )
 
-  render() {
-    const {
-      classes,
-      location: { pathname }
-    } = this.props
+  const secondPathIndex = props.location.pathname.indexOf('/', 1)
+  const tabValue =
+    secondPathIndex < 0
+      ? props.location.pathname
+      : props.location.pathname.substring(0, secondPathIndex)
 
-    const secondPathIndex = pathname.indexOf('/', 1)
-    const tabValue =
-      secondPathIndex < 0 ? pathname : pathname.substring(0, secondPathIndex)
-
-    return (
-      <BottomNavigation value={tabValue} classes={classes} showLabels>
-        <BottomNavigationAction
-          icon={<LocationCityIcon />}
-          label='Feed'
-          value={paths.feed}
-          component={this.renderLink(paths.feed)}
-        />
-        <BottomNavigationAction
-          icon={<GridIcon />}
-          label='Grid'
-          value={paths.grid}
-          component={this.renderLink(paths.grid)}
-        />
-        <BottomNavigationAction
-          icon={<PersonIcon />}
-          label='Profile'
-          value={paths.profile}
-          component={this.renderLink(paths.profile)}
-        />
-      </BottomNavigation>
-    )
-  }
+  return (
+    <BottomNavigation value={tabValue} classes={props.classes} showLabels>
+      <BottomNavigationAction
+        icon={<LocationCityIcon />}
+        label='Feed'
+        value={paths.feed}
+        component={renderLink(paths.feed)}
+      />
+      <BottomNavigationAction
+        icon={<GridIcon />}
+        label='Grid'
+        value={paths.grid}
+        component={renderLink(paths.grid)}
+      />
+      <BottomNavigationAction
+        icon={<PersonIcon />}
+        label='Profile'
+        value={paths.profile}
+        component={renderLink(paths.profile)}
+      />
+    </BottomNavigation>
+  )
 }
 
 export default withRouter(withStyles(styles)(BottomNavBar))

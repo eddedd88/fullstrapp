@@ -1,4 +1,4 @@
-import React, { Component, ChangeEvent } from 'react'
+import React, { FunctionComponent, ChangeEvent, useState, useRef } from 'react'
 import Paper from '@material-ui/core/Paper'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import IconButton from '@material-ui/core/IconButton'
@@ -17,7 +17,8 @@ const defaultStyle = {
   position: 'absolute',
   left: 0,
   overflow: 'hidden',
-  pointerEvents: 'none'
+  pointerEvents: 'none',
+  zIndex: 1
 }
 
 const transitionStyles: { [key in TransitionStatus]?: any } = {
@@ -35,111 +36,84 @@ type Props = {
   onChangeValue: (value: string) => void
 }
 
-type State = {
-  value: string
-  searchModeOn: boolean
-}
+const ExpandableSearch: FunctionComponent<Props> = props => {
+  const [value, setValue] = useState<string>('')
+  const [searchModeOn, setSearchModeOn] = useState<boolean>(false)
 
-class ExpandableSearch extends Component<Props, State> {
-  state = {
-    value: '',
-    searchModeOn: false
+  const searchInput = useRef<HTMLInputElement>(null)
+
+  const handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const newValue: string = e.currentTarget.value
+    setValue(newValue)
+    props.onChangeValue(newValue)
   }
 
-  searchInput?: HTMLInputElement
+  const toggleSearchMode = () => {
+    const newSearchModeOn: boolean = !searchModeOn
+    setValue('')
+    setSearchModeOn(newSearchModeOn)
 
-  setSearchInputRef = (element: HTMLInputElement) => {
-    this.searchInput = element
-  }
-
-  handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value: string = e.currentTarget.value
-
-    this.setState({
-      value
-    })
-
-    this.props.onChangeValue(value)
-  }
-
-  toggleSearchMode = () => {
-    const { onChangeValue } = this.props
-    const searchModeOn: boolean = !this.state.searchModeOn
-
-    this.setState({
-      value: '',
-      searchModeOn
-    })
-
-    if (searchModeOn && this.searchInput) {
-      this.searchInput.focus()
+    if (newSearchModeOn && searchInput.current) {
+      searchInput.current.focus()
     } else {
-      onChangeValue('')
+      props.onChangeValue('')
     }
   }
 
-  handleClickClear = () => {
-    this.setState({
-      value: ''
-    })
-    this.props.onChangeValue('')
-    if (this.searchInput) {
-      this.searchInput.focus()
+  const handleClickClear = () => {
+    setValue('')
+    props.onChangeValue('')
+    if (searchInput.current) {
+      searchInput.current.focus()
     }
   }
 
-  render() {
-    const { placeholder } = this.props
+  return (
+    <>
+      <IconButton color='inherit' onClick={toggleSearchMode}>
+        <SearchIcon />
+      </IconButton>
 
-    const { value, searchModeOn } = this.state
-
-    return (
-      <>
-        <IconButton color='inherit' onClick={this.toggleSearchMode}>
-          <SearchIcon />
-        </IconButton>
-
-        <Transition in={searchModeOn} timeout={transitionTimeout}>
-          {(transitionState: TransitionStatus) => (
-            <Paper
-              square
-              elevation={1}
-              color='inherit'
-              style={{
-                ...defaultStyle,
-                ...transitionStyles[transitionState]
-              }}
-            >
-              <Toolbar disableGutters>
-                <IconButton onClick={this.toggleSearchMode}>
-                  <ArrowBackIcon />
-                </IconButton>
-                <Input
-                  type='search'
-                  placeholder={placeholder}
-                  fullWidth
-                  disableUnderline
-                  value={value}
-                  onChange={this.handleValueChange}
-                  inputRef={this.setSearchInputRef}
-                  endAdornment={
-                    <InputAdornment position='end'>
-                      <IconButton
-                        aria-label='Clear search query'
-                        onClick={this.handleClickClear}
-                      >
-                        <ClearIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                />
-              </Toolbar>
-            </Paper>
-          )}
-        </Transition>
-      </>
-    )
-  }
+      <Transition in={searchModeOn} timeout={transitionTimeout}>
+        {(transitionState: TransitionStatus) => (
+          <Paper
+            square
+            elevation={1}
+            color='inherit'
+            style={{
+              ...defaultStyle,
+              ...transitionStyles[transitionState]
+            }}
+          >
+            <Toolbar disableGutters>
+              <IconButton onClick={toggleSearchMode}>
+                <ArrowBackIcon />
+              </IconButton>
+              <Input
+                type='search'
+                placeholder={props.placeholder}
+                fullWidth
+                disableUnderline
+                value={value}
+                onChange={handleValueChange}
+                inputRef={searchInput}
+                endAdornment={
+                  <InputAdornment position='end'>
+                    <IconButton
+                      aria-label='Clear search query'
+                      onClick={handleClickClear}
+                    >
+                      <ClearIcon />
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </Toolbar>
+          </Paper>
+        )}
+      </Transition>
+    </>
+  )
 }
 
 export default ExpandableSearch

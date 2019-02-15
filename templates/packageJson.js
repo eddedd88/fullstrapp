@@ -7,6 +7,9 @@ module.exports = {
     deploy: 'firebase deploy --token \"$FIREBASE_TOKEN\"',
     format: 'prettier --write --single-quote --no-semi --jsx-single-quote \"src/**/*.{ts,tsx,js,json,css,md}\"'
   },
+  eslintConfig: {
+    extends: "react-app"
+  },
   jest: {
     'coverageThreshold': {
       'global': {

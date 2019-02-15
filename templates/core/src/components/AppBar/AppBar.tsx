@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { FunctionComponent } from 'react'
 import MaterialAppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import withStyles from '@material-ui/core/styles/withStyles'
@@ -13,14 +13,12 @@ const CustomToolbar = withStyles(
   })
 )(Toolbar)
 
-class AppBar extends Component {
-  render() {
-    return (
-      <MaterialAppBar position='static'>
-        <CustomToolbar>{this.props.children}</CustomToolbar>
-      </MaterialAppBar>
-    )
-  }
+const AppBar: FunctionComponent = props => {
+  return (
+    <MaterialAppBar position='static'>
+      <CustomToolbar>{props.children}</CustomToolbar>
+    </MaterialAppBar>
+  )
 }
 
 export default AppBar
