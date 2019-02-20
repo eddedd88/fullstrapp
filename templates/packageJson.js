@@ -4,8 +4,7 @@ module.exports = {
     analyze: 'yarn build && source-map-explorer build/static/js/main.*',
     ci: 'yarn test',
     'ci:local': 'CI=true yarn ci && CI=true yarn build',
-    deploy: 'firebase deploy --token \"$FIREBASE_TOKEN\"',
-    format: 'prettier --write --single-quote --no-semi --jsx-single-quote \"src/**/*.{ts,tsx,js,json,css,md}\"'
+    deploy: 'firebase deploy --token \"$FIREBASE_TOKEN\"'
   },
   eslintConfig: {
     extends: "react-app"
@@ -27,7 +26,7 @@ module.exports = {
   },
   'lint-staged': {
     'linters': {
-      'src/**/*.{ts,tsx,js,json,css,md}': [
+      'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}': [
         'prettier --write --single-quote --no-semi --jsx-single-quote',
         'git add'
       ]
