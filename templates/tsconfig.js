@@ -1,5 +1,1 @@
-module.exports = {
-  compilerOptions: {
-    skipLibCheck: false
-  }
-}
+module.exports = {}
