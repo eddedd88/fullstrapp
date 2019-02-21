@@ -6,9 +6,6 @@ module.exports = {
     'ci:local': 'CI=true yarn ci && CI=true yarn build',
     deploy: 'firebase deploy --token \"$FIREBASE_TOKEN\"'
   },
-  eslintConfig: {
-    extends: "react-app"
-  },
   jest: {
     'coverageThreshold': {
       'global': {
