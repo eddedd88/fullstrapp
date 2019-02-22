@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import MaterialAppBar from '@material-ui/core/AppBar'
+import MaterialAppBar, { AppBarProps } from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import withStyles from '@material-ui/core/styles/withStyles'
 import createStyles from '@material-ui/core/styles/createStyles'
@@ -13,10 +13,12 @@ const CustomToolbar = withStyles(
   })
 )(Toolbar)
 
-const AppBar: FunctionComponent = props => {
+const AppBar: FunctionComponent<AppBarProps> = props => {
+  const { children, ...rest } = props
+
   return (
-    <MaterialAppBar position='static'>
-      <CustomToolbar>{props.children}</CustomToolbar>
+    <MaterialAppBar {...rest}>
+      <CustomToolbar>{children}</CustomToolbar>
     </MaterialAppBar>
   )
 }
