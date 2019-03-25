@@ -8,8 +8,7 @@ const styles = (theme: Theme) =>
     root: {
       maxWidth: theme.breakpoints.values.md,
       margin: 'auto',
-      padding: theme.spacing.unit * 2,
-      marginTop: theme.spacing.unit * 7
+      padding: theme.spacing.unit * 2
     }
   })
 

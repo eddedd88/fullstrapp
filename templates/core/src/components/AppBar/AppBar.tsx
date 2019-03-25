@@ -17,7 +17,7 @@ const AppBar: FunctionComponent<AppBarProps> = props => {
   const { children, ...rest } = props
 
   return (
-    <MaterialAppBar {...rest}>
+    <MaterialAppBar position='sticky' {...rest}>
       <CustomToolbar>{children}</CustomToolbar>
     </MaterialAppBar>
   )
