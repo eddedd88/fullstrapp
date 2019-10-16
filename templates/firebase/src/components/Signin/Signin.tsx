@@ -1,34 +1,20 @@
 import React, { FunctionComponent, useEffect } from 'react'
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import createStyles from '@material-ui/core/styles/createStyles'
-import { Theme } from '@material-ui/core/styles/createMuiTheme'
 import firebase from '../../firebase'
 import * as firebaseui from 'firebaseui'
 import 'firebaseui/dist/firebaseui.css'
 import Typography from '@material-ui/core/Typography'
 import CloseIcon from '@material-ui/icons/Close'
 import IconButton from '@material-ui/core/IconButton'
-import AppBar from '../AppBar'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
 import AppBarTitle from '../AppBarTitle'
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
 const ui = new firebaseui.auth.AuthUI(firebase.auth())
 
-const styles = (theme: Theme) =>
-  createStyles({
-    wrapper: {
-      margin: 'auto',
-      marginTop: theme.spacing.unit * 6,
-      maxWidth: theme.breakpoints.values.md,
-      padding: theme.spacing.unit * 2
-    },
-    signinButtons: {
-      marginTop: theme.spacing.unit * 4
-    }
-  })
+const Signin: FunctionComponent = () => {
+  const classes = useStyles()
 
-type Props = WithStyles<typeof styles>
-
-const Signin: FunctionComponent<Props> = props => {
   useEffect(() => {
     ui.start('#firebaseui-auth-container', {
       // Firebase UI config options
@@ -64,25 +50,37 @@ const Signin: FunctionComponent<Props> = props => {
 
   return (
     <>
-      <AppBar>
-        <IconButton color='inherit'>
-          <CloseIcon />
-        </IconButton>
-        <AppBarTitle>Signin</AppBarTitle>
+      <AppBar position='sticky'>
+        <Toolbar>
+          <IconButton color='inherit'>
+            <CloseIcon />
+          </IconButton>
+          <AppBarTitle>Signin</AppBarTitle>
+        </Toolbar>
       </AppBar>
-      <div className={props.classes.wrapper}>
+      <div className={classes.wrapper}>
         <Typography variant='h5' align='center' gutterBottom>
           fullstrapp
         </Typography>
-        <Typography align='center'>Test the Sign In!</Typography>
 
-        <div
-          id='firebaseui-auth-container'
-          className={props.classes.signinButtons}
-        />
+        <div id='firebaseui-auth-container' className={classes.signinButtons} />
       </div>
     </>
   )
 }
 
-export default withStyles(styles)(Signin)
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    wrapper: {
+      margin: 'auto',
+      marginTop: theme.spacing(6),
+      maxWidth: theme.breakpoints.values.md,
+      padding: theme.spacing(2)
+    },
+    signinButtons: {
+      marginTop: theme.spacing(4)
+    }
+  })
+)
+
+export default Signin
