@@ -8,8 +8,13 @@ const theme = createMuiTheme({
     // secondary: color2,
     // error: color3
   },
-  typography: {
-    useNextVariants: true
+  overrides: {
+    MuiToolbar: {
+      gutters: {
+        paddingLeft: 4,
+        paddingRight: 4
+      }
+    }
   }
 })
 
