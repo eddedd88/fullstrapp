@@ -22,11 +22,9 @@ module.exports = {
     }
   },
   'lint-staged': {
-    'linters': {
-      'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}': [
-        'prettier --write --single-quote --no-semi --jsx-single-quote',
-        'git add'
-      ]
-    }
+    'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}': [
+      'prettier --write --single-quote --no-semi --jsx-single-quote',
+      'git add'
+    ]
   }
 }
