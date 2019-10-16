@@ -1,20 +1,20 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { FunctionComponent } from 'react'
 import Dialog, { DialogProps } from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogActions from '@material-ui/core/DialogActions'
 import Button from '@material-ui/core/Button'
 import { DialogTitle } from '@material-ui/core'
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
+import withStyles from '@material-ui/core/styles/withStyles'
 import createStyles from '@material-ui/core/styles/createStyles'
 import { Theme } from '@material-ui/core/styles/createMuiTheme'
 
 type Props = {
   title: string
   onConfirm: () => void
+  onClose: () => void
   confirmButtonLabel: string
   cancelButtonLabel?: string
   actionIsDangerous?: boolean
-  content?: ReactNode
 } & DialogProps
 
 const DialogConfirmation: FunctionComponent<Props> = props => {
@@ -25,18 +25,16 @@ const DialogConfirmation: FunctionComponent<Props> = props => {
     cancelButtonLabel,
     actionIsDangerous,
     onClose,
-    content,
+    children,
     ...dialogProps
   } = props
 
   return (
     <Dialog {...dialogProps} onClose={onClose}>
       <DialogTitle>{title}</DialogTitle>
-      {content && <DialogContent>{content}</DialogContent>}
+      {children && <DialogContent>{children}</DialogContent>}
       <DialogActions>
-        <Button onClick={onClose} color='primary'>
-          {cancelButtonLabel || 'Cancel'}
-        </Button>
+        <Button onClick={onClose}>{cancelButtonLabel || 'Cancel'}</Button>
         {actionIsDangerous ? (
           <DangerousActionButton variant='contained' onClick={onConfirm}>
             {confirmButtonLabel}

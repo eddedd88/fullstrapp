@@ -5,26 +5,12 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import withMobileDialog from '@material-ui/core/withMobileDialog'
 import Button from '@material-ui/core/Button'
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import createStyles from '@material-ui/core/styles/createStyles'
-import { Theme } from '@material-ui/core/styles/createMuiTheme'
 import IconButton from '@material-ui/core/IconButton'
-import AppBar from '../AppBar'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
 import AppBarTitle from '../AppBarTitle'
 import CloseIcon from '@material-ui/icons/Close'
-
-const styles = (theme: Theme) =>
-  createStyles({
-    dialogContent: {
-      [theme.breakpoints.down('md')]: {
-        marginTop: theme.spacing.unit * 3
-      }
-    },
-    form: {
-      display: 'flex',
-      flexDirection: 'column'
-    }
-  })
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
 type Props = {
   title: string
@@ -34,10 +20,10 @@ type Props = {
   submitLabel?: string
   cancelLabel?: string
   appBarButton?: ReactNode
-} & DialogProps &
-  WithStyles<typeof styles>
+} & DialogProps
 
-const FormDialog: FunctionComponent<Props> = props => {
+const DialogForm: FunctionComponent<Props> = props => {
+  const classes = useStyles()
   const {
     submitLabel = 'Submit',
     cancelLabel = 'Cancel',
@@ -47,7 +33,6 @@ const FormDialog: FunctionComponent<Props> = props => {
     children,
     appBarButton,
     fullScreen,
-    classes,
     ...rest
   } = props
 
@@ -60,18 +45,20 @@ const FormDialog: FunctionComponent<Props> = props => {
         className={classes.form}
       >
         {fullScreen && (
-          <AppBar>
-            <IconButton onClick={onClose} color='inherit'>
-              <CloseIcon />
-            </IconButton>
+          <AppBar position='sticky'>
+            <Toolbar>
+              <IconButton onClick={onClose} color='inherit'>
+                <CloseIcon />
+              </IconButton>
 
-            <AppBarTitle>{title}</AppBarTitle>
+              <AppBarTitle>{title}</AppBarTitle>
 
-            {appBarButton || (
-              <Button color='inherit' type='submit' size='small'>
-                {submitLabel}
-              </Button>
-            )}
+              {appBarButton || (
+                <Button color='inherit' type='submit' size='small'>
+                  {submitLabel}
+                </Button>
+              )}
+            </Toolbar>
           </AppBar>
         )}
 
@@ -94,4 +81,18 @@ const FormDialog: FunctionComponent<Props> = props => {
   )
 }
 
-export default withStyles(styles)(withMobileDialog<Props>()(FormDialog))
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    dialogContent: {
+      [theme.breakpoints.down('md')]: {
+        marginTop: theme.spacing(3)
+      }
+    },
+    form: {
+      display: 'flex',
+      flexDirection: 'column'
+    }
+  })
+)
+
+export default withMobileDialog<Props>()(DialogForm)
