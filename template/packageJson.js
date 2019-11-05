@@ -1,10 +1,9 @@
 module.exports = {
   scripts: {
-    coverage: 'react-scripts test --coverage',
+    coverage: 'react-scripts test --coverage --watchAll=false',
     analyze: 'yarn build && source-map-explorer build/static/js/main.*',
     ci: 'yarn test',
-    'ci:local': 'CI=true yarn ci && CI=true yarn build',
-    deploy: 'firebase deploy --token \"$FIREBASE_TOKEN\"'
+    'ci:local': 'CI=true yarn ci && CI=true yarn build'
   },
   jest: {
     'coverageThreshold': {

@@ -24,7 +24,7 @@
   },
   "files": [
     "docs/",
-    "templates/",
+    "template/",
     "README.md",
     "index.js",
     "LICENSE"
@@ -46,7 +46,7 @@
   "scripts": {
     "test": "echo \"TODO write tests\"",
     "ci": "yarn test",
-    "format": "prettier --write --single-quote --no-semi --jsx-single-quote \"{index.js,templates/**/src/**/*.{ts,tsx,js,json,css,md}}\""
+    "format": "prettier --write --single-quote --no-semi --jsx-single-quote \"{index.js,template/src/**/*.{ts,tsx,js,json,css,md}}\""
   },
   "jest": {
     "coverageThreshold": {
@@ -64,7 +64,7 @@
     }
   },
   "lint-staged": {
-    "{index.js,templates/**/src/**/*.{ts,tsx,js,json,css,md}}": [
+    "{index.js,template/src/**/*.{ts,tsx,js,json,css,md}}": [
       "prettier --write --single-quote --no-semi --jsx-single-quote",
       "git add"
     ]

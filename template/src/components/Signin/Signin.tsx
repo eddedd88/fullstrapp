@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect } from 'react'
-import firebase from '../../firebase'
+import firebase from '../../../firebase/src/firebase'
 import * as firebaseui from 'firebaseui'
 import 'firebaseui/dist/firebaseui.css'
 import Typography from '@material-ui/core/Typography'
