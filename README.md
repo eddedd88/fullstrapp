@@ -1,18 +1,17 @@
 <img src="https://raw.githubusercontent.com/eddedd88/fullstrapp/master/icon.png" width="200" />
 
 # fullstrapp
-Bootstrap a full stack application with pre-configured: hosting, database, authentication, analytics, CI, CD, code templates, issue templates.
+Bootstrap a scalable full stack application with pre-configured: hosting, database, authentication, analytics, CI, CD, code templates, and issue templates.
 
 This project tries to make as many opinionated choices as possible about the dev stack in order to quickly build a product that could sustain a significant amount of traffic/users.
 
 Tech Stack:
 - **React** front-end framework
+- **Firebase** for Hosting, Database (Firestore), Authentication, and Analytics
+- **Github Actions** to automate tests and deploys
 - **create-react-app** as a starting project which provides: testing (jest), linting and building
 - **material-ui** component library
 - **Typescript** for type checking
-- **Firebase** for Hosting, Database (Firestore), Authentication, and Analytics
-- **Github Actions** to automate tests and deploys
-- **prettier** for formatting code base
 
 [Take a look at this demo app created with **fullstrapp**](https://material-pwa-c6ebb.firebaseapp.com/)
 
@@ -22,8 +21,6 @@ Tech Stack:
   - Signin: [firebaseui-web](https://github.com/firebase/firebaseui-web) pre-configured to use all signin methods
 - Issue Templates: Bug Report & Enhancement(User Story)
 - [Project Goals & Strategy](#goals)
-- [Alternatives](#alternatives)
-
 
 ### Getting Started
 #### 1. Install and create app
@@ -35,9 +32,10 @@ fullstrapp myapp
 ```
 
 #### 2. Setup Firebase
-- Make sure you have enabled **Firebase Analytics** in your project
+- Make sure you have enabled **Firebase Analytics & Authentication** in your project
 - Copy your firebase config located at *Firebase Project > Project Settings > Firebase SDK snippet > Config*
 - Paste the firebase config to `src/firebase/firebase.ts` for the respective environment
+- Set your *Firebase Project* as *default* at `.firebaserc`
 
 #### 3. Setup Github CI/CD to automate deploys
 CI tests are configured out of the box, but to enable deploys to Firebase do the following:
