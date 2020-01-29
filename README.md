@@ -1,3 +1,9 @@
+## Deprecated
+I've turned this into a github template https://github.com/eddedd88/react-firebase-template
+
+
+---
+
 <img src="https://raw.githubusercontent.com/eddedd88/fullstrapp/master/icon.png" width="200" />
 
 # fullstrapp
@@ -52,6 +58,3 @@ Every time a commit is pushed to github, Github will automatically run the CI te
 - To iterate on features quickly by automating as many things as possible (tests, builds and deploys). The **CI cycles should take less than 5 minutes**
 
 - To be affordable for the hobbyist developer: **free until meaningful traction**
-
-
-Note: I am turning this into a template, https://github.com/eddedd88/react-firebase-template

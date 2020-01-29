@@ -1,6 +1,6 @@
 {
   "name": "fullstrapp",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Bootstrap a scalable full stack application with pre-configured: hosting, database, authentication, analytics, CI, CD, code templates, and issue templates.",
   "keywords": [
     "react",
